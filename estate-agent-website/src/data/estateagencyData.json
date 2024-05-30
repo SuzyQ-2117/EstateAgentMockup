@@ -1,0 +1,91 @@
+{
+    "Customer": [
+      {
+        "id": "1",
+        "firstname": "Lorna",
+        "surname": "GordonSmith",
+        "type" : "Buyer"
+        
+      },
+      {
+        "id": "2",
+        "firstname": "Suzy ",
+        "surname": "Brown",
+        "type" : "Seller"
+      },
+      {
+        "id": "3",
+        "firstname": "Praveen",
+        "surname": "Karnam",
+        "type" : "Buyer"
+        
+      },
+      {
+        "id": "4",
+        "firstname": "Andrew ",
+        "surname": "Rennie",
+        "type" : "Seller"
+      }
+    ],
+
+    "Property": [
+        {
+            "id" : "1",
+            "Name" : "Lennox House",
+            "Photo" : "",
+             "Price": "10000000",
+             "Bedrooms": "10" ,
+            "Bathroom" : "8",
+             "Garden" : "Yes",
+            "Status": "For Sale"
+            
+        },
+        {
+            "id" : "2",
+            "Name" : "Brown Tree Cottage",
+            "Photo" : "",
+            "Price": "3000000",
+             "Bedrooms": "3" ,
+            "Bathroom" : "1",
+             "Garden" : "Yes",
+            "Status": "For Sale"
+            
+        },
+
+        {
+            "id" : "3",
+            "Name" : "Rennie Farm House",
+            "Price": "6000000",
+             "Bedrooms": "5" ,
+            "Bathroom" : "2",
+             "Garden" : "Yes",
+            "Status": "For Sale"
+            
+        },
+
+        {
+            "id" : "4",
+            "Name" : "Karnam Castle",
+            "Photo" : "",
+             "Price": "600000000",
+             "Bedrooms": "15" ,
+            "Bathroom" : "17",
+             "Garden" : "Yes",
+            "Status": "For Sale"
+            
+        },
+
+        {
+            "id" : "5",
+            "Name" : "Smith Flat",
+            "Photo" : "",
+             "Price": "200000",
+             "Bedrooms": "1" ,
+            "Bathroom" : "1",
+             "Garden" : "No",
+            "Status": "For Sale"
+            
+        }
+      ]
+
+}

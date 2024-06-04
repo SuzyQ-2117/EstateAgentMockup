@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import '../CSS/Register.css';
 import { PropContext } from "../context/prop-context";
+import { LiaEtsy } from "react-icons/lia";
 
 
 const FindProperty = () => {
@@ -23,12 +24,38 @@ const FindProperty = () => {
         populateFilters(true,priceMin,priceMax,bedRoomsMin,bedRoomsMax,bathRoomsMin,bathRoomsMax,(garden?"Yes":"No"))
     }    
 
+
+function ResetList(ListtoReset, SourceList, MinMax) {
+    const tempList = document.getElementById(ListtoReset)
+    const sourceList = document.getElementById(SourceList)
+    //  const tempList = maxTestBaths.selectedIndex
+     tempList.innerHTML = sourceList.innerHTML
+    //  maxTestBaths.selectedIndex = MaxBathIndex
+    tempList.options[0].innerHTML = MinMax === "Min"? "No Min" : "No Max"
+
+}
+
     function ResetFilters() {
-        const maxTestBaths = document.getElementById("BathsMax")
-        const sparemaxTestBaths = document.getElementById("spareBathsMax")
-         const MaxBathIndex = maxTestBaths.selectedIndex
-         maxTestBaths.innerHTML = sparemaxTestBaths.innerHTML
-         maxTestBaths.selectedIndex = MaxBathIndex
+
+            let x = "10050000";
+            var pattern = /(-?\d+)(\d{3})/;
+            while (pattern.test(x))
+                x = x.replace(pattern, "$1,$2");
+        alert(x)
+        // console.log(numberWithCommas(1000))
+
+        // ResetList("PriceMin","sourcePrice","Min")
+        // ResetList("PriceMax","sourcePrice","Max")
+        // ResetList("BedsMin","sourceBedBath","Min")
+        // ResetList("BedsMax","sourceBedBath","Max")
+        // ResetList("BathsMin","sourceBedBath","Min")
+        // ResetList("BathsMax","sourceBedBath","Max")
+
+        // const maxTestBaths = document.getElementById("BathsMax")
+        // const sparemaxTestBaths = document.getElementById("spareBathsMax")
+        //  const MaxBathIndex = maxTestBaths.selectedIndex
+        //  maxTestBaths.innerHTML = sparemaxTestBaths.innerHTML
+        //  maxTestBaths.selectedIndex = MaxBathIndex
          
 
 //          maxTestBaths.innerHTML=""
@@ -46,7 +73,8 @@ const FindProperty = () => {
 
     return (
         <div class="register-buyer">
-            <form onSubmit={AddFilter}>
+            <form onLoad={ResetFilters} onSubmit={AddFilter}>
+            {/* onLoad={ResetFilters} */}
                 <div>
                     <h1 className="App-header">Search for properties</h1>
                     <div className="flex details">
@@ -65,7 +93,7 @@ const FindProperty = () => {
 
                             }}>
                                 <option value="0">No Min</option>
-                                <option value="10000">£10,000</option>
+                                {/* <option value="10000">£10,000</option>
                                 <option value="20000">£20,000</option>
                                 <option value="30000">£30,000</option>
                                 <option value="40000">£40,000</option>
@@ -153,7 +181,7 @@ const FindProperty = () => {
                                 <option value="10000000">£10,000,000</option>
 
                                 <option value="12500000">£12,500,000</option>
-                                <option value="15000000">£15,000,000</option>
+                                <option value="15000000">£15,000,000</option> */}
 
                             </select>
                             <p>Price upto:</p>
@@ -168,7 +196,7 @@ const FindProperty = () => {
                                     }
                                 }}>
                                 <option value="0">No Max</option>
-                                <option value="10000">£10,000</option>
+                                {/* <option value="10000">£10,000</option>
                                 <option value="20000">£20,000</option>
                                 <option value="30000">£30,000</option>
                                 <option value="40000">£40,000</option>
@@ -256,7 +284,7 @@ const FindProperty = () => {
                                 <option value="10000000">£10,000,000</option>
 
                                 <option value="12500000">£12,500,000</option>
-                                <option value="15000000">£15,000,000</option>
+                                <option value="15000000">£15,000,000</option> */}
 
                             </select>
                             </div>
@@ -358,8 +386,105 @@ const FindProperty = () => {
                             </div>
 
 {/* End the Bathroom section */}
-                            <select hidden name="spareBathsMax" id="spareBathsMax" >
-                                <option value="0">No Max</option>
+
+{/* Selects to be hidden and be used to refresh / rest the dorpdowns visible in screen */}
+
+<select hidden name="sourcePrice" id="sourcePrice">
+                                <option value="0">No Min Max</option>
+                                <option value="10000">£10,000</option>
+                                <option value="20000">£20,000</option>
+                                <option value="30000">£30,000</option>
+                                <option value="40000">£40,000</option>
+                                <option value="50000">£50,000</option>
+                                <option value="60000">£60,000</option>
+                                <option value="70000">£70,000</option>
+                                <option value="80000">£80,000</option>
+                                <option value="90000">£90,000</option>
+                                <option value="100000">£100,000</option>
+
+                                <option value="110000">£110,000</option>
+                                <option value="120000">£120,000</option>
+                                <option value="130000">£130,000</option>
+                                <option value="140000">£140,000</option>
+                                <option value="150000">£150,000</option>
+                                <option value="160000">£160,000</option>
+                                <option value="170000">£170,000</option>
+                                <option value="180000">£180,000</option>
+                                <option value="190000">£190,000</option>
+                                <option value="200000">£200,000</option>
+
+                                <option value="210000">£210,000</option>
+                                <option value="220000">£220,000</option>
+                                <option value="230000">£230,000</option>
+                                <option value="240000">£240,000</option>
+                                <option value="250000">£250,000</option>
+                                <option value="275000">£275,000</option>
+                                <option value="300000">£300,000</option>
+                                <option value="325000">£325,000</option>
+                                <option value="350000">£350,000</option>
+                                <option value="375000">£375,000</option>
+                                <option value="400000">£400,000</option>
+                                <option value="425000">£425,000</option>
+                                <option value="450000">£450,000</option>
+                                <option value="475000">£475,000</option>
+                                <option value="500000">£500,000</option>
+
+                                <option value="550000">£550,000</option>
+                                <option value="600000">£600,000</option>
+                                <option value="650000">£650,000</option>
+                                <option value="700000">£700,000</option>
+                                <option value="750000">£750,000</option>
+                                <option value="800000">£800,000</option>
+                                <option value="850000">£850,000</option>
+                                <option value="900000">£900,000</option>
+                                <option value="950000">£950,000</option>
+                                <option value="1000000">£1,000,000</option>
+
+                                <option value="1100000">£1,100,000</option>
+                                <option value="1200000">£1,200,000</option>
+                                <option value="1300000">£1,300,000</option>
+                                <option value="1400000">£1,400,000</option>
+                                <option value="1500000">£1,500,000</option>
+                                <option value="1600000">£1,600,000</option>
+                                <option value="1700000">£1,700,000</option>
+                                <option value="1800000">£1,800,000</option>
+                                <option value="1900000">£1,900,000</option>
+                                <option value="2000000">£2,000,000</option>
+
+                                <option value="2100000">£2,100,000</option>
+                                <option value="2200000">£2,200,000</option>
+                                <option value="2300000">£2,300,000</option>
+                                <option value="2400000">£2,400,000</option>
+                                <option value="2500000">£2,500,000</option>
+                                <option value="2750000">£2,750,000</option>
+                                <option value="3000000">£3,000,000</option>
+
+                                <option value="3250000">£3,250,000</option>
+                                <option value="3500000">£3,500,000</option>
+                                <option value="3750000">£3,750,000</option>
+                                <option value="4000000">£4,000,000</option>
+                                <option value="4250000">£4,250,000</option>
+                                <option value="4500000">£4,500,000</option>
+                                <option value="4750000">£4,750,000</option>
+                                <option value="5000000">£5,000,000</option>
+                                <option value="5500000">£5,500,000</option>
+                                <option value="6000000">£6,000,000</option>
+                                <option value="6500000">£6,500,000</option>
+                                <option value="7000000">£7,000,000</option>
+                                <option value="7500000">£7,500,000</option>
+                                <option value="8000000">£8,000,000</option>
+                                <option value="8500000">£8,500,000</option>
+                                <option value="9000000">£9,000,000</option>
+                                <option value="9500000">£9,500,000</option>
+                                <option value="10000000">£10,000,000</option>
+
+                                <option value="12500000">£12,500,000</option>
+                                <option value="15000000">£15,000,000</option>
+
+</select>
+
+                            <select hidden name="sourceBedBath" id="sourceBedBath" >
+                                <option value="0">No Min Max</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -380,9 +505,10 @@ const FindProperty = () => {
                                 setGarden(e.target.checked)
                             }} />
                         </div>
-                        {/* <br /> */}
+                        <br />
                     <button class="submit-button">Search</button>
                     <button onClick={ResetFilters}>Reset Filters</button>
+                    {/* <button>Reset Filters</button> */}
                     </div>
                     <span style={{ color: "red" }} id="ProSearchError"></span>
                     {/* <span style={{ color: "blue" }} id="BuyerSuccess"></span> */}

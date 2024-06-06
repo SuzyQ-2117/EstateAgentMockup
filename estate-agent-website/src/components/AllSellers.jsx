@@ -1,20 +1,31 @@
 
-function AllSellers({ ID, FirstName, SurName}) { 
 
-    return ( 
+import { useEffect, useState } from "react";
 
-        <div className="all-sellers"> 
+function AllSellers(props) {    
 
-            <p>{ID}</p> 
+    return (
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th className="th-border">First Name</th>
+                        <th>Surname</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.seller.map(s => (
+                    <tr className="hover" key={s.id}>
+                        <td>{s.id}</td>
+                        <td className="td-border">{s.FirstName}</td>
+                        <td>{s.SurName}</td>
+                    </tr>))
+                    }
+                </tbody>
+            </table>
+        </div>
+    );
+}
 
-            <p>{FirstName}</p> 
-
-            <p>{SurName}</p> 
-
-        </div> 
-
-    ) 
-
-} 
-
-export default AllSellers
+export default AllSellers;

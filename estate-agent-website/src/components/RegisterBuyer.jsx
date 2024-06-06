@@ -20,8 +20,12 @@ const RegisterBuyer = (props) => {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(newBuyer)
                 }
+<<<<<<< HEAD
             )
             .then(() => {
+=======
+            ).then(() => {
+>>>>>>> 7c9a99e792ba651ed78f0783dcabb87637307758
                 props.fetchBuyerData()
                 setFirstName('')
                 setSurName('')  

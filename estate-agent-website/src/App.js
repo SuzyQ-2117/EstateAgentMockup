@@ -1,7 +1,7 @@
 import AllBuyers from './components/AllBuyers';
 import AllSellers from './components/AllSellers';
 import Data from './data/Data.json';
-import './App.css';
+// import './App.css';
 import DisplayProperty from './components/DisplayProperty';
 import RegisterBuyer from './components/RegisterBuyer';
 import Navbar from './components/Navbar';

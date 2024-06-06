@@ -1,10 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import PropertyCard from './PropertyCard';
-import '../CSS/PropertyDisplay.css';
 import { PropContext } from "../context/prop-context"
 
-
-export default function DisplayProperty(props) {
+export default function DisplayProperty({apiData, fetchData}) {
   //context for search filter
   const { gotFilter } = useContext(PropContext)
   const { priceMin } = useContext(PropContext)
@@ -14,16 +12,6 @@ export default function DisplayProperty(props) {
   const { bathRoomsMin } = useContext(PropContext)
   const { bathRoomsMax } = useContext(PropContext)
   const { hasGarden } = useContext(PropContext)
-
-  let [apiData, setData] = useState([]);
-  const fetchData = () => {
-    fetch('http://localhost:8000/Properties')
-    .then((response) => response.json())
-    .then((data) => setData(data))
-  }
-
-  useEffect(() => { fetchData() }
-    , []);
 
   // gotFilter will be true if user input is coming from the Find Property Component. If solid, filter the JSON and display only the result
   if (gotFilter) {
@@ -35,7 +23,6 @@ export default function DisplayProperty(props) {
     if (priceMax) {
       apiData = apiData.filter((Property) => parseInt(Property.Price) <= parseInt(priceMax))
     }
-
     // If there is a Min Bedrooms filter:
     if (bedRoomsMin) {
       apiData = apiData.filter((Property) => parseInt(Property.Bedrooms) >= parseInt(bedRoomsMin))
@@ -44,7 +31,6 @@ export default function DisplayProperty(props) {
     if (bedRoomsMax) {
       apiData = apiData.filter((Property) => parseInt(Property.Bedrooms) <= parseInt(bedRoomsMax))
     }
-
     // If there is a Min Bathrooms filter:
     if (bathRoomsMin) {
       apiData = apiData.filter((Property) => parseInt(Property.Bathrooms) >= parseInt(bathRoomsMin))
@@ -53,12 +39,10 @@ export default function DisplayProperty(props) {
     if (bathRoomsMax) {
       apiData = apiData.filter((Property) => parseInt(Property.Bathrooms) <= parseInt(bathRoomsMax))
     }
-
     // If there is a Garden filter:
     if (hasGarden === "Yes") {
       apiData = apiData.filter((Property) => Property.Garden === hasGarden)
     }
-
   }
 
   if (apiData.length === 0) {

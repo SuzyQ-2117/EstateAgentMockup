@@ -1,0 +1,83 @@
+/* BUYERS PAGE */
+
+.buyers .half-white-container-left {
+  margin: 2vw 2vw 2vw 10vw;
+  padding: 1vw;
+  width: 50vw;
+  background-color: white;
+  box-shadow: 1px 1px 10px 1px #d6cfcb;
+}
+
+.buyers .half-white-container-right {
+  margin: 2vw 10vw 2vw 2vw;
+  padding: 1vw;
+  max-width: 50vw;
+  background-color: white;
+  box-shadow: 1px 1px 10px 1px #d6cfcb;
+}
+
+.buyers .color-background {
+  background-color: #706677;
+}
+
+.buyers .customer-grid {
+  max-width: 100%;
+  flex: auto;
+  padding: 2vw;
+  margin: 0.1vw;
+  background-color: #ccb7ae;
+}
+
+.buyers table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.buyers thead {
+  background-color: #A6808C;
+  color: #F7F7F8;
+  border-bottom: #565264 1px solid;
+}
+
+.buyers .th-border {
+  border-left: #565264 1px solid;
+  border-right: #565264 1px solid;
+}
+
+.buyers .td-border {
+  border-left: #565264 1px solid;
+  border-right: #565264 1px solid;
+}
+
+.buyers .hover:hover {
+  background-color: #D6CFCB;
+}
+
+/* REGISTER BUYER  */
+.buyers .register-buyer {
+  align-self: center;
+  max-width: 50vw;
+}
+
+.buyers .flex-register {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border: 1px solid silver;
+  display: flex;
+  justify-content: center;
+}
+
+.buyers .details {
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  max-width: 50vw;
+}
+
+.buyers .name-input {
+  margin: 10px;
+}
+
+.buyers input {
+  max-width: 20vw;
+}

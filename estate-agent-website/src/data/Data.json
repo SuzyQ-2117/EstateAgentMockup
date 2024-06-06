@@ -101,6 +101,7 @@
       "SurName": "blank"
     },
     {
+<<<<<<< HEAD
       "id": "9dc6",
       "FirstName": "Mango",
       "SurName": "Apple"
@@ -159,6 +160,116 @@
       "id": "f525",
       "FirstName": "minty",
       "SurName": "chicken"
+=======
+      "id": "81cf",
+      "FirstName": "etth",
+      "SurName": "hvjhv"
+    },
+    {
+      "id": "4199",
+      "FirstName": "uuuuuuu",
+      "SurName": "uuuuuuu"
+    },
+    {
+      "id": "b7ff",
+      "FirstName": "p",
+      "SurName": "p"
+    },
+    {
+      "id": "6ed7",
+      "FirstName": "p",
+      "SurName": "p"
+    },
+    {
+      "id": "5c66",
+      "FirstName": "p",
+      "SurName": "p"
+    },
+    {
+      "id": "e99f",
+      "FirstName": "o",
+      "SurName": "o"
+    },
+    {
+      "id": "c502",
+      "FirstName": "o",
+      "SurName": "o"
+    },
+    {
+      "id": "e91a",
+      "FirstName": "o",
+      "SurName": "o"
+    },
+    {
+      "id": "4335",
+      "FirstName": "o",
+      "SurName": "o"
+    },
+    {
+      "id": "42d5",
+      "FirstName": "q",
+      "SurName": "q"
+    },
+    {
+      "id": "10a3",
+      "FirstName": "t",
+      "SurName": "t"
+    },
+    {
+      "id": "24b6",
+      "FirstName": "w",
+      "SurName": "w"
+    },
+    {
+      "id": "46b3",
+      "FirstName": "e",
+      "SurName": "e"
+    },
+    {
+      "id": "f4c9",
+      "FirstName": "c",
+      "SurName": "c"
+    },
+    {
+      "id": "a911",
+      "FirstName": "x",
+      "SurName": "x"
+    },
+    {
+      "id": "5572",
+      "FirstName": "y",
+      "SurName": "y"
+    },
+    {
+      "id": "bbf1",
+      "FirstName": "h",
+      "SurName": "h"
+    },
+    {
+      "id": "0897",
+      "FirstName": "b",
+      "SurName": "b"
+    },
+    {
+      "id": "ef7b",
+      "FirstName": "j",
+      "SurName": "j"
+    },
+    {
+      "id": "77e0",
+      "FirstName": "j",
+      "SurName": "j"
+    },
+    {
+      "id": "2a4c",
+      "FirstName": "j",
+      "SurName": "j"
+    },
+    {
+      "id": "05d9",
+      "FirstName": "k",
+      "SurName": "k"
+>>>>>>> 7c9a99e792ba651ed78f0783dcabb87637307758
     }
   ],
   "Sellers": [
@@ -202,9 +313,35 @@
       "SurName": "rtrtrty"
     },
     {
+<<<<<<< HEAD
       "id": "c44c",
       "FirstName": "Somebody",
       "SurName": "Nobody"
+=======
+      "id": "9548",
+      "FirstName": "tghdtghb",
+      "SurName": "thth"
+    },
+    {
+      "id": "1c02",
+      "FirstName": "uuuuuu",
+      "SurName": "uuuuuu"
+    },
+    {
+      "id": "594b",
+      "FirstName": "y",
+      "SurName": "y"
+    },
+    {
+      "id": "c5a9",
+      "FirstName": "p",
+      "SurName": "p"
+    },
+    {
+      "id": "65da",
+      "FirstName": "k",
+      "SurName": "k"
+>>>>>>> 7c9a99e792ba651ed78f0783dcabb87637307758
     }
   ],
   "Properties": [
@@ -225,7 +362,7 @@
       "Bedrooms": 10,
       "Bathrooms": 20,
       "Garden": "Yes",
-      "SaleStatus": "FORSALE",
+      "SaleStatus": "WITHDRAWN",
       "id": "4c9d"
     },
     {
@@ -245,7 +382,7 @@
       "Bedrooms": 4,
       "Bathrooms": 2,
       "Garden": "Yes",
-      "SaleStatus": "FORSALE",
+      "SaleStatus": "WITHDRAWN",
       "id": "648b"
     },
     {
@@ -255,7 +392,7 @@
       "Bedrooms": 4,
       "Bathrooms": 2,
       "Garden": "Yes",
-      "SaleStatus": "FORSALE",
+      "SaleStatus": "WITHDRAWN",
       "id": "ms84"
     },
     {
@@ -277,6 +414,56 @@
       "Bathrooms": "2",
       "Garden": "No",
       "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "6cee",
+      "ImageUrl": "https://i.pinimg.com/originals/7e/82/ae/7e82aef7d0cc2f754488e287f687aace.jpg",
+      "Address": "3333",
+      "Price": "33",
+      "Bedrooms": 1,
+      "Bathrooms": 1,
+      "Garden": "Yes",
+      "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "bbdc",
+      "ImageUrl": "https://www.idesignarch.com/wp-content/uploads/Luxury-Custom-Waterfront-Beach-House-Morehead-City-North-Carolina_1.jpg",
+      "Address": "22222",
+      "Price": "3333",
+      "Bedrooms": "2",
+      "Bathrooms": "2",
+      "Garden": "No",
+      "SaleStatus": "WITHDRAWN"
+    },
+    {
+      "id": "aa88",
+      "ImageUrl": "https://www.idesignarch.com/wp-content/uploads/Luxury-Custom-Waterfront-Beach-House-Morehead-City-North-Carolina_1.jpg",
+      "Address": "222",
+      "Price": "3",
+      "Bedrooms": 1,
+      "Bathrooms": 1,
+      "Garden": "Yes",
+      "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "90e9",
+      "ImageUrl": "https://www.idesignarch.com/wp-content/uploads/Luxury-Custom-Waterfront-Beach-House-Morehead-City-North-Carolina_1.jpg",
+      "Address": "lorna",
+      "Price": "1000000",
+      "Bedrooms": "9",
+      "Bathrooms": "9",
+      "Garden": "No",
+      "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "bfe7",
+      "ImageUrl": "https://www.idesignarch.com/wp-content/uploads/Luxury-Custom-Waterfront-Beach-House-Morehead-City-North-Carolina_1.jpg",
+      "Address": "jordan ",
+      "Price": "9999999999999",
+      "Bedrooms": "9999",
+      "Bathrooms": 0,
+      "Garden": "",
+      "SaleStatus": "WITHDRAWN"
     }
   ]
 }

@@ -1,16 +1,7 @@
 /* Quicksand */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-/* Montserrat  */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-/* Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-/* Josefin Sands */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
 * {
-  /* font-family: 'Josefin Sans'; */
-  /* font-family: Poppins; */
-  /* font-family: Montserrat; */
   font-family: Quicksand;
   /* outline: 1px red solid; */
   padding: 0;
@@ -19,7 +10,7 @@
 
 .App {
   text-align: center;
-  /* background-image: linear-gradient(to bottom right, #936639, #7F4F24); */
+
   background-color: #F7F7F8;
   padding: 1vw;
 }
@@ -50,21 +41,9 @@
   flex-wrap: wrap;
 }
 
-/* FILTER PROPERTIES COMPONENT  */
-.white-container {
-  margin: 2vw 10vw;
-  padding: 1vw;
-  max-width: 100vw;
-  background-color: white;
-  box-shadow: 1px 1px 10px 1px #d6cfcb;
-}
 
-.filter-container {
-  line-height: 3;
-  background-color: #ccb7ae;
-  padding: 2vw;
-  margin: 0.1vw;
-}
+
+
 
 
 /* NAVBAR  */
@@ -113,67 +92,268 @@
 }
 
 .link:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 
-/* REGISTER BUYER  */
-.register-buyer {
-  max-width: 50vw;
+
+
+
+
+/* FILTER PROPERTIES COMPONENT  */
+.white-container {
+  margin: 2vw 10vw;
+  padding: 1vw;
+  max-width: 100vw;
+  background-color: white;
+  box-shadow: 1px 1px 10px 1px #d6cfcb;
 }
-.App-header {
-  background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
+
+.filter-container {
+  background-color: #ccb7ae;
+  padding: 2vw;
+  margin: 0.1vw;
+}
+
+.left-filter,
+.right-filter {
+  width: 40rem;
+
+}
+
+.filter {
+  outline: 1px red solid;
+  line-height: 1;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-.flex-register {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  border: 1px solid silver;
-  display: flex;
-  justify-content: center;
+
+.DONOTDISPLAY {
+  display: none;
 }
-.details {
-  flex-wrap: wrap;
-  padding-bottom: 20px;
-  max-width: 50vw;
-}
-.name-input {
-  margin: 10px;
-}
-input {
+
+.container select {
+  font-size: 1.3vw;
   max-width: 20vw;
 }
 
-/* DISPLAY PROPERTY */
-/* .page-content {
-  max-width: 80vw;
-} */
+.container {
+  display: grid;
+  grid-template-columns: 1.4fr 1.4fr;
+  grid-template-rows: auto auto 0.6fr;
+  grid-auto-columns: 1fr;
+  gap: 1em 3em;
+  grid-auto-flow: row;
+  justify-items: stretch;
+  align-items: center;
+  grid-template-areas:
+    "price bathrooms"
+    "bedrooms garden"
+    "reset submit";
+  height: 70%;
+}
+
+.price {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "price-heading price-heading price-heading"
+    "price-min price-to price-max";
+  grid-area: price;
+}
+
+.price-heading {
+  font-size: 1.5vw;
+  justify-self: center;
+  align-self: center;
+  grid-area: price-heading;
+}
+
+.price-max {
+  grid-area: price-max;
+}
+
+.price-min {
+  grid-area: price-min;
+}
+
+.price-to {
+  align-self: center;
+  font-size: 1.2vw;
+  justify-self: center;
+  grid-area: price-to;
+}
+
+.bathrooms {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "bathrooms-heading bathrooms-heading bathrooms-heading"
+    "bathrooms-min bathrooms-to bathrooms-max";
+  grid-area: bathrooms;
+}
+
+.bathrooms-heading {
+  font-size: 1.5vw;
+  justify-self: center;
+  align-self: center;
+  grid-area: bathrooms-heading;
+}
+
+.bathrooms-to {
+  font-size: 1.2vw;
+  justify-self: center;
+  align-self: center;
+  grid-area: bathrooms-to;
+}
+
+.bathrooms-min {
+  grid-area: bathrooms-min;
+}
+
+.bathrooms-max {
+  grid-area: bathrooms-max;
+}
+
+.bedrooms {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "bedrooms-heading bedrooms-heading bedrooms-heading"
+    "bedrooms-min bedrooms-to bedrooms-max";
+  grid-area: bedrooms;
+}
+
+.bedrooms-heading {
+  font-size: 1.5vw;
+  justify-self: center;
+  align-self: center;
+  grid-area: bedrooms-heading;
+}
+
+.bedrooms-to {
+  font-size: 1.2vw;
+  justify-self: center;
+  align-self: center;
+  grid-area: bedrooms-to;
+}
+
+.bedrooms-min {
+  grid-area: bedrooms-min;
+}
+
+.bedrooms-max {
+  grid-area: bedrooms-max;
+}
+
+.garden {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "garden-heading"
+    "checkbox";
+  grid-area: garden;
+}
+
+.garden-heading {
+  font-size: 1.5vw;
+  justify-self: center;
+  grid-area: garden-heading;
+}
+
+.checkbox {
+  justify-self: center;
+  align-self: center;
+  grid-area: checkbox;
+}
+
+.reset {
+  justify-self: center;
+  align-self: center;
+  grid-area: reset;
+}
+
+.reset-filter-btn,
+.submit-filter-btn {
+  background-color: #F7F7F8;
+  border-radius: 5px;
+  border: 1px solid #565264;
+  display: inline-block;
+  cursor: pointer;
+  color: #565264;
+  font-size: 20px;
+  padding: 16px 31px;
+  text-decoration: none;
+}
+
+.reset-filter-btn:hover,
+.submit-filter-btn:hover {
+  color: #F7F7F8;
+  background-color: #A6808C;
+}
+
+.reset-filter-btn:active,
+.submit-filter-btn:active {
+  position: relative;
+  top: 1px;
+}
+
+
+.submit {
+  justify-self: center;
+  align-self: center;
+  grid-area: submit;
+}
+
+
+
+
+
+
+
+
+
+/* DISPLAY PROPERTY & PROPERTY CARD */
 
 .item-card {
   margin: 1vw auto;
   min-width: 250px;
   max-width: 20vw;
+  min-height: 350px;
   background-color: #F7F7F8;
   border: #D6CFCB dotted 1px;
   box-shadow: 1px 1px 10px 1px #d6cfcb;
 }
 
-.hidden {
-  display: none;
+.padded-property-container {
+  padding: 10px;
+  height: 100%;
+
 }
 
-.visible {
-  visibility: visible;
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.salestatus {
+  float: right;
 }
 
 .item-card:hover {
   box-shadow: 1px 1px 10px 1px #d6cfcb;
-  /* cursor: pointer; */
 }
 
 .property-img {
@@ -185,38 +365,37 @@ input {
   max-width: 80vw;
 }
 
-.btn {
-/* position: absolute;
-  top: 8px;
-  right: 16px; */
-  float: right;
-  background-color: #555;
-  color: white;
-  font-size: 8px + 0.1vw;
-  padding: 1.2vw 2.4vw;
-  border-radius: 5px;
-  margin: 5px;
+.FORSALE .resubmit-btn {
+  display: none;
+}
 
+.WITHDRAWN .withdraw-btn {
+  display: none;
+}
+
+.SOLD .withdraw-btn,
+.SOLD .resubmit-btn,
+.SOLD .appt-btn {
+  display: none;
+}
+
+.INVIS {
+  visibility: hidden;
 }
 
 .property-data {
-  font-size: 12px + 0.1vw;
-}
-
-.address {
-  font-size: 12px + 0.3vw;
-}
-
-.item-card>img {
-  padding: 0;
-}
-
-/* .item-card .btn:hover{
-  background-color: black;
-} */
-
-.item-card>p {
-  margin: 0 10px;
+  font-size: 1.2vw;
   text-align: left;
-  
 }
+
+.property-address {
+  font-size: 1.4vw;
+  font-weight: bold;
+}
+
+.property-price {
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* REGISTER SELLER  */

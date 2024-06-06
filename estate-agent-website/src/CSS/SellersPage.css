@@ -1,0 +1,87 @@
+/* SELLERS PAGE */
+
+.sellers.row-reverse {
+    flex-direction: row-reverse;
+}
+
+.sellers .half-white-container-left {
+    margin: 2vw 10vw 2vw 2vw;
+    padding: 1vw;
+    width: 50vw;
+    background-color: white;
+    box-shadow: 1px 1px 10px 1px #d6cfcb;
+}
+
+.sellers .half-white-container-right {
+    margin: 2vw 2vw 2vw 10vw;
+    padding: 1vw;
+    max-width: 50vw;
+    background-color: white;
+    box-shadow: 1px 1px 10px 1px #d6cfcb;
+}
+
+.sellers .color-background {
+    background-color: #D6CFCB;
+}
+
+.sellers .customer-grid {
+    max-width: 100%;
+    flex: auto;
+    padding: 2vw;
+    margin: 0.1vw;
+    background-color: #ccb7ae;
+}
+
+.sellers table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sellers thead {
+    background-color: #A6808C;
+    color: #F7F7F8;
+    border-bottom: #565264 1px solid;
+}
+
+.sellers .th-border {
+    border-left: #565264 1px solid;
+    border-right: #565264 1px solid;
+}
+
+.sellers .td-border {
+    border-left: #565264 1px solid;
+    border-right: #565264 1px solid;
+  }
+
+  .sellers .hover:hover {
+    background-color: #D6CFCB;
+  }
+
+/* REGISTER SELLER  */
+.sellers .register-buyer {
+    align-self: center;
+    max-width: 50vw;
+}
+
+.sellers .flex-register {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 1px solid silver;
+    display: flex;
+    justify-content: center;
+}
+
+.sellers .details {
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    max-width: 50vw;
+}
+
+.sellers .name-input {
+    margin: 10px;
+}
+
+.sellers input {
+    max-width: 20vw;
+}

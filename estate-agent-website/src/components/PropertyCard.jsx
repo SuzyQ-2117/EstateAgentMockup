@@ -1,6 +1,6 @@
 import { FaBed, FaBath } from "react-icons/fa";
 import { PiPottedPlantFill } from "react-icons/pi";
-import '../CSS/PropertyDisplay.css'
+
 
 export default function PropertyCard({ id, ImageUrl, address, price, bedrooms, bathrooms, garden, salestatus, fetchData }) {
 
@@ -10,20 +10,31 @@ export default function PropertyCard({ id, ImageUrl, address, price, bedrooms, b
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ SaleStatus }),
     })
-      .then(fetchData)}
+      .then(fetchData)
+  }
 
-  return ( 
-    <div className="item-card">
-      <img src={ImageUrl} className="property-img"/>
-      <button className="btn">{salestatus}</button>
-      <p className="p-one property-data address" ><span></span>{address}</p>
-      <p className="p-two property-data price" >£{price}</p>
-      <p className="p-three property-data beds"><span><FaBed /></span> {bedrooms} </p>
-      <p className="p-four property-data baths"><span><FaBath /></span> {bathrooms}</p>
-      <p className="p-five"> <span><PiPottedPlantFill /></span> {garden} </p>
-      <button onClick={() => changeStatus("WITHDRAWN")}>Withdraw Property</button>
-      {/* only show the relevant button, so the IF statement would be appear - ternary op */}
-      <button onClick={() => changeStatus("FORSALE")}>Resubmit Property</button>
+  return (
+    <div className={"item-card flex-column " + salestatus}>
+      <img src={ImageUrl} className="property-img" alt="" />
+      <div className="padded-property-container flex-column">
+        <div className="flex space-between">
+          <p className="p-one property-data property-address">{address}</p>
+          <p className="property-data salestatus">{salestatus}</p>
+        </div>
+        <p className="p-two property-data property-price">£{price}</p>
+        <div>
+          <p className="p-three property-data property-beds"><span><FaBed /></span> {bedrooms} </p>
+          <p className="p-four property-data property-baths"><span><FaBath /></span> {bathrooms}</p>
+          <p className="p-five property-data property-garden"> <span><PiPottedPlantFill /></span> {garden} </p>
+        </div>
+        <div className="flex space-between">
+          <button className="appt-btn INVIS btn-left">Book an Appointment</button>
+          <button className="withdraw-btn btn-right" onClick={() => changeStatus("WITHDRAWN")}>Withdraw Property</button>
+          {/* only show the relevant button, so the IF statement would be appear - ternary op */}
+          <button className="resubmit-btn btn-right" onClick={() => changeStatus("FORSALE")}>Resubmit Property</button>
+        </div>
+      </div>
+
     </div>
   )
 }

@@ -2,10 +2,16 @@ import { useState } from "react";
 import "../CSS/AddProperty.css";
 import { SiThenorthface } from "react-icons/si";
 import Data from "../data/Data.json";
+import DisplayProperty from "./DisplayProperty";
 
-export default function AddProperty() {
+function RefreshData(){
+
+
+}
+
+
+export default function AddProperty({fetchData}) {
   // create state
-
   const [ImageUrl, setImageUrl] = useState("");
   const [Address, setAddress] = useState("");
   const [Price, setPrice] = useState(0);
@@ -15,16 +21,12 @@ export default function AddProperty() {
   const [SaleStatus, setSaleStatus] = useState("FORSALE");
   const [Seller, setSeller] = useState("")
 
-
   const handleSubmit = (e) => {
     // tells the event if the event doesnt get handled dont use the default action as I want to do something else
     e.preventDefault();
 
-
     // If seller exists then post to JSON
     if (Seller != "") {
-
-
       const task = {
         ImageUrl,
         Address,
@@ -38,10 +40,8 @@ export default function AddProperty() {
       //code to be added for if new then set to forsale
       setSaleStatus("FORSALE");
 
-      // const apiURL = {http://localhost:8000/animals'}
       fetch(
         "http://localhost:8000/Properties",
-
         {
           method: "POST",
           // for most api json call
@@ -49,28 +49,27 @@ export default function AddProperty() {
           // changing into json data
           body: JSON.stringify(task),
         }
+      ).then(
+        ()=> {
+          alert("New Property Added");
+
+          // reset text boxes
+          setImageUrl("");
+          setAddress("");
+          setPrice(0);
+          setBedrooms(0);
+          setBathrooms(0);
+          setGarden("");
+          setSaleStatus("");
+          setSeller("");
+          fetchData()
+        }
       );
-
-      alert("New Property Added");
-
-      // reset text boxes
-
-      setImageUrl("");
-      setAddress("");
-      setPrice(0);
-      setBedrooms(0);
-      setBathrooms(0);
-      setGarden("");
-      setSaleStatus("");
-      setSeller("");
 
       //otherwise ask seller to register
     } else {
-
       alert("Seller doesnt exist, please register in the seller page");
-
     }
-
   };
 
   return (
@@ -92,7 +91,7 @@ export default function AddProperty() {
         ))}
       </select>
       <br /> <br /> <br />
-      <label for="fname"> Address :</label>
+      <label htmlFor="fname"> Address :</label>
       <input
         id="fname"
         type="text"
@@ -109,6 +108,7 @@ export default function AddProperty() {
         type="Number"
         required
         value={Price}
+        min={0}
         // event is on change ,  target value is whats in the input box
         onChange={(e) => setPrice(e.target.value)}
       />
@@ -127,6 +127,7 @@ export default function AddProperty() {
         type="number"
         required
         value={Bedrooms}
+        min={0}
         // event
         onChange={(e) => setBedrooms(e.target.value)}
       />
@@ -136,6 +137,7 @@ export default function AddProperty() {
         type="number"
         required
         value={Bathrooms}
+        min={0}
         // event
         onChange={(e) => setBathrooms(e.target.value)}
       />

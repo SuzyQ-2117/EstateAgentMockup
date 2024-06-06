@@ -1,8 +1,0 @@
-* {
-    outline: 0px solid red;
-} 
-
-.grid-container {
-    display: grid;
-    grid-template-columns: 70% 30%;
-  }

@@ -21,7 +21,7 @@ const [filter, setFilter] = useState({})
               </div>
              </div>
             <div className="white-container">
-              <DisplayProperty filterResults="false" />
+              <DisplayProperty />
             </div>
           </div>
         </PropProvider>

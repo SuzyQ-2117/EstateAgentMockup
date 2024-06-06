@@ -1,85 +1,89 @@
 import { useState, useEffect } from "react";
-// import WriteToJSON from "./WriteToJSON";
 
-
-const RegisterBuyer = () => {
-
+const RegisterBuyer = (props) => {
     // Add state for each of the Buyer fields
     const [FirstName, setFirstName] = useState('')
     const [SurName, setSurName] = useState('')
     const [ExistingBuyer, setExistingBuyer] = useState(false)
 
-    const [BuyerData, setBuyerData] = useState([]);
+    function DoRegister(e) {
+        e.preventDefault();
 
-    useEffect(() => {
-        fetch('http://localhost:8000/Buyers')
-            .then((response) => response.json())
-            .then((data) => setBuyerData(data))
-    }, [])
+        const FilteredBuyer = props.buyer.filter((Buyer) => Buyer.FirstName.toLowerCase() === FirstName.toLowerCase() && Buyer.SurName.toLowerCase() === SurName.toLowerCase())
 
-function DoRegister(e) {
-    e.preventDefault();
-    document.getElementById("BuyerError").innerHTML=""
-    document.getElementById("BuyerSuccess").innerHTML=""
-    // Search in the JSON file for the First name and Second name entered in the form (now in the state)
-    const FilteredBuyer = BuyerData.filter((Buyer)=> Buyer.FirstName.toLowerCase()===FirstName.toLowerCase() & Buyer.SurName.toLowerCase()===SurName.toLowerCase())
-//    const FilteredBuyer = BuyerData.find((Buyer) => Buyer.FirstName.toLowerCase()===FirstName.toLowerCase() & Buyer.SurName.toLowerCase()===SurName.toLowerCase())
-// Check if the length of Filtered result is > 0. If so, the buyer already exists. Give appropriate error and dont add the user.
-console.log(FilteredBuyer)
-if(FilteredBuyer.length >0) {
-document.getElementById("BuyerError").innerHTML="Buyer already exists. Buyer ID is " + FilteredBuyer.map((Buyer=>Buyer.id))
-}
-else {
-
-    const newBuyer = { FirstName, SurName }
-    fetch('http://localhost:8000/Buyers',
-    {
-            method: 'POST',
-            headers: { "Content-Type" : "application/json"},
-            body: JSON.stringify(newBuyer)
+        if (FilteredBuyer.length > 0) {
+            document.getElementById("BuyerError").innerHTML = "Buyer already exists. Buyer ID is " + FilteredBuyer.map((Buyer => Buyer.id))
+        } else {
+            const newBuyer = { FirstName, SurName }
+            fetch('http://localhost:8000/Buyers',
+                {   method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newBuyer)
+                }
+            )
+            .then(() => {
+                props.fetchBuyerData()
+                setFirstName('')
+                setSurName('')  
+            }) 
         }
-    ) 
-//    setTimeout(() => {
-        const FilteredBuyer = BuyerData.filter((Buyer)=> Buyer.FirstName.toLowerCase()===FirstName.toLowerCase() & Buyer.SurName.toLowerCase()===SurName.toLowerCase())
-        document.getElementById("BuyerSuccess").innerHTML="Buyer added successfully. ID is "  + FilteredBuyer.map((Buyer=>Buyer.target.id))
-  //  }, 5000);
-    //document.getElementById("BuyerError").innerHTML="Buyer added successfully. ID is "  + FilteredBuyer.map((Buyer=>Buyer.id))
-    setFirstName('')
-    setSurName('')
-    console.log(FilteredBuyer.id)
-}
-}
+    }
+
     return (
-        <div class="register-buyer">
+        <div className="register-buyer">
             <form onSubmit={DoRegister}>
                 <div>
-                    <h1 className="App-header">Register a new Buyer here</h1>
-                    <div className="flex-register  details">
-                        <div class="name-input left">
+                    <div className="flex-register details">
+                        <div className="name-input left">
                             <p>First Name:</p>
                             <input type="text" value={FirstName} name="FirstName" onChange={(e) => {
                                 setFirstName(e.target.value);
-                                document.getElementById("BuyerError").innerHTML="";
-                                document.getElementById("BuyerSuccess").innerHTML=""
-                                }} />
+                                document.getElementById("BuyerError").innerHTML = "";
+                                document.getElementById("BuyerSuccess").innerHTML = ""
+                            }} />
                         </div>
-                        <div class="name-input right">
+                        <div className="name-input right">
                             <p>Surname:</p>
                             <input type="text" name="SurName" value={SurName} onChange={(e) => {
                                 setSurName(e.target.value)
-                                document.getElementById("BuyerError").innerHTML="";
-                                document.getElementById("BuyerSuccess").innerHTML=""
-                                }} />
+                                document.getElementById("BuyerError").innerHTML = "";
+                                document.getElementById("BuyerSuccess").innerHTML = ""
+                            }} />
                         </div>
                     </div>
-                    <span style={{color: "red"}}  id="BuyerError"></span>
-                    <span style={{color: "blue"}} id="BuyerSuccess"></span>
-                    <br/>
-                    <button class="submit-button">Add Buyer</button>
+                    <span style={{ color: "red" }} id="BuyerError"></span>
+                    <span style={{ color: "blue" }} id="BuyerSuccess"></span>
+                    <br />
+                    <button className="submit-button">Add Buyer</button>
                 </div>
             </form>
         </div>
     );
-}
 
+}
 export default RegisterBuyer;
+
+
+//these need to be replaced as we shouldn't be doing direct DOM manipulation
+//have your <p> tag with a statevalue <p {buyererror}>
+//have a state attached to these instead
+
+// document.getElementById("BuyerError").innerHTML = ""
+// document.getElementById("BuyerSuccess").innerHTML = ""
+
+// Search in the JSON file for the First name and Second name entered in the form (now in the state)
+
+// rather than checking the JSON file directly, send a GET request instead
+// the JSON will eventually be replaced with a Java backend which we won't be able to access directly
+
+// const FilteredBuyer = props.buyer.find((Buyer) => Buyer.FirstName.toLowerCase()===FirstName.toLowerCase() && Buyer.SurName.toLowerCase()===SurName.toLowerCase())
+// Check if the length of Filtered result is > 0. If so, the buyer already exists. Give appropriate error and dont add the user.
+// console.log(FilteredBuyer)
+
+
+// setTimeout(() => {
+// const FilteredBuyer = BuyerData.filter((Buyer) => Buyer.FirstName.toLowerCase() === FirstName.toLowerCase() & Buyer.SurName.toLowerCase() === SurName.toLowerCase())
+// document.getElementById("BuyerSuccess").innerHTML = "Buyer added successfully. ID is " + FilteredBuyer.map((Buyer => Buyer.target.id))
+// document.getElementById("BuyerError").innerHTML="Buyer added successfully. ID is "  + FilteredBuyer.map((Buyer=>Buyer.id))
+
+// console.log(FilteredBuyer.id)

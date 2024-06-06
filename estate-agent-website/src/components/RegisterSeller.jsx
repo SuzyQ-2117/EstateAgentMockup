@@ -15,7 +15,7 @@ const RegisterSeller = () => {
         fetch('http://localhost:8000/Sellers')
             .then((response) => response.json())
             .then((data) => setSellerData(data))
-    }, [])
+    }, [SellerData])
 
 function DoRegister(e) {
     e.preventDefault();
@@ -37,11 +37,12 @@ else {
             headers: { "Content-Type" : "application/json"},
             body: JSON.stringify(newSeller)
         }
-    ) 
-//    setTimeout(() => {
-        const FilteredSeller = SellerData.filter((Seller)=> Seller.FirstName.toLowerCase()===FirstName.toLowerCase() & Seller.SurName.toLowerCase()===SurName.toLowerCase())
-        document.getElementById("SellerSuccess").innerHTML="Seller added successfully. ID is "  + FilteredSeller.map((Seller=>Seller.target.id))
-  //  }, 5000);
+    ).then((response) => response.json())
+    .then((dataa)=>
+        document.getElementById("SellerSuccess").innerHTML="Seller added successfully. ID is "  + dataa.id
+    )
+        // const FilteredSeller = SellerData.filter((Seller)=> Seller.FirstName.toLowerCase()===FirstName.toLowerCase() & Seller.SurName.toLowerCase()===SurName.toLowerCase())
+        // document.getElementById("SellerSuccess").innerHTML="Seller added successfully. ID is "  + FilteredSeller.map((Seller=>Seller.target.id))
     setFirstName('')
     setSurName('')
     console.log(FilteredSeller.id)

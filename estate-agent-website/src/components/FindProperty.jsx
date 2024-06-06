@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { PropContext } from "../context/prop-context";
 
+// Prices.js
+import {Prices, Rooms } from './Prices'
+
 const FindProperty = () => {
     const { populateFilters } = useContext(PropContext)
 
@@ -27,12 +30,25 @@ const FindProperty = () => {
 
     }
 
+    function ResetJSList(ListtoReset, SourceList, MinMax) {
+        const tempList = document.getElementById(ListtoReset)
+//        const sourceList = document.getElementById(SourceList)
+        // tempList.innerHTML = sourceList.innerHTML
+        let val0 = MinMax === "Min" ? "No Min" : "No Max"
+        console.log(MinMax, val0)
+        tempList.innerHTML = "<option value='0'>" + val0 + "</option>" + 
+        Rooms.map(room => "<option value=" + room + ">" + room + "</option>")
+        // Rooms.map(room => <option value={room}>{parseInt(room)<10?room:"10+"}</option>)
+        console.log(tempList.innerHTML)
+    }
+
+
     function ResetFilters(e) {
         e.preventDefault();
         ResetList("PriceMin", "sourcePrice", "Min")
         ResetList("PriceMax", "sourcePrice", "Max")
-        ResetList("BedsMin", "sourceBedBath", "Min")
-        ResetList("BedsMax", "sourceBedBath", "Max")
+        ResetJSList("BedsMin", "sourceBedBath", "Min")
+        ResetJSList("BedsMax", "sourceBedBath", "Max")
         ResetList("BathsMin", "sourceBedBath", "Min")
         ResetList("BathsMax", "sourceBedBath", "Max")
         const tempList = document.getElementById("chkHasGarden")
@@ -342,22 +358,28 @@ const FindProperty = () => {
                             <p>BEDROOMS</p>
                         </div>
                         <div className="bedrooms-min">
-                            <select name="BedsMin" id="BedsMin" onChange={(e) => {
+                            <select value={bedRoomsMin} name="BedsMin" id="BedsMin" onChange={(e) => {
                                 setBedRoomsMin(e.target.value)
-                                const maxBeds = document.getElementById("BedsMax")
-                                // If we need to repopulate options that were removed earlier, reset it first and remove afresh
-                                let tempValue = maxBeds.options[maxBeds.selectedIndex].value
-                                if(parseInt(maxBeds.options[1].value) > parseInt(e.target.value)){
-                                    ResetList("BedsMax","sourceBedBath", "Max")
-                                }
-                                for (let i = maxBeds.options.length - 1; i > 0; i--) {
-                                    if(maxBeds.options[i].value===tempValue){maxBeds.selectedIndex=i}
-                                    if (parseInt(maxBeds.options[i].value) < parseInt(e.target.value) ) { maxBeds.remove(i); }
-                                }
+                                // const maxBeds = document.getElementById("BedsMax")
+                                // // If we need to repopulate options that were removed earlier, reset it first and remove afresh
+                                // let tempValue = maxBeds.options[maxBeds.selectedIndex].value
+                                // if(parseInt(maxBeds.options[1].value) > parseInt(e.target.value)){
+                                //     ResetList("BedsMax","sourceBedBath", "Max")
+                                // }
+                                // for (let i = maxBeds.options.length - 1; i > 0; i--) {
+                                //     if(maxBeds.options[i].value===tempValue){maxBeds.selectedIndex=i}
+                                //     if (parseInt(maxBeds.options[i].value) < parseInt(e.target.value) ) { maxBeds.remove(i); }
+                                // }
 
                             }}>
                                 <option value="0">No Min</option>
-                                <option value="1">1</option>
+                                {/* // Prices.js */}
+                                {
+
+                                    Rooms.filter(room => !bedRoomsMax || room<=bedRoomsMax).map(room => <option value={room}>{parseInt(room)<10?room:"10+"}</option>)
+                                }
+
+                                {/* <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
@@ -366,31 +388,37 @@ const FindProperty = () => {
                                 <option value="7">7</option>
                                 <option value="8">8</option>
                                 <option value="9">9</option>
-                                <option value="999999999">10+</option>
+                                <option value="999999999">10+</option> */}
                             </select>
                         </div>
                         <div className="bedrooms-to">
                             <p>to</p>
                         </div>
                         <div className="bedrooms-max">
-                            <select name="BedsMax" id="BedsMax" onChange={(e) => {
+                            <select value={bedRoomsMax} name="BedsMax" id="BedsMax" onChange={(e) => {
                                 setBedRoomsMax(e.target.value)
                                 const minBeds = document.getElementById("BedsMin")
                                 let tempValue = minBeds.options[minBeds.selectedIndex].value
-                                // If we need to repopulate options that were removed earlier, reset it first and remove afresh
-                                console.log("target value is " + e.target.value)
+                                // // If we need to repopulate options that were removed earlier, reset it first and remove afresh
+                                // console.log("target value is " + e.target.value)
 
-                                if(parseInt(e.target.value) === 0 || parseInt(minBeds.options[minBeds.length-1].value) < parseInt(e.target.value)){
-                                    ResetList("BedsMin","sourceBedBath", "Min")
-                                }
-                                for (let i = minBeds.options.length - 1; i > 0; i--) {
-                                    if(minBeds.options[i].value===tempValue){minBeds.selectedIndex=i}
-                                    if (parseInt(minBeds.options[i].value) > parseInt(e.target.value) && parseInt(e.target.value)>0) { minBeds.remove(i) }
-                                }
+                                // if(parseInt(e.target.value) === 0 || parseInt(minBeds.options[minBeds.length-1].value) < parseInt(e.target.value)){
+                                //     ResetList("BedsMin","sourceBedBath", "Min")
+                                // }
+//                                 for (let i = minBeds.options.length - 1; i > 0; i--) {
+//                                     if(minBeds.options[i].value===tempValue){minBeds.selectedIndex=i}
+// //                                    if (parseInt(minBeds.options[i].value) > parseInt(e.target.value) && parseInt(e.target.value)>0) { minBeds.remove(i) }
+//                                 }
 
                             }}>
                                 <option value="0">No Max</option>
-                                <option value="1">1</option>
+                                {/* // Prices.js */}
+                                {
+
+Rooms.filter(room => !bedRoomsMin || room>=bedRoomsMin).map(room => <option value={room}>{parseInt(room)<10?room:"10+"}</option>)
+}
+
+                                {/* <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
@@ -399,7 +427,7 @@ const FindProperty = () => {
                                 <option value="7">7</option>
                                 <option value="8">8</option>
                                 <option value="9">9</option>
-                                <option value="999999999">10+</option>
+                                <option value="999999999">10+</option> */}
                             </select>
                         </div>
                     </div>

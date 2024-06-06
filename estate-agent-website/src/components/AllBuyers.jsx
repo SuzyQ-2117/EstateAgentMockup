@@ -1,20 +1,29 @@
+import { useEffect, useState } from "react";
 
-function AllBuyers({ ID, FirstName, SurName}) { 
+function AllBuyers(props) {
 
-    return ( 
+    return (
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th className="th-border">First Name</th>
+                        <th>Surname</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.buyer.map(b => (
+                        <tr className="hover" key={b.id}>
+                            <td>{b.id}</td>
+                            <td className="td-border">{b.FirstName}</td>
+                            <td>{b.SurName}</td>
+                        </tr>))
+                    }
+                </tbody>
+            </table>
+        </div>
+    );
+}
 
-        <div className="all-buyers"> 
-
-            <p>{ID}</p> 
-
-            <p>{FirstName}</p> 
-
-            <p>{SurName}</p> 
-
-        </div> 
-
-    ) 
-
-} 
-
-export default AllBuyers
+export default AllBuyers;

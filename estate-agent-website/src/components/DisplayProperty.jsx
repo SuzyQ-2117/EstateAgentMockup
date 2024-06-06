@@ -47,11 +47,11 @@ export default function DisplayProperty(props) {
 
     // If there is a Min Bathrooms filter:
     if (bathRoomsMin) {
-      apiData = apiData.filter((Property) => parseInt(Property.Bedrooms) >= parseInt(bathRoomsMin))
+      apiData = apiData.filter((Property) => parseInt(Property.Bathrooms) >= parseInt(bathRoomsMin))
     }
     // If there is a Max Bathrooms filter:
     if (bathRoomsMax) {
-      apiData = apiData.filter((Property) => parseInt(Property.Bedrooms) <= parseInt(bathRoomsMax))
+      apiData = apiData.filter((Property) => parseInt(Property.Bathrooms) <= parseInt(bathRoomsMax))
     }
 
     // If there is a Garden filter:

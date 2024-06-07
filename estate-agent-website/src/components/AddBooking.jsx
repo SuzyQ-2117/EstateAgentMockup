@@ -13,7 +13,7 @@ const yyyy = today.getFullYear();
 // const formattedDate = yyyy + '-' + mm + '-' + dd;
 const formattedDate = yyyy + '-' + mm + '-' + dd;
 
-
+ 
   
     // create state
 
@@ -23,6 +23,8 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
   let [propertyid, setPropertyID] = useState("");
   let [buyer, setBuyer] = useState("");
 
+let todayDateSel = false
+let nowHour = today.getHours()
   //Filter the option list so only holds propertys that are forsale
   //can only use the filter function as an array so need to place the json data into an array
 
@@ -78,6 +80,11 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
     }
   };
 
+  const TestBooking = (e) => {
+e.preventDefault();
+console.log(time)
+    console.log(parseInt(time))
+  }
   return (
     <div className="register-buyer">
     <form onSubmit={handleSubmit}>
@@ -118,31 +125,43 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
                             value={date}
                             min= {formattedDate}
                             // event
-                            onChange={(e) => setDate(e.target.value)}
+                            onChange={(e) => {setDate(e.target.value)
+                              setTime("")
+                              console.log(e.target.value)
+                              if(e.target.value===formattedDate) {
+                                 console.log("Today's date selected")
+                                 todayDateSel = true}
+                                 else{
+                                  todayDateSel=false
+                                 }
+                            }}
                         />
                 </div>  
                 <div className="name-input right">
                         <p>Time :</p>
                         <select
-                            value={time}
+                            // value={time}
                             // event
-                            onChange={(e) => setTime(e.target.value)}
+                            onChange={(e) => setTime(e.target.options[e.target.selectedIndex].text)}
                         >
                             <option value=""></option>
-                            <option value="8to9">8am to 9am</option>
-                            <option value="9to10">9am to 10am</option>
+                            {/* if (date){}<option value="8to9">8am to 9am</option> */}
+                            <option value="0"></option>{
+                            (todayDateSel && parseInt(nowHour) > 12 ?<option value='9to10'>9am to 10am</option>:"")}
+                            {/* (todayDateSel && parseInt(nowHour) > 12?"<option value='9to10'>9am to 10am</option>":"")} */}
+                            
                             <option value="10to11">10am to 11am</option>
                             <option value="11to12">11am to 12pm</option>
                             <option value="12to1">12pm to 1pm</option>
-                            <option value="1to2">1pm to 2pm</option>
-                            <option value="2to3">2pm to 3pm</option>
-                            <option value="3to4">3pm to 4pm</option>
-                            <option value="4to5">4pm to 5pm</option>
+                            <option value="13to14">1pm to 2pm</option>
+                            <option value="14to15">2pm to 3pm</option>
+                            <option value="15to16">3pm to 4pm</option>
+                            <option value="16to17">4pm to 5pm</option>
                         </select>
                     </div>
                     </div>
                 <button className="submit-button">Add Booking</button>
-       
+                <button onClick={TestBooking}>Test Booking</button>
       </div>
       </div>
     </form>

@@ -12,11 +12,12 @@ const FindProperty = () => {
     const [bathRoomsMin, setBathRoomsMin] = useState(0)
     const [bathRoomsMax, setBathRoomsMax] = useState(0)
     const [garden, setGarden] = useState(false)
- 
+    const [exSold, setExSold] = useState(false)
+
     function AddFilter(e) {
         e.preventDefault();
         console.log(true, priceMin, priceMax, bedRoomsMin, bedRoomsMax, bathRoomsMin, bathRoomsMax, (garden ? "Yes" : "No"))
-        populateFilters(true, parseInt(priceMin), parseInt(priceMax), parseInt(bedRoomsMin), parseInt(bedRoomsMax), parseInt(bathRoomsMin), parseInt(bathRoomsMax), (garden ? "Yes" : "No"))
+        populateFilters(true, parseInt(priceMin), parseInt(priceMax), parseInt(bedRoomsMin), parseInt(bedRoomsMax), parseInt(bathRoomsMin), parseInt(bathRoomsMax), (garden ? "Yes" : "No"), exSold)
     }
  
     function ResetList(ListtoReset, SourceList, MinMax) {
@@ -37,7 +38,7 @@ const FindProperty = () => {
         ResetList("BathsMax", "sourceBedBath", "Max")
         const tempList = document.getElementById("chkHasGarden")
         tempList.checked = false
-        populateFilters(false, 0, 0, 0, 0, 0, 0, "No")
+        populateFilters(false, 0, 0, 0, 0, 0, 0, "No", false)
     }
  
     return (
@@ -414,7 +415,18 @@ const FindProperty = () => {
                             }} />
                         </div>
                     </div>
- 
+<br/><br/><br/><br/><br/>
+                    <div >
+                        <div >
+                            <p>Exclude Sold?</p>
+                        </div>
+                        <div className="checkbox">
+                            <input type="checkbox" name="ExSole" id="chkExSold" value={exSold} onChange={(e) => {
+                                setExSold(e.target.checked)
+                            }} />
+                        </div>
+                    </div>
+
                     <div className="reset">
                         <button className="reset-filter-btn filter-btn" onClick={ResetFilters}>Reset Filters</button>
                     </div>

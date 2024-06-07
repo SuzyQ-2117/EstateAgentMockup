@@ -224,8 +224,17 @@
       "id": "98a5",
       "FirstName": "i",
       "SurName": "i"
+    },
+    {
+      "id": "6cbe",
+      "FirstName": "Karnam",
+      "SurName": "Praveen"
+    },
+    {
+      "id": "d029",
+      "FirstName": "Kumar",
+      "SurName": "Praveen"
     }
-
   ],
   "Sellers": [
     {
@@ -296,6 +305,11 @@
       "id": "292d",
       "FirstName": "j",
       "SurName": "j"
+    },
+    {
+      "id": "f4c9",
+      "FirstName": "Andrew",
+      "SurName": "rennie "
     }
   ],
   "Properties": [
@@ -313,11 +327,11 @@
     {
       "ImageUrl": "https://www.idesignarch.com/wp-content/uploads/Luxury-Custom-Waterfront-Beach-House-Morehead-City-North-Carolina_1.jpg",
       "Address": "10 Downing Street",
-      "Price": "500000",
-      "Bedrooms": "1",
-      "Bathrooms": "1",
+      "Price": "120000",
+      "Bedrooms": "2",
+      "Bathrooms": "2",
       "Garden": "No",
-      "SaleStatus": "SOLD",
+      "SaleStatus": "FORSALE",
       "id": "4c9d"
     },
     {
@@ -344,33 +358,144 @@
       "id": "b1b0",
       "ImageUrl": "https://i.pinimg.com/originals/7e/82/ae/7e82aef7d0cc2f754488e287f687aace.jpg",
       "Address": "dennis",
-      "Price": "30",
+      "Price": "0300",
       "Bedrooms": "16",
       "Bathrooms": "8",
       "Garden": "Yes",
-      "SaleStatus": "FORSALE"
+      "SaleStatus": "SOLD"
     },
     {
       "id": "8197",
       "ImageUrl": "https://i.pinimg.com/originals/7e/82/ae/7e82aef7d0cc2f754488e287f687aace.jpg",
       "Address": "jjjjjjjjjjj",
-      "Price": "07777",
+      "Price": "07778",
       "Bedrooms": 1,
       "Bathrooms": 1,
       "Garden": "No",
       "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "017a",
+      "ImageUrl": "No image",
+      "Address": "His house",
+      "Price": "04567890",
+      "Bedrooms": 1,
+      "Bathrooms": 1,
+      "Garden": "No",
+      "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "5fcb",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": 1,
+      "Bathrooms": 1,
+      "Garden": "No",
+      "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "bf6f",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": "1",
+      "Bathrooms": "1",
+      "Garden": "No",
+      "SaleStatus": ""
+    },
+    {
+      "id": "d01a",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "0",
+      "Bedrooms": "1",
+      "Bathrooms": "1",
+      "Garden": "No",
+      "SaleStatus": ""
+    },
+    {
+      "id": "ff19",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": 1,
+      "Bathrooms": 1,
+      "Garden": "No",
+      "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "7a1d",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": "1",
+      "Bathrooms": "1",
+      "Garden": "No",
+      "SaleStatus": ""
+    },
+    {
+      "id": "7eb4",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": 1,
+      "Bathrooms": 1,
+      "Garden": "No",
+      "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "91eb",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": "1",
+      "Bathrooms": "1",
+      "Garden": "No",
+      "SaleStatus": ""
+    },
+    {
+      "id": "21fe",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": "1",
+      "Bathrooms": "1",
+      "Garden": "No",
+      "SaleStatus": ""
+    },
+    {
+      "id": "020e",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": "1",
+      "Bathrooms": "1",
+      "Garden": "No",
+      "SaleStatus": ""
+    },
+    {
+      "id": "c0f0",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": 1,
+      "Bathrooms": 1,
+      "Garden": "No",
+      "SaleStatus": "FORSALE"
+    },
+    {
+      "id": "b024",
+      "ImageUrl": "No image",
+      "Address": "Scotland",
+      "Price": "1",
+      "Bedrooms": "1",
+      "Bathrooms": "1",
+      "Garden": "No",
+      "SaleStatus": "FORSALE"
     }
-  
   ],
   "Bookings": [
-    {
-      "id": "ab0b",
-      "date": "2024-06-05",
-      "time": "2to3",
-      "property": "10 Downing Street",
-      "buyer": "Suzy Brown",
-      "propertyid": ""
-    },
     {
       "id": "f3ea",
       "date": "2024-06-12",
@@ -396,11 +521,26 @@
       "propertyid": ""
     },
     {
-      "id": "ac9a",
-      "date": "2024-06-06",
-      "time": "8to9",
+      "id": "a871",
+      "date": "2024-06-12",
+      "time": "10-11am",
       "property": "dennis",
-      "buyer": "tet6 test6",
+      "buyer": "Karnam Praveen",
+      "propertyid": ""
+    },
+    {
+      "id": "9308",
+      "time": "10-11am",
+      "property": "dennis",
+      "buyer": "d d",
+      "propertyid": ""
+    },
+    {
+      "id": "e505",
+      "date": "2024-06-14",
+      "time": "",
+      "property": "jjjjjjjjjjj",
+      "buyer": "Fridaytest1 Fri Day",
       "propertyid": ""
     }
   ]

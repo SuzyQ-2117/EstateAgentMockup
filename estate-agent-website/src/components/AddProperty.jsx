@@ -20,6 +20,8 @@ export default function AddProperty({fetchData}) {
     e.preventDefault();
 
     // If seller exists then post to JSON
+    // setSaleStatus("FORSALE");
+    console.log("Before:" + SaleStatus)
     if (Seller != "") {
       const task = {
         ImageUrl,
@@ -32,8 +34,7 @@ export default function AddProperty({fetchData}) {
       };
 
       //code to be added for if new then set to forsale
-      setSaleStatus("FORSALE");
-
+console.log(task)
       fetch(
         "http://localhost:8000/Properties",
         {
@@ -54,7 +55,7 @@ export default function AddProperty({fetchData}) {
           setBedrooms(0);
           setBathrooms(0);
           setGarden("");
-          setSaleStatus("");
+          // setSaleStatus("");
           setSeller("");
           fetchData()
         }

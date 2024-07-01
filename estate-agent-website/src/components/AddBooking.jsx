@@ -111,23 +111,11 @@ console.log("date in add", date)
                         </div>
                         <div className="name-input ">
                                 <p>  Date :</p>
-                                <input
-                                    id="fname"
-                                    type="date"
-                                    required
-                                    value={date}
-                                    min= {formattedDate}
-                                    // event
-                                    onChange={(e) => setDate(e.target.value)}
-                                />
+                                <input id="fname" type="date" required value={date} min= {formattedDate} onChange={(e) => setDate(e.target.value)}/>
                         </div>  
                         <div className="name-input">
                             <p>Time :</p>
-                            <select
-                                value={time}
-                                // event
-                                onChange={(e) => setTime(e.target.value)}
-                            >
+                            <select value={time} onChange={(e) => setTime(e.target.value)}>
                                 <option value=""></option>
                                 <option value="8-9am">8am to 9am</option>
                                 <option value="9-10am">9am to 10am</option>

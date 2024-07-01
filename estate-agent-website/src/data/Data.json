@@ -19,6 +19,11 @@
       "id": "baa9",
       "FirstName": "Storm",
       "SurName": "Evans"
+    },
+    {
+      "id": "1ddc",
+      "FirstName": "hjhjhhjh",
+      "SurName": "lklklklkl"
     }
   ],
   "Sellers": [
@@ -60,7 +65,7 @@
       "Bedrooms": 4,
       "Bathrooms": 2,
       "Garden": "Yes",
-      "SaleStatus": "WITHDRAWN",
+      "SaleStatus": "FORSALE",
       "id": "63a8",
       "bathrooms": 2
     },
@@ -112,7 +117,7 @@
       "Bedrooms": "2",
       "Bathrooms": "0",
       "Garden": "Yes",
-      "SaleStatus": "FORSALE"
+      "SaleStatus": "SOLD"
     },
     {
       "id": "c2da",

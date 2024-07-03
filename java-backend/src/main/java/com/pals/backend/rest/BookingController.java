@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+@CrossOrigin
 @RestController
 @RequestMapping(value="booking")
 public class BookingController {
@@ -47,5 +49,5 @@ public class BookingController {
         return this.service.removeBooking(id);
     }
 
-
 }
+

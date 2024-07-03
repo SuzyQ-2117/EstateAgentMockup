@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -17,6 +19,18 @@ public class Booking {
 
     private LocalDateTime bookingDate;
 
+    @ManyToOne
+private Buyer buyer;
+
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
+
+
     // REQUIRED default constructor
     public Booking() {
         super();
@@ -24,6 +38,12 @@ public class Booking {
     public Booking(Integer id, LocalDateTime bookingDate) {
         this.id = id;
         this.bookingDate = bookingDate;
+    }
+
+    public Booking(Integer id, LocalDateTime bookingDate, Buyer buyer) {
+        this.id = id;
+        this.bookingDate = bookingDate;
+        this.buyer = buyer;
     }
 
     public Integer getId() {
@@ -52,3 +72,4 @@ public class Booking {
                 '}';
     }
 }
+

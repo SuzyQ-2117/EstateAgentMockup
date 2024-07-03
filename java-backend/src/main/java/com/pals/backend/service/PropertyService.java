@@ -3,11 +3,7 @@ package com.pals.backend.service;
 import com.pals.backend.entities.Property;
 import com.pals.backend.repos.PropertyRepo;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,34 +31,36 @@ public class PropertyService {
         return found;
     }
 
-    public Property deleteProperty(Integer id){
+    public Property removeProperty(Integer id){
         Property found = this.repo.findById(id).get();
         this.repo.deleteById(id);
         return found;
     }
 
     public Property updateProperty(Integer id,
-                                   String Address,
-                                   Integer Price,
-                                   Integer Bedrooms,
-                                   Integer Bathrooms,
-                                   String ImageURL,
-                                   Boolean Garden,
-                                   String SaleStatus){
+                                   String address,
+                                   Integer price,
+                                   Integer bedrooms,
+                                   Integer bathrooms,
+                                   String imageURL,
+                                   Boolean garden,
+                                   String saleStatus){
         Property toUpdate = this.repo.findById(id).get();
-        if(Address != null) toUpdate.setAddress(Address);
-        if(Price != null) toUpdate.setPrice(Price);
-        if(Bedrooms != null) toUpdate.setBedrooms(Bedrooms);
-        if(Bathrooms != null) toUpdate.setBathrooms(Bathrooms);
-        if(ImageURL != null) toUpdate.setImageURL(ImageURL);
-        if(Garden != null) toUpdate.setGarden(Garden);
-        if(SaleStatus != null) toUpdate.setSaleStatus(SaleStatus);
+        if(address != null) toUpdate.setAddress(address);
+        if(price != null) toUpdate.setPrice(price);
+        if(bedrooms != null) toUpdate.setBedrooms(bedrooms);
+        if(bathrooms != null) toUpdate.setBathrooms(bathrooms);
+        if(imageURL != null) toUpdate.setImageURL(imageURL);
+        if(garden != null) toUpdate.setGarden(garden);
+        if(saleStatus != null) toUpdate.setSaleStatus(saleStatus);
         return this.repo.save(toUpdate);
     }
-
-
-
-
-
-
+    
 }
+
+
+
+
+
+
+

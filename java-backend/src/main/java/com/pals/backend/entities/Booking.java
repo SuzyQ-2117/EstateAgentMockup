@@ -1,5 +1,10 @@
 package com.pals.backend.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -13,6 +18,7 @@ public class Booking {
     private Integer id;
 
     private LocalDateTime bookingDate;
+
     @ManyToOne
 private Buyer buyer;
 
@@ -23,6 +29,7 @@ private Buyer buyer;
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
     }
+
 
     // REQUIRED default constructor
     public Booking() {
@@ -65,3 +72,4 @@ private Buyer buyer;
                 '}';
     }
 }
+

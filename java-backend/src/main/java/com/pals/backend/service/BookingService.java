@@ -82,8 +82,5 @@ public class BookingService {
 
         return ResponseEntity.ok(new BookingDto(found));
     }
-
-
-
-
 }
+

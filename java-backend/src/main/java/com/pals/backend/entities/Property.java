@@ -10,13 +10,13 @@ public class Property {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int propertyID;
-    private String ImageURL;
-    private String Address;
-    private int Price;
-    private int Bedrooms;
-    private int Bathrooms;
-    private boolean Garden;
-    private String SaleStatus;
+    private String imageURL;
+    private String address;
+    private int price;
+    private int bedrooms;
+    private int bathrooms;
+    private boolean garden;
+    private String saleStatus;
     // FOREIGN KEY
     // SaleStatusID;
     // FOREIGN KEY
@@ -35,72 +35,72 @@ public class Property {
     }
 
     public String getImageURL() {
-        return ImageURL;
+        return imageURL;
     }
 
     public void setImageURL(String imageURL) {
-        ImageURL = imageURL;
+        this.imageURL = imageURL;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public int getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(int price) {
-        Price = price;
+        this.price = price;
     }
 
     public int getBedrooms() {
-        return Bedrooms;
+        return bedrooms;
     }
 
     public void setBedrooms(int bedrooms) {
-        Bedrooms = bedrooms;
+        this.bedrooms = bedrooms;
     }
 
     public int getBathrooms() {
-        return Bathrooms;
+        return bathrooms;
     }
 
     public void setBathrooms(int bathrooms) {
-        Bathrooms = bathrooms;
+        this.bathrooms = bathrooms;
     }
 
     public boolean isGarden() {
-        return Garden;
+        return garden;
     }
 
     public void setGarden(boolean garden) {
-        Garden = garden;
+        this.garden = garden;
     }
 
     public String getSaleStatus() {
-        return SaleStatus;
+        return saleStatus;
     }
 
     public void setSaleStatus(String saleStatus) {
-        SaleStatus = saleStatus;
+        this.saleStatus = saleStatus;
     }
 
     @Override
     public String toString() {
         return "Property{" +
                 "propertyID=" + propertyID +
-                ", ImageURL='" + ImageURL + '\'' +
-                ", Address='" + Address + '\'' +
-                ", Price=" + Price +
-                ", Bedrooms=" + Bedrooms +
-                ", Bathrooms=" + Bathrooms +
-                ", Garden=" + Garden +
-                ", SaleStatus='" + SaleStatus + '\'' +
+                ", imageURL='" + imageURL + '\'' +
+                ", address='" + address + '\'' +
+                ", price=" + price +
+                ", bedrooms=" + bedrooms +
+                ", bathrooms=" + bathrooms +
+                ", garden=" + garden +
+                ", saleStatus='" + saleStatus + '\'' +
                 '}';
     }
 }

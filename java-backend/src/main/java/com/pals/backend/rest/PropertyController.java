@@ -33,27 +33,22 @@ public class PropertyController {
         return this.service.propertyByID(id);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Property deleteProperty(@PathVariable int id) {
-        return this.service.deleteProperty(id);
+    @DeleteMapping("/property/delete/{id}")
+    public Property removeProperty(@PathVariable Integer id) {
+        return this.service.removeProperty(id);
     }
 
     @PatchMapping("/property/update/{id}")
     public Property updateProperty(@PathVariable int id,
-                                   @RequestParam(required = false) String Address,
-                                   @RequestParam(required = false) Integer Price,
-                                   @RequestParam(required = false) Integer Bedrooms,
-                                   @RequestParam(required = false) Integer Bathrooms,
-                                   @RequestParam(required = false) Boolean Garden,
-                                   @RequestParam(required = false) String ImageURL,
-                                   @RequestParam(required = false) String SaleStatus){
-        return this.service.updateProperty(id, Address, Price, Bedrooms, Bathrooms, ImageURL, Garden, SaleStatus);
+                                   // Don't forget you need to use the Object wrappers here
+                                   @RequestParam(required = false) String address,
+                                   @RequestParam(required = false) Integer price,
+                                   @RequestParam(required = false) Integer bedrooms,
+                                   @RequestParam(required = false) Integer bathrooms,
+                                   @RequestParam(required = false) Boolean garden,
+                                   @RequestParam(required = false) String imageURL,
+                                   @RequestParam(required = false) String saleStatus){
+        return this.service.updateProperty(id, address, price, bedrooms, bathrooms, imageURL, garden, saleStatus);
     }
-
-
-
-
-
-
 
 }

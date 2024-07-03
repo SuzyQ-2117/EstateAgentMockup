@@ -1,9 +1,8 @@
 package com.pals.backend.service;
 
+import com.pals.backend.dtos.BuyerDto;
 import com.pals.backend.entities.Buyer;
 import com.pals.backend.repos.BuyerRepo;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,14 +16,25 @@ public class BuyerService {
         this.repo = repo;
     }
 
-    public List<Buyer> getall(){
+//    public List<Buyer> getall(){
+//
+//        List<Buyer> found = this.repo.findAll();
+//        return found;
+//    }
+    public List<BuyerDto> getall(){
 
         List<Buyer> found = this.repo.findAll();
-        return found;
+        List<BuyerDto> allBuyers = new ArrayList<>();
+        for (Buyer buyer : found){
+            allBuyers.add(new BuyerDto(buyer));
+        }
+        return allBuyers;
     }
 
-    public Buyer buyerByFullName(String firstName, String surName){
-        return this.repo.findByFirstNameIgnoreCaseAndSurNameIgnoreCase(firstName,surName);
+    public BuyerDto buyerByFullName(String firstName, String surname){
+        Buyer found = this.repo.findByFirstNameIgnoreCaseAndSurnameIgnoreCase(firstName,surname);
+        return new BuyerDto(found);
+
 
     }
     public Buyer addBuyer( Buyer buyer){
@@ -32,11 +42,11 @@ public class BuyerService {
         return created;
     }
 
-    public Buyer buyerByID(Integer id){
+    public BuyerDto buyerByID(Integer id){
         if(!this.repo.existsById(id))
             return null;
         Buyer found = this.repo.findById(id).get();
-        return found;
+        return new BuyerDto(found);
     }
 
     public Buyer removeBuyer( Integer id){
@@ -45,12 +55,12 @@ public class BuyerService {
         return found;
     }
 
-    public Buyer updateBuyer( int id,
+    public Buyer updateBuyer( Integer id,
                                 String firstName,
-                                String surName){
+                                String surname){
         Buyer toUpdate = this.repo.findById(id).get();
         if(firstName != null) toUpdate.setFirstName(firstName);
-        if(surName != null) toUpdate.setSurName(surName);
+        if(surname != null) toUpdate.setSurname(surname);
         return this.repo.save(toUpdate);
     }
 }

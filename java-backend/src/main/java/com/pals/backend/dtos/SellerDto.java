@@ -1,35 +1,51 @@
-package com.pals.backend.entities;
+package com.pals.backend.dtos;
 
-import jakarta.persistence.*;
+import com.pals.backend.entities.Property;
+import com.pals.backend.entities.Seller;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Seller {
+public class SellerDto {
 
     @Id
     @GeneratedValue (strategy= GenerationType.IDENTITY)
     private int sellerId;
     private String firstName;
     private String surName;
-////
-////    @OneToMany(mappedBy = "SellerID")
-////    private List<Property> properties;
-//
-//    public List<Property> getProperties() {
+
+
+//private List<PropertyDto> properties = new ArrayList<>();
+
+public SellerDto(Seller seller){
+    this.sellerId = seller.getSellerId();
+    this.firstName=seller.getFirstName();
+    this.surName= seller.getSurName();
+//    if(seller.getProperties() != null){
+//        for(Property property : seller.getProperties())
+//            this.properties.add(new PropertyDto(property));
+//    }
+}
+
+//    public List<PropertyDto> getProperties() {
 //        return properties;
 //    }
 //
-//    public void setProperties(List<Property> properties) {
+//    public void setProperties(List<PropertyDto> properties) {
 //        this.properties = properties;
 //    }
 
-    public Seller(String firstName, String surName) {
+    public SellerDto(String firstName, String surName) {
         this.firstName = firstName;
         this.surName = surName;
     }
 
-    public Seller() {
+    public SellerDto() {
     }
 
     public int getSellerId() {
@@ -43,9 +59,6 @@ public class Seller {
     public String getFirstName() {
         return firstName;
     }
-
-
-
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

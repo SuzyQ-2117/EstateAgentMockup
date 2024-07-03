@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BuyerRepo extends JpaRepository<Buyer, Integer> {
-Buyer findByFirstNameIgnoreCaseAndSurNameIgnoreCase(String firstName, String surName);
+Buyer findByFirstNameIgnoreCaseAndSurnameIgnoreCase(String firstName, String surName);
 }

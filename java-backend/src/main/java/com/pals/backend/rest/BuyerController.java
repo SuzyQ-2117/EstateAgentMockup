@@ -1,11 +1,12 @@
 package com.pals.backend.rest;
 
+import com.pals.backend.dtos.BuyerDto;
 import com.pals.backend.entities.Buyer;
 import com.pals.backend.service.BuyerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 public class BuyerController {
 
@@ -22,17 +23,18 @@ private BuyerService service;
     }
 
     @GetMapping("/Buyer/All")
-    public List<Buyer> getAllBuyers(){
+    public List<BuyerDto> getAllBuyers(){
+//        public List<Buyer> getAllBuyers(){
     return this.service.getall();
     }
 
     @GetMapping("/Buyer/get/{Id}")
-    public Buyer getBuyerById(@PathVariable Integer Id){
+    public BuyerDto getBuyerById(@PathVariable Integer Id){
         return this.service.buyerByID(Id);
     }
 
     @GetMapping("/Buyer/Find/{fName}/{sName}")
-    public Buyer buyerByFullName(@PathVariable String fName, @PathVariable String sName){
+    public BuyerDto buyerByFullName(@PathVariable String fName, @PathVariable String sName){
         return this.service.buyerByFullName(fName,sName);
     }
 
@@ -46,8 +48,8 @@ private BuyerService service;
     @PatchMapping("/Buyer/update/{id}")
     public Buyer updateBuyer(@PathVariable int id,
                                @RequestParam(required = false) String firstName,
-                               @RequestParam(required = false) String surName){
-        return this.service.updateBuyer(id,firstName,surName) ;
+                               @RequestParam(required = false) String surname){
+        return this.service.updateBuyer(id,firstName,surname) ;
     }
 
 

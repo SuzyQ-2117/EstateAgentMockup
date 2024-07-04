@@ -1,9 +1,12 @@
 package com.pals.backend.service;
 
+import com.pals.backend.dtos.BuyerDto;
 import com.pals.backend.entities.Seller;
 import com.pals.backend.repos.SellerRepo;
+import com.pals.backend.dtos.SellerDto;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,10 +17,16 @@ public class SellerService {
         this.repo = repo;
     }
 
-    public List<Seller> getall(){
 
+    // NOW READY TO TEST!
+
+
+    public List<SellerDto> getall(){
         List<Seller> found = this.repo.findAll();
-        return found;
+        List<SellerDto> foundDto = new ArrayList<>();
+        for(Seller seller : found)
+            foundDto.add(new SellerDto(seller));
+        return foundDto;
     }
 
     public Seller sellerByFullName(String firstName, String surName){

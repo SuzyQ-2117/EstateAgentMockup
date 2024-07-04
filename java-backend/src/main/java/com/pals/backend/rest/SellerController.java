@@ -1,5 +1,6 @@
 package com.pals.backend.rest;
 
+import com.pals.backend.dtos.SellerDto;
 import com.pals.backend.entities.Seller;
 import com.pals.backend.service.SellerService;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ private SellerService service;
     }
 
     @GetMapping("/Seller/All")
-    public List<Seller> getAllSellers(){
+    public List<SellerDto> getAllSellers(){
     return this.service.getall();
     }
 

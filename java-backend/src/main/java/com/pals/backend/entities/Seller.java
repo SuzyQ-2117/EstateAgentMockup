@@ -9,20 +9,20 @@ public class Seller {
 
     @Id
     @GeneratedValue (strategy= GenerationType.IDENTITY)
-    private int sellerId;
+    private int id;
     private String firstName;
     private String surName;
-////
-////    @OneToMany(mappedBy = "SellerID")
-////    private List<Property> properties;
-//
-//    public List<Property> getProperties() {
-//        return properties;
-//    }
-//
-//    public void setProperties(List<Property> properties) {
-//        this.properties = properties;
-//    }
+
+    @OneToMany(mappedBy = "seller")
+    private List<Property> properties;
+
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
+    }
 
     public Seller(String firstName, String surName) {
         this.firstName = firstName;
@@ -32,12 +32,12 @@ public class Seller {
     public Seller() {
     }
 
-    public int getSellerId() {
-        return sellerId;
+    public int getId() {
+        return id;
     }
 
-    public void setSellerId(int sellerId) {
-        this.sellerId = sellerId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -62,7 +62,7 @@ public class Seller {
     @Override
     public String toString() {
         return "Seller{" +
-                "sellerId=" + sellerId +
+                "sellerId=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", surName='" + surName + '\'' +
                 '}';

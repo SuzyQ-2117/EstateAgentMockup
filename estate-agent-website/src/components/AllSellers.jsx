@@ -16,10 +16,10 @@ function AllSellers(props) {
                 </thead>
                 <tbody>
                     {props.seller.map(s => (
-                    <tr className="hover" key={s.id}>
-                        <td>{s.id}</td>
-                        <td className="td-border">{s.FirstName}</td>
-                        <td>{s.SurName}</td>
+                    <tr className="hover" key={s.sellerId}>
+                        <td>{s.sellerId}</td>
+                        <td className="td-border">{s.firstName}</td>
+                        <td>{s.surName}</td>
                     </tr>))
                     }
                 </tbody>

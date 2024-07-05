@@ -16,8 +16,8 @@ function AllBuyers(props) {
                     {props.buyer.map(b => (
                         <tr className="hover" key={b.id}>
                             <td>{b.id}</td>
-                            <td className="td-border">{b.FirstName}</td>
-                            <td>{b.SurName}</td>
+                            <td className="td-border">{b.firstName}</td>
+                            <td>{b.surname}</td>
                         </tr>))
                     }
                 </tbody>

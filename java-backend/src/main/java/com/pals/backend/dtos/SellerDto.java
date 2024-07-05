@@ -10,11 +10,10 @@ import jakarta.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+
 public class SellerDto {
 
-    @Id
-    @GeneratedValue (strategy= GenerationType.IDENTITY)
+
     private int sellerId;
     private String firstName;
     private String surName;

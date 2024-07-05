@@ -11,7 +11,7 @@ export default function SellersPage() {
   let  [seller, setSeller] = useState([]);
 
   function fetchSellerData() {
-      fetch('http://localhost:8000/Sellers')
+      fetch('http://localhost:8001/Seller/All')
           .then((response) => response.json())
           .then((data) => setSeller(data));
   }

@@ -12,16 +12,20 @@ const yyyy = today.getFullYear();
 
 // const formattedDate = yyyy + '-' + mm + '-' + dd;
 const formattedDate = yyyy + '-' + mm + '-' + dd;
+//2024-07-04 LGS
 
 
 
     // create state
-
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+ const [bookingDate, setDate] = useState("")
+  // const [bookingDate, setDate] = useState("");
+  const [bookingTime, setTime] = useState("");
   let [property, setProperty] = useState("");
   let [propertyid, setPropertyID] = useState("");
   let [buyer, setBuyer] = useState("");
+
+
+
 
   //Filter the option list so only holds propertys that are forsale
   //can only use the filter function as an array so need to place the json data into an array
@@ -31,8 +35,8 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
 
   const existingBooking = Data.Bookings.find((booking) => {
     return (
-      booking.date === date &&
-      booking.time === time &&
+      booking.bookingDate === bookingDate &&
+      booking.bookingTime === bookingTime &&
       booking.property === property
       
     );
@@ -45,25 +49,30 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
     e.preventDefault();
 
   
-    if (property === "" || buyer === "" ) {
-      alert("Please select your name & a property to book a viewing for");
+    // if (property === "" || buyer === "" ) {
+    //   alert("Please select your name & a property to book a viewing for");
+    //
+    // } else {
+    //   if (existingBooking ) {
+    //
+    //
+    //     alert("Please select another time slot as this is booked");
+    //   } else {
 
-    } else {
-      if (existingBooking ) {
-   
-        
-        alert("Please select another time slot as this is booked");
-      } else {
-console.log("date in add", date)
+
+
+
+      console.log("date in add", bookingDate)
+
         const task = {
-          date,
-          time,
-          property,
-          buyer,
-          propertyid,
+          bookingDate,
+            bookingTime,
+          // property,
+          // buyer,
+          // propertyid,
         };
 
-        fetch("http://localhost:8000/Bookings", {
+        fetch("http://localhost:8001/booking/new", {
           method: "POST",
           // for most api json call
           headers: { "Content-Type": "application/json" },
@@ -80,8 +89,8 @@ console.log("date in add", date)
           setBuyer("");
           fetchData();
         });
-      }
-    }
+    //   } LGS IF statements
+    // } LGS IF statements
   };
 
   return (
@@ -111,11 +120,13 @@ console.log("date in add", date)
                         </div>
                         <div className="name-input ">
                                 <p>  Date :</p>
-                                <input id="fname" type="date" required value={date} min= {formattedDate} onChange={(e) => setDate(e.target.value)}/>
-                        </div>  
+                                <input id="fname" type="date" required value={bookingDate} min= {formattedDate} onChange={(e) =>  setDate(e.target.value)}/>
+
+
+                        </div>
                         <div className="name-input">
                             <p>Time :</p>
-                            <select value={time} onChange={(e) => setTime(e.target.value)}>
+                            <select value={bookingTime} onChange={(e) => setTime(e.target.value)}>
                                 <option value=""></option>
                                 <option value="8-9am">8am to 9am</option>
                                 <option value="9-10am">9am to 10am</option>

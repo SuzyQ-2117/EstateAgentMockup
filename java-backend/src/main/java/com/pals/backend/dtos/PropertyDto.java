@@ -6,10 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+
 public class PropertyDto {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
     private int propertyID;
     private String ImageURL;
     private String Address;

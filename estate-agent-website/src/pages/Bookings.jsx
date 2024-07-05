@@ -9,9 +9,10 @@ export default function BookingsPage() {
     let [apiData, setData] = useState([]);
 
     const fetchData = () => {
-      fetch("http://localhost:8000/Bookings")
+      fetch("http://localhost:8001/booking/all")
         .then((response) => response.json())
         .then((data) => setData(data));
+        console.log("Booking date", apiData)
     };
   
       useEffect(() => {
@@ -36,5 +37,5 @@ export default function BookingsPage() {
               </div>
         </div>
     </div>
-    )
+    );
 }

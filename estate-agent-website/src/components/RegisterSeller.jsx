@@ -15,7 +15,7 @@ const RegisterSeller = (props) => {
             document.getElementById("SellerError").innerHTML = "Seller already exists. Seller ID is " + FilteredSeller.map((Seller => Seller.id))
         } else {
             const newSeller = { FirstName, SurName }
-            fetch('http://localhost:8000/Sellers',
+            fetch('http://localhost:8001/Seller/All',
                 {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },

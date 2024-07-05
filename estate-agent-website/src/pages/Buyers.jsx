@@ -9,7 +9,7 @@ export default function BuyersPage() {
   let [buyer, setBuyer] = useState([]);
 
   function fetchBuyerData() {
-    fetch("http://localhost:8000/Buyers")
+    fetch("http://localhost:8001/Buyer/All")
     .then((response) => response.json())
     .then((data) => setBuyer(data));
   }

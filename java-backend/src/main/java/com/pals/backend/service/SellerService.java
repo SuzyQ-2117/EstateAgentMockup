@@ -1,9 +1,12 @@
 package com.pals.backend.service;
 
+import com.pals.backend.dtos.BuyerDto;
 import com.pals.backend.entities.Seller;
 import com.pals.backend.repos.SellerRepo;
+import com.pals.backend.dtos.SellerDto;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,14 +17,20 @@ public class SellerService {
         this.repo = repo;
     }
 
-    public List<Seller> getall(){
 
+    // NOW READY TO TEST!
+
+
+    public List<SellerDto> getall(){
         List<Seller> found = this.repo.findAll();
-        return found;
+        List<SellerDto> foundDto = new ArrayList<>();
+        for(Seller seller : found)
+            foundDto.add(new SellerDto(seller));
+        return foundDto;
     }
 
-    public Seller sellerByFullName(String firstName, String surName){
-        return this.repo.findByFirstNameIgnoreCaseAndSurNameIgnoreCase(firstName,surName);
+    public Seller sellerByFullName(String firstName, String surname){
+        return this.repo.findByfirstNameIgnoreCaseAndSurnameIgnoreCase(firstName,surname);
 
     }
     public Seller addSeller( Seller seller){
@@ -44,10 +53,10 @@ public class SellerService {
 
     public Seller updateSeller( int id,
                                 String firstName,
-                                String surName){
+                                String surname){
         Seller toUpdate = this.repo.findById(id).get();
-        if(firstName != null) toUpdate.setFirstName(firstName);
-        if(surName != null) toUpdate.setSurName(surName);
+        if(firstName != null) toUpdate.setfirstName(firstName);
+        if(surname != null) toUpdate.setSurname(surname);
         return this.repo.save(toUpdate);
     }
 }

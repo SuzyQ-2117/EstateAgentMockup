@@ -642,7 +642,7 @@ a:hover {
     "bedrooms-title bedrooms-input"
     "bathrooms-title bathrooms-input"
     "garden-title garden-input"
-    "imageUrl-title url-input"
+    "imageURL-title url-input"
     "status-title status-input";
   height: 70%;
 }
@@ -667,8 +667,8 @@ a:hover {
   grid-area: garden-title;
 }
 
-.imageUrl-title {
-  grid-area: imageUrl-title;
+.imageURL-title {
+  grid-area: imageURL-title;
 }
 
 .status-title {

@@ -1,15 +1,16 @@
-import Data from '../data/Data.json'
+// import Data from '../data/Data.json'
 import AllBuyers from '../components/AllBuyers'
 import RegisterBuyer from '../components/RegisterBuyer'
 import '../CSS/BuyersPage.css'
 import { useEffect, useState } from 'react'
+import {url} from "../consts";
 
 export default function BuyersPage() {
 
   let [buyer, setBuyer] = useState([]);
 
   function fetchBuyerData() {
-    fetch("http://localhost:8000/Buyers")
+    fetch(`${url}/buyer/all`)
     .then((response) => response.json())
     .then((data) => setBuyer(data));
   }

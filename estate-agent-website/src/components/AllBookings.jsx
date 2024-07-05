@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Data from "../data/Data.json";
 
 function CancelBooking(id, { fetchData }) {
-  fetch("http://localhost:8000/Bookings/" + id, {
+  fetch("http://localhost:8001/booking/" + id, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(),
@@ -20,7 +20,7 @@ function AllBookings({ fetchData }) {
   const forsale = dataArray.filter((item) => item.SaleStatus === "FORSALE");
 
   useEffect(() => {
-    fetch("http://localhost:8000/Bookings")
+    fetch("http://localhost:8001/booking/all")
       .then((response) => response.json())
       .then((data) => setBooking(data));
   }, []);

@@ -2,59 +2,59 @@
   "Buyers": [
     {
       "id": "ba7e",
-      "FirstName": "John",
-      "SurName": "Renwick"
+      "firstName": "John",
+      "surname": "Renwick"
     },
     {
       "id": "cbf1",
-      "FirstName": "Prabhakar",
-      "SurName": "Raj"
+      "firstName": "Prabhakar",
+      "surname": "Raj"
     },
     {
       "id": "377a",
-      "FirstName": "Sally",
-      "SurName": "Smith"
+      "firstName": "Sally",
+      "surname": "Smith"
     },
     {
       "id": "baa9",
-      "FirstName": "Storm",
-      "SurName": "Evans"
+      "firstName": "Storm",
+      "surname": "Evans"
     },
     {
       "id": "1ddc",
-      "FirstName": "hjhjhhjh",
-      "SurName": "lklklklkl"
+      "firstName": "hjhjhhjh",
+      "surname": "lklklklkl"
     }
   ],
   "Sellers": [
     {
       "ID": 1,
-      "FirstName": "Peter",
-      "SurName": "Parker",
+      "firstName": "Peter",
+      "surname": "Parker",
       "id": "f95d"
     },
     {
       "ID": 2,
-      "FirstName": "Joe",
-      "SurName": "Bloggs",
+      "firstName": "Joe",
+      "surname": "Bloggs",
       "id": "27c4"
     },
     {
       "ID": 3,
-      "FirstName": "Saritha",
-      "SurName": "Smith",
+      "firstName": "Saritha",
+      "surname": "Smith",
       "id": "e8b7"
     },
     {
       "ID": 4,
-      "FirstName": "Bishnu",
-      "SurName": "Scotland",
+      "firstName": "Bishnu",
+      "surname": "Scotland",
       "id": "f182"
     },
     {
       "id": "cf90",
-      "FirstName": "Chris",
-      "SurName": "Evans"
+      "firstName": "Chris",
+      "surname": "Evans"
     }
   ],
   "Properties": [

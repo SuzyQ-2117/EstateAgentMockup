@@ -63,7 +63,7 @@ console.log("date in add", date)
           propertyid,
         };
 
-        fetch("http://localhost:8000/Bookings", {
+        fetch("http://localhost:8001/booking/new", {
           method: "POST",
           // for most api json call
           headers: { "Content-Type": "application/json" },
@@ -95,7 +95,7 @@ console.log("date in add", date)
                                     <option value=""></option>
                                     {Data.Buyers.map((item) => (
                                     <option value={item.ID}>
-                                        {item.FirstName} {item.SurName}{" "}
+                                        {item.firstName} {item.surname}{" "}
                                     </option>
                                     ))}
                                 </select>

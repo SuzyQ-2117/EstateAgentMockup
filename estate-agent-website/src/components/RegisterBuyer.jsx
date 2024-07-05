@@ -1,33 +1,34 @@
 import { useState, useEffect } from "react";
+import {url} from "../consts";
 
 const RegisterBuyer = (props) => {
     // Add state for each of the Buyer fields
-    const [FirstName, setFirstName] = useState('')
-    const [SurName, setSurName] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [surname, setSurname] = useState('')
     const [ExistingBuyer, setExistingBuyer] = useState(false)
 
     function DoRegister(e) {
         e.preventDefault();
 
-        const FilteredBuyer = props.buyer.filter((Buyer) => Buyer.FirstName.toLowerCase() === FirstName.toLowerCase() && Buyer.SurName.toLowerCase() === SurName.toLowerCase())
+        const FilteredBuyer = props.buyer.filter((Buyer) => Buyer.firstName.toLowerCase() === firstName.toLowerCase() && Buyer.surname.toLowerCase() === surname.toLowerCase())
 
         if (FilteredBuyer.length > 0) {
             document.getElementById("BuyerError").innerHTML = "Buyer already exists. Buyer ID is " + FilteredBuyer.map((Buyer => Buyer.id))
         } else {
-            const newBuyer = { FirstName, SurName }
-            fetch('http://localhost:8000/Buyers',
+            const newBuyer = { firstName, surname }
+            fetch(`${url}/buyer/add`,
                 {   method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(newBuyer)
                 }
             ).then((response) => response.json())
             .then((dataa)=>         
-                document.getElementById("BuyerSuccess").innerHTML="Buyer " + FirstName + " " + SurName + " added successfully. ID is "  + dataa.id
+                document.getElementById("BuyerSuccess").innerHTML="Buyer " + firstName + " " + surname + " added successfully. ID is "  + dataa.id
         )
             .then(() => {
                 props.fetchBuyerData()
                 setFirstName('')
-                setSurName('')  
+                setSurname('')  
             })
         }
     }
@@ -39,16 +40,16 @@ const RegisterBuyer = (props) => {
                     <div className="flex-register details">
                         <div className="name-input left">
                             <p>First Name:</p>
-                            <input type="text" value={FirstName} name="FirstName" onChange={(e) => {
+                            <input type="text" value={firstName} name="firstName" onChange={(e) => {
                                 setFirstName(e.target.value);
                                 document.getElementById("BuyerError").innerHTML = "";
                                 document.getElementById("BuyerSuccess").innerHTML = ""
                             }} />
                         </div>
                         <div className="name-input right">
-                            <p>Surname:</p>
-                            <input type="text" name="SurName" value={SurName} onChange={(e) => {
-                                setSurName(e.target.value)
+                            <p>surname:</p>
+                            <input type="text" name="surname" value={surname} onChange={(e) => {
+                                setSurname(e.target.value)
                                 document.getElementById("BuyerError").innerHTML = "";
                                 document.getElementById("BuyerSuccess").innerHTML = ""
                             }} />
@@ -79,13 +80,13 @@ export default RegisterBuyer;
 // rather than checking the JSON file directly, send a GET request instead
 // the JSON will eventually be replaced with a Java backend which we won't be able to access directly
 
-// const FilteredBuyer = props.buyer.find((Buyer) => Buyer.FirstName.toLowerCase()===FirstName.toLowerCase() && Buyer.SurName.toLowerCase()===SurName.toLowerCase())
+// const FilteredBuyer = props.buyer.find((Buyer) => Buyer.firstName.toLowerCase()===firstName.toLowerCase() && Buyer.surname.toLowerCase()===surname.toLowerCase())
 // Check if the length of Filtered result is > 0. If so, the buyer already exists. Give appropriate error and dont add the user.
 // console.log(FilteredBuyer)
 
 
 // setTimeout(() => {
-// const FilteredBuyer = BuyerData.filter((Buyer) => Buyer.FirstName.toLowerCase() === FirstName.toLowerCase() & Buyer.SurName.toLowerCase() === SurName.toLowerCase())
+// const FilteredBuyer = BuyerData.filter((Buyer) => Buyer.firstName.toLowerCase() === firstName.toLowerCase() & Buyer.surname.toLowerCase() === surname.toLowerCase())
 // document.getElementById("BuyerSuccess").innerHTML = "Buyer added successfully. ID is " + FilteredBuyer.map((Buyer => Buyer.target.id))
 // document.getElementById("BuyerError").innerHTML="Buyer added successfully. ID is "  + FilteredBuyer.map((Buyer=>Buyer.id))
 

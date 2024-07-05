@@ -32,7 +32,7 @@ public class BuyerService {
     }
 
     public BuyerDto buyerByFullName(String firstName, String surname){
-        Buyer found = this.repo.findByFirstNameIgnoreCaseAndSurnameIgnoreCase(firstName,surname);
+        Buyer found = this.repo.findByfirstNameIgnoreCaseAndSurnameIgnoreCase(firstName,surname);
         return new BuyerDto(found);
 
 
@@ -59,7 +59,7 @@ public class BuyerService {
                                 String firstName,
                                 String surname){
         Buyer toUpdate = this.repo.findById(id).get();
-        if(firstName != null) toUpdate.setFirstName(firstName);
+        if(firstName != null) toUpdate.setfirstName(firstName);
         if(surname != null) toUpdate.setSurname(surname);
         return this.repo.save(toUpdate);
     }

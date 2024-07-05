@@ -14,15 +14,15 @@ public class SellerDto {
 
     private int id;
     private String firstName;
-    private String surName;
+    private String surname;
 
 
     private List<PropertyDTO> properties = new ArrayList<>();
 
     public SellerDto(Seller seller){
         this.id = seller.getId();
-        this.firstName=seller.getFirstName();
-        this.surName= seller.getSurName();
+        this.firstName=seller.getfirstName();
+        this.surname= seller.getSurname();
         if(seller.getProperties() != null){
             for(Property property : seller.getProperties())
                 this.properties.add(new PropertyDTO(property));
@@ -38,9 +38,9 @@ public class SellerDto {
         this.properties = properties;
     }
 
-    public SellerDto(String firstName, String surName) {
+    public SellerDto(String firstName, String surname) {
         this.firstName = firstName;
-        this.surName = surName;
+        this.surname = surname;
     }
 
     public SellerDto() {
@@ -54,20 +54,20 @@ public class SellerDto {
         this.id = id;
     }
 
-    public String getFirstName() {
+    public String getfirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setfirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class SellerDto {
         return "Seller{" +
                 "sellerId=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", surName='" + surName + '\'' +
+                ", surname='" + surname + '\'' +
                 '}';
     }
 }

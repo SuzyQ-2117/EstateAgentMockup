@@ -71,14 +71,14 @@ public class PropertyService {
     }
 
     // Get a property by ID and convert it to a DTO
-    public PropertyDTO propertyByID(Integer id){
+    public PropertyDTO propertyByID(Integer id) {
         return this.repo.findById(id)
                 .map(this::convertToDTO)
                 .orElse(null);
     }
 
     // Remove a property and return it as a DTO
-    public PropertyDTO removeProperty(Integer id){
+    public PropertyDTO removeProperty(Integer id) {
         Property found = this.repo.findById(id).orElse(null);
         if (found != null) {
             this.repo.deleteById(id);
@@ -98,19 +98,19 @@ public class PropertyService {
                                       String saleStatus) {
         Property toUpdate = this.repo.findById(id).orElse(null);
         if (toUpdate != null) {
-            if(address != null) toUpdate.setAddress(address);
-            if(price != null) toUpdate.setPrice(price);
-            if(bedrooms != null) toUpdate.setBedrooms(bedrooms);
-            if(bathrooms != null) toUpdate.setBathrooms(bathrooms);
-            if(imageURL != null) toUpdate.setImageURL(imageURL);
-            if(garden != null) toUpdate.setGarden(garden);
-            if(saleStatus != null) toUpdate.setSaleStatus(saleStatus);
-            Property updated = this.repo.save(toUpdate);
-            return convertToDTO(updated);
+            return null;
         }
-        return null;
+        if (address != null) toUpdate.setAddress(address);
+        if (price != null) toUpdate.setPrice(price);
+        if (bedrooms != null) toUpdate.setBedrooms(bedrooms);
+        if (bathrooms != null) toUpdate.setBathrooms(bathrooms);
+        if (imageURL != null) toUpdate.setImageURL(imageURL);
+        if (garden != null) toUpdate.setGarden(garden);
+        if (saleStatus != null) toUpdate.setSaleStatus(saleStatus);
+        Property updated = this.repo.save(toUpdate);
+        return convertToDTO(updated);
     }
-    
+
 }
 
 

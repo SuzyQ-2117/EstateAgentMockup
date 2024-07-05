@@ -1,34 +1,35 @@
 import { useState, useEffect } from "react";
+import {url} from "../consts";
 
 const RegisterSeller = (props) => {
     // Add state for each of the Buyer fields
-    const [FirstName, setFirstName] = useState('')
-    const [SurName, setSurName] = useState('')
-    const [ExistingSeller, setExistingSeller] = useState(false)
+    const [firstName, setFirstName] = useState('')
+    const [surname, setSurname] = useState('')
+    const [existingSeller, setExistingSeller] = useState(false)
 
     function DoRegister(e) {
         e.preventDefault();
 
-        const FilteredSeller = props.seller.filter((Seller) => Seller.FirstName.toLowerCase() === FirstName.toLowerCase() && Seller.SurName.toLowerCase() === SurName.toLowerCase())
+        const filteredSeller = props.seller.filter((seller) => seller.firstName.toLowerCase() === firstName.toLowerCase() && seller.surname.toLowerCase() === surname.toLowerCase())
         
-        if (FilteredSeller.length > 0) {
-            document.getElementById("SellerError").innerHTML = "Seller already exists. Seller ID is " + FilteredSeller.map((Seller => Seller.id))
+        if (filteredSeller.length > 0) {
+            document.getElementById("SellerError").innerHTML = "Seller already exists. Seller ID is " + filteredSeller.map((Seller => Seller.id))
         } else {
-            const newSeller = { FirstName, SurName }
-            fetch('http://localhost:8000/Sellers',
+            const newSeller = { firstName, surname }
+            fetch(`${url}/seller/add`,
                 {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(newSeller)
                 }
             ).then((response) => response.json())
-            .then((dataa)=>
-                document.getElementById("SellerSuccess").innerHTML="Seller " + FirstName + " " + SurName + " added successfully. ID is "  + dataa.id
+            .then((data)=>
+                document.getElementById("SellerSuccess").innerHTML="Seller " + firstName + " " + surname + " added successfully. ID is "  + data.id
             )
             .then(() => {
                 props.fetchSellerData()
                 setFirstName('')
-                setSurName('')
+                setSurname('')
             })
         }
     }
@@ -39,16 +40,16 @@ const RegisterSeller = (props) => {
                     <div className="flex-register details">
                         <div className="name-input left">
                             <p>First Name:</p>
-                            <input type="text" value={FirstName} name="FirstName" onChange={(e) => {
+                            <input type="text" value={firstName} name="firstName" onChange={(e) => {
                                 setFirstName(e.target.value);
                                 document.getElementById("SellerError").innerHTML = "";
                                 document.getElementById("SellerSuccess").innerHTML = ""
                             }} />
                         </div>
                         <div className="name-input right">
-                            <p>Surname:</p>
-                            <input type="text" name="SurName" value={SurName} onChange={(e) => {
-                                setSurName(e.target.value)
+                            <p>surname:</p>
+                            <input type="text" name="surname" value={surname} onChange={(e) => {
+                                setSurname(e.target.value)
                                 document.getElementById("SellerError").innerHTML = "";
                                 document.getElementById("SellerSuccess").innerHTML = ""
                             }} />
@@ -75,7 +76,7 @@ export default RegisterSeller;
 
 // console.log(FilteredSeller)
 //    setTimeout(() => {
-// const FilteredSeller = SellerData.filter((Seller) => Seller.FirstName.toLowerCase() === FirstName.toLowerCase() & Seller.SurName.toLowerCase() === SurName.toLowerCase())
+// const FilteredSeller = SellerData.filter((Seller) => Seller.firstName.toLowerCase() === firstName.toLowerCase() & Seller.surname.toLowerCase() === surname.toLowerCase())
 // document.getElementById("SellerSuccess").innerHTML = "Seller added successfully. ID is " + FilteredSeller.map((Seller => Seller.target.id))
 //  }, 5000);
 

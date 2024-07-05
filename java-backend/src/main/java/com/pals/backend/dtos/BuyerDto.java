@@ -30,7 +30,7 @@ public class BuyerDto {
 
     public BuyerDto(Buyer buyer){
     this.Id = buyer.getId();
-    this.firstName = buyer.getFirstName();
+    this.firstName = buyer.getfirstName();
     this.surname = buyer.getSurname();
     if(buyer.getBookings() != null){
         for(Booking booking : buyer.getBookings()){
@@ -64,11 +64,11 @@ public class BuyerDto {
         this.surname = surname;
     }
 
-    public String getFirstName() {
+    public String getfirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setfirstName(String firstName) {
         this.firstName = firstName;
     }
 

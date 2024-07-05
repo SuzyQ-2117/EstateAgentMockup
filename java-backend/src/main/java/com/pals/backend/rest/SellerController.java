@@ -17,40 +17,36 @@ private SellerService service;
         this.service = service;
     }
 
-
-    @PostMapping("/Seller/add")
+    @PostMapping("/seller/add")
     public Seller addSeller(@RequestBody Seller seller){
     return this.service.addSeller(seller);
     }
 
-    @GetMapping("/Seller/All")
+    @GetMapping("/seller/all")
     public List<SellerDto> getAllSellers(){
     return this.service.getall();
     }
 
-    @GetMapping("/Seller/get/{Id}")
+    @GetMapping("/seller/get/{Id}")
     public Seller getSellerById(@PathVariable Integer Id){
         return this.service.sellerByID(Id);
     }
 
-    @GetMapping("/Seller/Find/{fName}/{sName}")
+    @GetMapping("/seller/find/{fName}/{sName}")
     public Seller sellerByFullName(@PathVariable String fName, @PathVariable String sName){
         return this.service.sellerByFullName(fName,sName);
     }
 
-
-    @DeleteMapping("/Seller/remove/{id}")
+    @DeleteMapping("/seller/remove/{id}")
     public Seller removePerson(@PathVariable Integer id){
 //        Seller persontoremove = this.persons.get(id);
         return this.service.removeSeller(id);
     }
 
-    @PatchMapping("/Seller/update/{id}")
+    @PatchMapping("/seller/update/{id}")
     public Seller updateSeller(@PathVariable int id,
                                @RequestParam(required = false) String firstName,
-                               @RequestParam(required = false) String surName){
-        return this.service.updateSeller(id,firstName,surName) ;
+                               @RequestParam(required = false) String surname){
+        return this.service.updateSeller(id,firstName,surname) ;
     }
-
-
 }

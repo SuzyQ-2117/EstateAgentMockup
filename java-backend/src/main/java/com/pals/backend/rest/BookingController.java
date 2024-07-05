@@ -6,6 +6,7 @@ import com.pals.backend.service.BookingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,10 +39,11 @@ public class BookingController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateBooking(@PathVariable(name = "id") Integer id,
-                                           @RequestParam(name = "bookingDate", required = false) LocalDateTime bookingDate
+                                           @RequestParam(name = "bookingDate", required = false) LocalDate bookingDate,
+                                             @RequestParam(name = "bookingTime", required = false) String bookingTime
 
     ) {
-        return this.service.updateBooking(id, bookingDate);
+        return this.service.updateBooking(id, bookingDate, bookingTime);
     }
 
     @DeleteMapping("/{id}")

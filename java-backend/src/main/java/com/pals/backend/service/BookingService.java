@@ -53,9 +53,8 @@ public class BookingService {
 
     //update booking
     public ResponseEntity<?> updateBooking(Integer id,
-                                           LocalDateTime bookingDate
-
-    ) {
+                                           LocalDate bookingDate,
+                                           String bookingTime) {
 
         Optional<Booking> found = this.repo.findById(id);
 
@@ -64,6 +63,7 @@ public class BookingService {
         Booking toUpdate = found.get();
 
         if (bookingDate != null) toUpdate.setBookingDate(bookingDate);
+        if (bookingTime != null) toUpdate.setBookingTime(bookingTime);
 
         Booking updated = this.repo.save(toUpdate);
 

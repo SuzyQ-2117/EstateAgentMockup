@@ -38,7 +38,7 @@ public class PropertyController {
 //    }
 
     @GetMapping("/property/byPricePredicate")
-    public List<Property> getAllByPredicate(@RequestParam(required = false) Integer minPrice,
+    public List<PropertyDTO> getAllByPredicate(@RequestParam(required = false) Integer minPrice,
                                             @RequestParam(required = false) Integer maxPrice,
                                             @RequestParam(required = false) Integer minBedrooms,
                                             @RequestParam(required = false) Integer maxBedrooms,

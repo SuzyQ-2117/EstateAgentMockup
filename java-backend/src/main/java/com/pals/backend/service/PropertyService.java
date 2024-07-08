@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class PropertyService {
     @Autowired
     private PropertyRepo repo;
-@Autowired
+    @Autowired
     private PropSearchDao propSearchDao;
     public PropertyService(PropertyRepo repo) {
         this.repo = repo;
@@ -31,6 +31,11 @@ public class PropertyService {
     public PropertyService() {
     }
 
+    // convert a Property object into a PropertyDTO
+    private PropertyDTO convertToDTO(Property property) {
+        return new PropertyDTO(property);
+    }
+
     public List<PropertyDTO> getAll() {
         List<Property> found = this.repo.findAll();
         List<PropertyDTO> dtos = new ArrayList<>();
@@ -41,9 +46,13 @@ public class PropertyService {
     }
 
 
-    public List<Property> getAllByPredicate(Integer minPrice, Integer maxPrice, Integer minBedrooms, Integer maxBedrooms, Integer minBathrooms, Integer maxBathrooms, Boolean hasGarden, Boolean exSold) {
+    public List<PropertyDTO> getAllByPredicate(Integer minPrice, Integer maxPrice, Integer minBedrooms, Integer maxBedrooms, Integer minBathrooms, Integer maxBathrooms, Boolean hasGarden, Boolean exSold) {
         List<Property> found = this.propSearchDao.findFilteredProperties(minPrice,maxPrice,minBedrooms,maxBedrooms, minBathrooms, maxBathrooms, hasGarden, exSold);
-        return found;
+        List<PropertyDTO> founddtos= new ArrayList<>();
+        for(Property property : found) {
+            founddtos.add(new PropertyDTO(property));
+        }
+        return founddtos;
     }
 
     // Add a new property and return it

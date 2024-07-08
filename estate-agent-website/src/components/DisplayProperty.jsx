@@ -2,8 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import PropertyCard from './PropertyCard';
 import { PropContext } from "../context/prop-context"
 
-
-
 export default function DisplayProperty({ id, apiData, fetchData, handleClose, handleShow }) {
   //context for search filter
   const { gotFilter } = useContext(PropContext)

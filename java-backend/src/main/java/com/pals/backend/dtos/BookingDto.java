@@ -11,17 +11,13 @@ import java.time.LocalDate;
 public class BookingDto {
 
     private Integer id;
-
-
     private LocalDate bookingDate;
-
     private String bookingTime;
 
     //default constructor
     public BookingDto() {
         super();
     }
-
 
     //generated constructor including adding in from booking entity
     public BookingDto(Booking booking) {

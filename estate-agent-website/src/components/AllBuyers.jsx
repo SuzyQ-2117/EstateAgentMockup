@@ -9,7 +9,7 @@ function AllBuyers(props) {
                     <tr>
                         <th>ID</th>
                         <th className="th-border">First Name</th>
-                        <th>surname</th>
+                        <th>Last Name</th>
                     </tr>
                 </thead>
                 <tbody>

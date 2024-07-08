@@ -6,13 +6,14 @@ import { url } from "../consts";
 
 export default function BookingsPage() {
 
-    let [apiData, setData] = useState([]);
+    let [allBookings, setAllBookings] = useState([]);
 
 
     const fetchAllBookings= () => {
       fetch(`${url}/booking/all`)
         .then((response) => response.json())
-        .then((data) => setData(data));
+        .then((data) => setAllBookings(data));
+        console.log("Running fetch request for all bookings")
     };
 
       useEffect(() => {
@@ -24,7 +25,8 @@ export default function BookingsPage() {
         <div className="booking flex space-between">
             <div className="half-white-container-left">
                 <div className="customer-grid">
-                <AllBookings fetchAllBookings={fetchAllBookings} />
+                <AllBookings fetchAllBookings={fetchAllBookings}
+                allBookings={allBookings} />
                 </div>
             </div>
         <div>

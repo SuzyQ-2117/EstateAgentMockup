@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { url } from "../consts";
-import Data from '../data/Data.json'
+// import Data from '../data/Data.json'
 
 function CancelBooking(id, { fetchAllBookings }) {
   fetch(`${url}/booking/` + id, {
@@ -13,37 +13,43 @@ function CancelBooking(id, { fetchAllBookings }) {
   });
 }
 
-function AllBookings({ fetchAllBookings }) {
+function AllBookings({ fetchAllBookings, allBookings }) {
   let [booking, setBooking] = useState([]);
   let [property, setProperty] = useState("");
-  
+  const[propertyList, setPropertyList] = useState([]);
 
-  const dataArray = Object.values(Data.Properties);
-  const forsale = dataArray.filter((item) => item.SaleStatus === "FORSALE");
+  // const dataArray = Object.values(Data.Properties);
+
+  const getPropertyList = () => {
+    fetch(`${url}/property/all`)
+    .then((response) => response.json())
+    .then((data) => setPropertyList(data))
+    .then(console.log("Property list: " + propertyList))
+  }
+
+  const forsale = propertyList.filter((property) => property.saleStatus === "FORSALE");
+  console.log("Properties for sale: ", forsale);
 
   useEffect(() => {
-    console.log("Running fetch request for all bookings")
     fetchAllBookings();
+    getPropertyList();
   }, []);
 
   return (
     <div>
       <div className="property-option">
-        <p>Select Property : </p>
-
-                <select name="Propertys" onChange={(e) => setProperty(e.target.value)}>
+        <p>Select Property: </p>
+                <select name="property" onChange={(e) => setProperty(e.target.value)}>
                 <option value="">All Bookings</option>
-                {forsale.map((item) => (
-                    <option value={item.Address} key={item.id}>{item.Address}</option>
+                {forsale.map((property) => (
+                    <option value={property.id} key={property.id}>{property.address}</option>
                 ))}
                 </select>
       </div>
       <br/>
     <table>
       <thead>
-      
         <tr>
-          {/* <th>ID</th> */}
           <th className="th-border">Buyer</th>
           <th>Property Address</th>
           <th>Date</th>
@@ -52,19 +58,14 @@ function AllBookings({ fetchAllBookings }) {
         </tr>
       </thead>
       <tbody>
-        {booking
+        {allBookings
           .filter((booking) => !property || booking.property === property)
           .map((booking) => (
-            <tr className="hover" key={booking.id}>
-              {/* <td>{booking.id}</td> */}
-            
+            <tr className="hover" key={allBookings.id}>
               <td className="td-border">{booking.buyer}</td>
               <td className="td-border">{booking.property}</td>
-              <td className="td-border" >{new Date(booking.date).toLocaleDateString()}</td>
-
-
-              
-              <td className="td-border">{booking.time}</td>
+              <td className="td-border" >{new Date(booking.bookingDate).toLocaleDateString()}</td>
+              <td className="td-border">{booking.bookingTime}</td>
               <td className="td-border">
                 <button
                   onClick={() => CancelBooking(booking.id, { fetchAllBookings })}

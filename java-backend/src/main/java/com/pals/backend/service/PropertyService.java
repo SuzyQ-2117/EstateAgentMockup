@@ -4,7 +4,10 @@ import com.pals.backend.dtos.BookingDto;
 import com.pals.backend.dtos.PropertyDTO;
 import com.pals.backend.entities.Booking;
 import com.pals.backend.entities.Property;
+import com.pals.backend.repos.NoPropDao;
+import com.pals.backend.repos.PropSearchDao;
 import com.pals.backend.repos.PropertyRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,37 +16,20 @@ import java.util.stream.Collectors;
 
 @Service
 public class PropertyService {
+    @Autowired
     private PropertyRepo repo;
-
+@Autowired
+    private PropSearchDao propSearchDao;
     public PropertyService(PropertyRepo repo) {
         this.repo = repo;
     }
 
-    // convert a Property object into a PropertyDTO
-    private PropertyDTO convertToDTO(Property property) {
-        return new PropertyDTO(property);
+    public PropertyService(PropSearchDao propSearchDao) {
+        this.propSearchDao = propSearchDao;
     }
 
-    // Convert a DTO into a Property object
-    private Property convertToEntity(Property propertyDTO) {
-        Property property = new Property();
-        property.setPropertyID(propertyDTO.getPropertyID());
-        property.setImageURL(propertyDTO.getImageURL());
-        property.setAddress(propertyDTO.getAddress());
-        property.setPrice(propertyDTO.getPrice());
-        property.setBedrooms(propertyDTO.getBedrooms());
-        property.setBathrooms(propertyDTO.getBathrooms());
-        property.setGarden(propertyDTO.isGarden());
-        property.setSaleStatus(propertyDTO.getSaleStatus());
-        return property;
+    public PropertyService() {
     }
-
-    // GetAll() properties and convert to dtos
-//    public List<PropertyDTO> getAll() {
-//        return this.repo.findAll().stream()
-//                .map(this::convertToDTO)
-//                .collect(Collectors.toList());
-//    }
 
     public List<PropertyDTO> getAll() {
         List<Property> found = this.repo.findAll();
@@ -52,6 +38,12 @@ public class PropertyService {
             dtos.add(new PropertyDTO(property));
         }
         return dtos;
+    }
+
+
+    public List<Property> getAllByPredicate(Integer minPrice, Integer maxPrice, Integer minBedrooms, Integer maxBedrooms, Integer minBathrooms, Integer maxBathrooms, Boolean hasGarden, Boolean exSold) {
+        List<Property> found = this.propSearchDao.findFilteredProperties(minPrice,maxPrice,minBedrooms,maxBedrooms, minBathrooms, maxBathrooms, hasGarden, exSold);
+        return found;
     }
 
     // Add a new property and return it
@@ -102,10 +94,3 @@ public class PropertyService {
     }
 
 }
-
-
-
-
-
-
-

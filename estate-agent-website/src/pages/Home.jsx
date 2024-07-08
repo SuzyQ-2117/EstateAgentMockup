@@ -24,7 +24,7 @@ export default function HomePage() {
   const [sellerData, setSellerData] = useState([]);
 
   //moved from display propertys as need for multiple data fetches
-  //fetches data from properties object in JSON file then feed into "AddProperty" so that it can refresh the data after a propoerty is added
+  //fetches data from properties object in JSON file then feed into "AddProperty" so that it can refresh the data after a property is added
   // and passes the api state through to "DisplayProperty" to include apidata for all, fetch data for status change and filter results for filtering
   let [apiData, setData] = useState([]);
   
@@ -40,7 +40,7 @@ export default function HomePage() {
   // Load values from context
 
   function fetchSellerData() {
-    console.log("running fetch");
+    console.log("Fetching Seller Data on Modal opening");
     fetch(`${url}/seller/all`)
         .then((response) => response.json())
         .then((data) => setSellerData(data));
@@ -58,14 +58,21 @@ export default function HomePage() {
   const handleSubmit = (e) => {
     // tells the event if the event doesnt get handled dont use the default action as I want to do something else
     e.preventDefault();
+    console.log(seller);
     // If seller exists then post to JSON
     if (seller !== "") {
-      const task = {imageURL, address, price, bedrooms, bathrooms, garden, saleStatus};
-
+      const property = {seller: {id: seller},
+                        imageURL,
+                        address,
+                        price,
+                        bedrooms,
+                        bathrooms,
+                        garden,
+                        saleStatus};
       fetch(`${url}/property/add`,{
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(task)})
+          body: JSON.stringify(property)})
           .then(() => {
             alert("New Property Added");
             // reset text boxes
@@ -135,7 +142,7 @@ export default function HomePage() {
                     <option value=""></option>
                     
                     {sellerData.map((item) => (
-                      <option value={item.id}>{item.firstName + " " + item.surname}</option>
+                      <option value={item.id} key={item.id}>{item.firstName + " " + item.surname}</option>
                     )
                     )}
                   </select>

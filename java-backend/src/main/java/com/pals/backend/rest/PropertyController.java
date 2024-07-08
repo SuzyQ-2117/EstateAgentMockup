@@ -4,6 +4,7 @@ import com.pals.backend.entities.Property;
 import com.pals.backend.service.PropertyService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.StyledEditorKit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,25 @@ public class PropertyController {
     public List<Property> getAll() {
         return this.service.getAll();
     }
+
+
+//    @GetMapping("/property/noproperty")
+//    public String findNoProps() {
+//        return this.service.findNoProps();
+//    }
+
+    @GetMapping("/property/byPricePredicate")
+    public List<Property> getAllByPredicate(@RequestParam(required = false) Integer minPrice,
+                                            @RequestParam(required = false) Integer maxPrice,
+                                            @RequestParam(required = false) Integer minBedrooms,
+                                            @RequestParam(required = false) Integer maxBedrooms,
+                                            @RequestParam(required = false) Integer minBathrooms,
+                                            @RequestParam(required = false) Integer maxBathrooms,
+                                            @RequestParam(required = false) Boolean hasGarden,
+                                            @RequestParam(required = false) Boolean exSold) {
+        return this.service.getAllByPredicate(minPrice,maxPrice,minBedrooms, maxBedrooms, minBathrooms, maxBathrooms, hasGarden, exSold);
+    }
+
 
     @GetMapping("/property/{id}")
     public Property getPropertyByID(@PathVariable Integer id) {

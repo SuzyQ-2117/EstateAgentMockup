@@ -2,12 +2,19 @@ package com.pals.backend.rest;
 
 import com.pals.backend.dtos.BuyerDto;
 import com.pals.backend.entities.Buyer;
+import com.pals.backend.entities.Property;
 import com.pals.backend.service.BuyerService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @CrossOrigin
 @RestController
+
 public class BuyerController {
 
 private BuyerService service;

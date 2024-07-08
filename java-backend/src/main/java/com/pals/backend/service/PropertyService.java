@@ -1,17 +1,29 @@
 package com.pals.backend.service;
 
 import com.pals.backend.entities.Property;
+import com.pals.backend.repos.NoPropDao;
+import com.pals.backend.repos.PropSearchDao;
 import com.pals.backend.repos.PropertyRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class PropertyService {
+    @Autowired
     private PropertyRepo repo;
-
+@Autowired
+    private PropSearchDao propSearchDao;
     public PropertyService(PropertyRepo repo) {
         this.repo = repo;
+    }
+
+    public PropertyService(PropSearchDao propSearchDao) {
+        this.propSearchDao = propSearchDao;
+    }
+
+    public PropertyService() {
     }
 
     public List<Property> getAll() {
@@ -19,6 +31,15 @@ public class PropertyService {
         return found;
     }
 
+//    public String findNoProps() {
+//        String found = this.noPropDao.findNoProps();
+//        return found;
+//    }
+
+    public List<Property> getAllByPredicate(Integer minPrice, Integer maxPrice, Integer minBedrooms, Integer maxBedrooms, Integer minBathrooms, Integer maxBathrooms, Boolean hasGarden, Boolean exSold) {
+        List<Property> found = this.propSearchDao.findFilteredProperties(minPrice,maxPrice,minBedrooms,maxBedrooms, minBathrooms, maxBathrooms, hasGarden, exSold);
+        return found;
+    }
     public Property addProperty(Property property) {
         Property created = this.repo.save(property);
         return created;

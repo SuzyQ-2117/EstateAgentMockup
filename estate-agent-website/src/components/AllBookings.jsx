@@ -1,30 +1,29 @@
 import { useEffect, useState } from "react";
-import Data from "../data/Data.json";
 import { url } from "../consts";
+import Data from '../data/Data.json'
 
-function CancelBooking(id, { fetchBookingData }) {
+function CancelBooking(id, { fetchAllBookings }) {
   fetch(`${url}/booking/` + id, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(),
   }).then(() => {
     alert("Viewing Cancelled");
-    fetchBookingData();
+    fetchAllBookings();
   });
 }
 
-function AllBookings({ fetchBookingData, fetchBuyers, fetchProperty, buyerData, propertyData, apiData }) {
+function AllBookings({ fetchAllBookings }) {
   let [booking, setBooking] = useState([]);
   let [property, setProperty] = useState("");
+  
 
   const dataArray = Object.values(Data.Properties);
   const forsale = dataArray.filter((item) => item.SaleStatus === "FORSALE");
 
   useEffect(() => {
     console.log("Running fetch request for all bookings")
-    fetchBookingData();
-    fetchBuyers();
-    fetchProperty();
+    fetchAllBookings();
   }, []);
 
   return (
@@ -85,7 +84,7 @@ function AllBookings({ fetchBookingData, fetchBuyers, fetchProperty, buyerData, 
               <td className="td-border">{booking.time}</td>
               <td className="td-border">
                 <button
-                  onClick={() => CancelBooking(booking.id, { fetchBookingData })}
+                  onClick={() => CancelBooking(booking.id, { fetchAllBookings })}
                 >
                   Cancel Booking
                 </button>

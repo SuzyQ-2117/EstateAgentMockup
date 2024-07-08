@@ -21,7 +21,7 @@ public class PropertyDTO {
     // SaleStatusID;
     // FOREIGN KEY
 //     SellerID;
-    private Seller seller;
+//    private Seller seller;
 
     public PropertyDTO() {
 
@@ -40,7 +40,7 @@ public class PropertyDTO {
         this.bathrooms = property.getBathrooms();
         this.garden = property.isGarden();
         this.saleStatus = property.getSaleStatus();
-        this.seller = property.getSeller();
+//        this.seller = property.getSeller();
     }
 
     public PropertyDTO(int propertyID, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
@@ -121,7 +121,7 @@ public class PropertyDTO {
                 ", bathrooms=" + bathrooms +
                 ", garden=" + garden +
                 ", saleStatus='" + saleStatus + '\'' +
-                ", Seller=" + seller +
+//                ", Seller=" + seller +
                 '}';
     }
 }

@@ -21,17 +21,7 @@ public class PropertyService {
 
     // convert a Property object into a PropertyDTO
     private PropertyDTO convertToDTO(Property property) {
-        return new PropertyDTO(
-                property.getPropertyID(),
-                property.getImageURL(),
-                property.getAddress(),
-                property.getPrice(),
-                property.getBedrooms(),
-                property.getBathrooms(),
-                property.isGarden(),
-                property.getSaleStatus(),
-                property.getSeller()
-        );
+        return new PropertyDTO(property);
     }
 
     // Convert a DTO into a Property object
@@ -97,7 +87,7 @@ public class PropertyService {
                                       Boolean garden,
                                       String saleStatus) {
         Property toUpdate = this.repo.findById(id).orElse(null);
-        if (toUpdate != null) {
+        if (toUpdate == null) {
             return null;
         }
         if (address != null) toUpdate.setAddress(address);

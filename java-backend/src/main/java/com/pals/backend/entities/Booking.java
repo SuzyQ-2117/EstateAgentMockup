@@ -1,5 +1,6 @@
 package com.pals.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,10 +18,14 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // sets to auto increment
     private Integer id;
 
-    private LocalDateTime bookingDate;
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate bookingDate;
+
+    private String bookingTime;
 
     @ManyToOne
-private Buyer buyer;
+    private Buyer buyer;
 
     public Buyer getBuyer() {
         return buyer;
@@ -35,16 +40,20 @@ private Buyer buyer;
     public Booking() {
         super();
     }
-    public Booking(Integer id, LocalDateTime bookingDate) {
+    public Booking(Integer id, LocalDate bookingDate, String bookingTime) {
         this.id = id;
         this.bookingDate = bookingDate;
+        this.bookingTime = bookingTime;
     }
 
-    public Booking(Integer id, LocalDateTime bookingDate, Buyer buyer) {
+    public Booking(Integer id, LocalDate bookingDate, String bookingTime, Buyer buyer) {
         this.id = id;
         this.bookingDate = bookingDate;
+        this.bookingTime = bookingTime;
         this.buyer = buyer;
     }
+
+
 
     public Integer getId() {
         return id;
@@ -54,21 +63,28 @@ private Buyer buyer;
         this.id = id;
     }
 
-    public LocalDateTime getBookingDate() {
+    public LocalDate getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(LocalDateTime bookingDate) {
+    public void setBookingDate(LocalDate bookingDate) {
         this.bookingDate = bookingDate;
     }
 
+    public String getBookingTime() {
+        return bookingTime;
+    }
 
+    public void setBookingTime(String bookingTime) {
+        this.bookingTime = bookingTime;
+    }
 
     @Override
     public String toString() {
         return "Booking{" +
                 "id=" + id +
                 ", bookingDate=" + bookingDate +
+                ", bookingTime=" + bookingTime +
                 '}';
     }
 }

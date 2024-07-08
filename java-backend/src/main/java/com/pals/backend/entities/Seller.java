@@ -9,62 +9,62 @@ public class Seller {
 
     @Id
     @GeneratedValue (strategy= GenerationType.IDENTITY)
-    private int sellerId;
+    private int id;
     private String firstName;
-    private String surName;
-////
-////    @OneToMany(mappedBy = "SellerID")
-////    private List<Property> properties;
-//
-//    public List<Property> getProperties() {
-//        return properties;
-//    }
-//
-//    public void setProperties(List<Property> properties) {
-//        this.properties = properties;
-//    }
+    private String surname;
 
-    public Seller(String firstName, String surName) {
+    @OneToMany(mappedBy = "seller")
+    private List<Property> properties;
+
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
+    }
+
+    public Seller(String firstName, String surname) {
         this.firstName = firstName;
-        this.surName = surName;
+        this.surname = surname;
     }
 
     public Seller() {
     }
 
-    public int getSellerId() {
-        return sellerId;
+    public int getId() {
+        return id;
     }
 
-    public void setSellerId(int sellerId) {
-        this.sellerId = sellerId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getFirstName() {
+    public String getfirstName() {
         return firstName;
     }
 
 
 
 
-    public void setFirstName(String firstName) {
+    public void setfirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     @Override
     public String toString() {
         return "Seller{" +
-                "sellerId=" + sellerId +
+                "sellerId=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", surName='" + surName + '\'' +
+                ", surname='" + surname + '\'' +
                 '}';
     }
 }

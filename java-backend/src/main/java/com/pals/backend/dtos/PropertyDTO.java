@@ -1,11 +1,14 @@
-package com.pals.backend.entities;
+package com.pals.backend.dtos;
 
-import jakarta.persistence.*;
+import com.pals.backend.entities.Property;
+import com.pals.backend.entities.Seller;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@Entity
-public class Property {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+public class PropertyDTO {
+
     private int propertyID;
     private String imageURL;
     private String address;
@@ -17,10 +20,30 @@ public class Property {
     // FOREIGN KEY
     // SaleStatusID;
     // FOREIGN KEY
-    @ManyToOne
-     private Seller seller;
+//     SellerID;
+//    private Seller seller;
 
-    public Property() {
+    public PropertyDTO() {
+
+    }
+
+//    public PropertyDTO(com.pals.backend.entities.Seller seller) {
+//        Seller = seller;
+//    }
+
+    public PropertyDTO(Property property) {
+        this.propertyID = property.getPropertyID();
+        this.imageURL = property.getImageURL();
+        this.address = property.getAddress();
+        this.price = property.getPrice();
+        this.bedrooms = property.getBedrooms();
+        this.bathrooms = property.getBathrooms();
+        this.garden = property.isGarden();
+        this.saleStatus = property.getSaleStatus();
+//        this.seller = property.getSeller();
+    }
+
+    public PropertyDTO(int propertyID, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
     }
 
     public int getPropertyID() {
@@ -87,17 +110,9 @@ public class Property {
         this.saleStatus = saleStatus;
     }
 
-    public Seller getSeller() {
-        return seller;
-    }
-
-    public void setSeller(Seller seller) {
-        this.seller = seller;
-    }
-
     @Override
     public String toString() {
-        return "Property{" +
+        return "PropertyDTO{" +
                 "propertyID=" + propertyID +
                 ", imageURL='" + imageURL + '\'' +
                 ", address='" + address + '\'' +
@@ -106,7 +121,7 @@ public class Property {
                 ", bathrooms=" + bathrooms +
                 ", garden=" + garden +
                 ", saleStatus='" + saleStatus + '\'' +
-                ", seller=" + seller +
+//                ", Seller=" + seller +
                 '}';
     }
 }

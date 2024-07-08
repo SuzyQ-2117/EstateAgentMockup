@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 
 function AllSellers(props) {    
@@ -11,15 +9,15 @@ function AllSellers(props) {
                     <tr>
                         <th>ID</th>
                         <th className="th-border">First Name</th>
-                        <th>Surname</th>
+                        <th>Last Name</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.seller.map(s => (
                     <tr className="hover" key={s.id}>
                         <td>{s.id}</td>
-                        <td className="td-border">{s.FirstName}</td>
-                        <td>{s.SurName}</td>
+                        <td className="td-border">{s.firstName}</td>
+                        <td>{s.surname}</td>
                     </tr>))
                     }
                 </tbody>

@@ -4,13 +4,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {url} from "../consts";
 
 
-
-export default function PropertyCard({ editID, setEditID, setEdit, id, ImageUrl, address, price, bedrooms, bathrooms, garden, salestatus, fetchData }) {
-
+export default function PropertyCard({ editID, setEditID, setEdit, id, imageURL, address, price, bedrooms, bathrooms, garden, salestatus, fetchData }) {
+  //state for modal visibility
   const [show, setShow] = useState(false);
-
+  //state to contain the values of the property to be edited
   const [editAddress, setEditAddress] = useState("");
   const [editPrice, setEditPrice] = useState("");
   const [editBedrooms, setEditBedrooms] = useState("");
@@ -19,55 +19,65 @@ export default function PropertyCard({ editID, setEditID, setEdit, id, ImageUrl,
   const [editImageUrl, setEditImageUrl] = useState("");
   const [editSaleStatus, setEditSaleStatus] = useState("");
   
+  //close the modal
   const handleClose = () => setShow(false);
 
+  //open the modal and set the values of the listed states to match the property data that the edir button was clicked on
   const handleShow = () => {
     setShow(true)
-    console.log("Property selected" + id)
+    
     setEditAddress(address);
     setEditPrice(price);
     setEditBedrooms(bedrooms);
     setEditBathrooms(bathrooms);
     setEditGarden(garden);
-    setEditImageUrl(ImageUrl);
+    setEditImageUrl(imageURL);
     setEditSaleStatus(salestatus);
     setEdit(id);
+    //just logs the ID of the selected property. Should match the propertyID in the database
+    console.log("Property id selected: " + id)
   }
 
-  const sendUpdate = (e, Address, Price, Bedrooms, Bathrooms, Garden, ImageUrl, SaleStatus) => {
+  //function that actually patches the update through to the database
+  const sendUpdate = (e) => {
     e.preventDefault()
-    console.log('http://localhost:8000/Properties/' + id)
-    fetch('http://localhost:8000/Properties/' + id, {
+    //packs the newly input data into query parameters that are then added onto the end of the URL
+    const queryParams = new URLSearchParams({ address: editAddress, price: editPrice, bedrooms: editBedrooms, bathrooms: editBathrooms, garden: editGarden, imageURL: editImageUrl, saleStatus: editSaleStatus });
+    console.log(`${url}/property/update/` + id);
+    console.log(queryParams);
+    fetch(`${url}/property/update/${id}?${queryParams}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ Address: editAddress, Price: editPrice, Bedrooms: editBedrooms, Bathrooms: editBathrooms, Garden: editGarden, ImageUrl: editImageUrl, SaleStatus: editSaleStatus }),
+        headers: { 'Content-Type': 'application/json' }
     })
+        //then fetches the updated data from the database
         .then(fetchData)
+        //then clears the propertyID held in the edit state
         .then(setEdit(""))
+        //then calls the function to close the modal
         .then(handleClose())
+        //then give an alert to the user
         .then(alert("Property details amended successfully"))
   }
 
   return (
     <div className={"item-card flex-column " + salestatus}>
-      <img src={ImageUrl} className="property-img" alt="" />
+      <img src={imageURL} className="property-img" alt="" />
       <div className="padded-property-container flex-column">
         <div className="flex space-between">
           <p className="p-one property-data property-address">{address}</p>
           <p className="property-data salestatus">{salestatus}</p>
         </div>
-        <p className="p-two property-data property-price">£{price}</p>
+        <p className="p-two property-data property-price">£{(price).toLocaleString('en-GB', {minimumFractionDigits: 0})}</p>
         <div>
           <p className="p-three property-data property-beds"><span><FaBed /></span> {bedrooms} </p>
           <p className="p-four property-data property-baths"><span><FaBath /></span> {bathrooms}</p>
-          <p className="p-five property-data property-garden"> <span><PiPottedPlantFill /></span> {garden} </p>
+          <p className="p-five property-data property-garden"> <span><PiPottedPlantFill /></span> {garden && <span>Yes</span>} {!garden && <span>No</span>} </p>
         </div>
         <div>
           <button className="appt-btn float-left btn-left">
             <Link to='/bookings' className="appt-link">Book an appointment</Link>
           </button>
           <button onClick={handleShow} className="edit-btn float-right">Edit</button>
-          {/* <UpdateProperty onClick={EditProperty()} id={editID} Address={editAddress} Price={editPrice} Bedrooms={editBedrooms} Bathrooms={editBathrooms} Garden={editGarden} ImageUrl={editImageUrl} SaleStatus={editSaleStatus} handleClose={handleClose} handleShow={handleShow} /> */}
         </div>
       </div>
       <>
@@ -95,7 +105,7 @@ export default function PropertyCard({ editID, setEditID, setEdit, id, ImageUrl,
                   <div className="garden-title">
                     <p>Garden:</p>
                   </div>
-                  <div className="imageUrl-title">
+                  <div className="imageURL-title">
                     <p>Image URL:</p>
                   </div>
                   <div className="status-title">
@@ -115,8 +125,8 @@ export default function PropertyCard({ editID, setEditID, setEdit, id, ImageUrl,
                   </div>
                   <div className="garden-input">
                     <select required type="text" defaultValue={editGarden} onChange={(e) => setEditGarden(e.target.value)}>
-                      <option>Yes</option>
-                      <option>No</option>
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
                     </select>
                   </div>
                   <div className="url-input">

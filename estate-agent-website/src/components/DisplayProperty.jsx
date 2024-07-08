@@ -18,13 +18,13 @@ export default function DisplayProperty({ id, apiData, fetchData, handleClose, h
 
   const [modalState, setModalState] = useState(false)
 
-  const [ImageUrl, setImageUrl] = useState("");
-  const [Address, setAddress] = useState("");
-  const [Price, setPrice] = useState(0);
-  const [Bedrooms, setBedrooms] = useState(1);
-  const [Bathrooms, setBathrooms] = useState(1);
-  const [Garden, setGarden] = useState("No");
-  const [SaleStatus, setSaleStatus] = useState("FORSALE");
+  const [imageURL, setImageUrl] = useState("");
+  const [address, setAddress] = useState("");
+  const [price, setPrice] = useState(0);
+  const [bedrooms, setBedrooms] = useState(1);
+  const [bathrooms, setBathrooms] = useState(1);
+  const [garden, setGarden] = useState("No");
+  const [saleStatus, setSaleStatus] = useState("FORSALE");
   const [Seller, setSeller] = useState("")
   const [edit, setEdit] = useState([])
   const [editAddress, setEditAddress] = useState("")
@@ -81,18 +81,19 @@ export default function DisplayProperty({ id, apiData, fetchData, handleClose, h
       <h1>There are no properties matching your search. Try changing the filters to see other properties.</h1>
     )
   } else {
+    // debugger
     return (
       <div className="property-card-container flex wrap">
         {apiData.map((item) => (
-          <PropertyCard
-            id={item.id}
-            ImageUrl={item.ImageUrl}
-            address={item.Address}
-            price={item.Price}
-            bedrooms={item.Bedrooms}
-            bathrooms={item.Bathrooms}
-            garden={item.Garden}
-            salestatus={item.SaleStatus}
+          <PropertyCard key={item.propertyID}
+            id={item.propertyID}
+            imageURL={item.imageURL}
+            address={item.address}
+            price={item.price}
+            bedrooms={item.bedrooms}
+            bathrooms={item.bathrooms}
+            garden={item.garden}
+            salestatus={item.saleStatus}
             fetchData={fetchData}
             edit={edit}
             setEdit={setEdit}

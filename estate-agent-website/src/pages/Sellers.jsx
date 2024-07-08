@@ -1,17 +1,17 @@
-import Data from '../data/Data.json'
+// import Data from '../data/Data.json'
 import AllSellers from '../components/AllSellers'
 import RegisterSeller from '../components/RegisterSeller'
 import AddBookings from '../components/AddBooking'
 import '../CSS/SellersPage.css'
 import { useEffect, useState } from 'react';
-
+import {url} from "../consts";
 
 export default function SellersPage() {
 
   let  [seller, setSeller] = useState([]);
 
   function fetchSellerData() {
-      fetch('http://localhost:8000/Sellers')
+      fetch(`${url}/seller/all`)
           .then((response) => response.json())
           .then((data) => setSeller(data));
   }

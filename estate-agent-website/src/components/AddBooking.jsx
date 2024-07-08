@@ -65,12 +65,12 @@ export default function AddBooking({ fetchAllBookings }) {
         alert("Please select another time slot as this is booked");
       } else {
         console.log("date in add", bookingDate)
-        const task = {
+        const newBooking = {
           bookingDate,
           bookingTime,
-          property,
-          buyer: {id: buyer.id},
-          propertyid,
+          // property: {address: property.address},
+          buyer: {id: buyer},
+          // propertyid: {id: propertyid},
         };
 
         fetch("http://localhost:8001/booking/new", {
@@ -78,7 +78,7 @@ export default function AddBooking({ fetchAllBookings }) {
           // for most api json call
           headers: { "Content-Type": "application/json" },
           // changing into json data
-          body: JSON.stringify(task),
+          body: JSON.stringify(newBooking),
         }).then(() => {
           alert("New Viewing Booked");
 
@@ -107,7 +107,7 @@ export default function AddBooking({ fetchAllBookings }) {
           <div className="flex-register details">
             <div className="name-input left">
               <p>Buyers: </p>
-              <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyer}>
+              <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyer.id}>
                 <option value=""></option>
                 {buyerList.map((buyer) => (
                   <option value={buyer.id} key={buyer.id}>{buyer.firstName} {buyer.surname}{" "}</option>
@@ -116,7 +116,7 @@ export default function AddBooking({ fetchAllBookings }) {
             </div>
             <div className="name-input right">
               <p>Properties For Sale: </p>
-              <select name="property" onChange={(e) => setProperty(e.target.value)} value={property}>
+              <select name="property" onChange={(e) => setProperty(e.target.value)} value={property.id}>
                 <option value=""></option>
                 {propertyList.map((property) => (
                   <option value={property.address} key={property.id}>{property.address}</option>

@@ -1,0 +1,15 @@
+Transitioned from JSON Server to Spring backend
+
+What went wrong? 
+* Changing name conventions
+* Fields not mapping into the right place
+* Postman push not working
+* All the things I had to troubleshoot
+* Edit - still pulling the correct selected property data but not going anywhere
+* Garden - kept defaulting to No garden regardless of what we entered
+
+Project Management - did we use JIRA/Miro? 
+Testing - look at code coverage (MockMvc testing)
+Extra features
+Re-do the front end to potentially cut down on requests
+Integrate the back-end with Jenkins 

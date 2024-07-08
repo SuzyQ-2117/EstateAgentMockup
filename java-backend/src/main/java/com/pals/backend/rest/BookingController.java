@@ -46,7 +46,7 @@ public class BookingController {
         return this.service.updateBooking(id, bookingDate, bookingTime);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> removeBooking(@PathVariable Integer id) {
         return this.service.removeBooking(id);
     }

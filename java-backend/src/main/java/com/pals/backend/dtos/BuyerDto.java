@@ -2,18 +2,13 @@ package com.pals.backend.dtos;
 
 import com.pals.backend.entities.Booking;
 import com.pals.backend.entities.Buyer;
-import com.pals.backend.entities.Seller;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuyerDto {
 
-    private Integer Id;
+    private Integer id;
     private String firstName;
     private String surname;
 
@@ -29,7 +24,7 @@ public class BuyerDto {
     }
 
     public BuyerDto(Buyer buyer){
-    this.Id = buyer.getId();
+    this.id = buyer.getId();
     this.firstName = buyer.getfirstName();
     this.surname = buyer.getSurname();
     if(buyer.getBookings() != null){
@@ -49,11 +44,11 @@ public class BuyerDto {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getSurname() {
@@ -75,7 +70,7 @@ public class BuyerDto {
     @Override
     public String toString() {
         return "Buyer{" +
-                "buyerId=" + Id +
+                "buyerId=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
                 '}';

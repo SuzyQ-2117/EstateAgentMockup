@@ -8,7 +8,7 @@ export default function AddBooking({ fetchAllBookings }) {
   const [bookingDate, setBookingDate] = useState("");
   const [bookingTime, setBookingTime] = useState("");
   let [property, setProperty] = useState("");
-  let [propertyid, setPropertyID] = useState("");
+  let [propertyID, setPropertyID] = useState("");
   let [buyer, setBuyer] = useState("");
 
   //todays date
@@ -23,6 +23,7 @@ export default function AddBooking({ fetchAllBookings }) {
   const[buyerList, setBuyerList] = useState([]);
   const[propertyList, setPropertyList] = useState([]);
 
+  //fetch all buyer details and set to buyerList state
   const getBuyerList = () => {
     fetch(`${url}/buyer/all`)
     .then((response) => response.json())
@@ -30,13 +31,13 @@ export default function AddBooking({ fetchAllBookings }) {
     .then(console.log("Buyers: " + buyerList));
   }
 
+    //fetch all property details and set to propertyList state
   const getPropertyList = () => {
     fetch(`${url}/property/all`)
     .then((response) => response.json())
     .then((data) => setPropertyList(data))
     .then(console.log("Property list: " + propertyList))
   }
-
 
   //Filter the option list so only holds propertys that are forsale
   //can only use the filter function as an array so need to place the json data into an array
@@ -57,7 +58,7 @@ export default function AddBooking({ fetchAllBookings }) {
   const handleSubmit = (e) => {
     // tells the event if the event doesnt get handled dont use the default action as I want to do something else
     e.preventDefault();
-
+    
     if (property === "" || buyer === "") {
       alert("Please select your name & a property to book a viewing for");
     } else {
@@ -68,9 +69,9 @@ export default function AddBooking({ fetchAllBookings }) {
         const newBooking = {
           bookingDate,
           bookingTime,
-          // property: {address: property.address},
+          property: {address: property},
           buyer: {id: buyer},
-          // propertyid: {id: propertyid},
+          property: {id: property}
         };
 
         fetch("http://localhost:8001/booking/new", {
@@ -100,6 +101,18 @@ export default function AddBooking({ fetchAllBookings }) {
     getPropertyList();
   }, []);
 
+  const handlePropertyChange = (propertyAddress) => {
+    setProperty(propertyAddress);
+    console.log("Address: ", propertyAddress);
+    const selectedProperty = propertyList.find(property => property.address === propertyAddress);
+
+    if (selectedProperty) {
+      console.log("Selected Property: ", selectedProperty);
+      setPropertyID(selectedProperty.propertyID);
+      console.log(selectedProperty.propertyID);
+    } 
+  };
+
   return (
     <div className="register-buyer">
       <form onSubmit={handleSubmit}>
@@ -116,19 +129,19 @@ export default function AddBooking({ fetchAllBookings }) {
             </div>
             <div className="name-input right">
               <p>Properties For Sale: </p>
-              <select name="property" onChange={(e) => setProperty(e.target.value)} value={property.id}>
+              <select name="property" onChange={(e) => handlePropertyChange(e.target.value)} value={property.address}>
                 <option value=""></option>
                 {propertyList.map((property) => (
-                  <option value={property.address} key={property.id}>{property.address}</option>
+                  <option value={property.id} key={property.id}>{property.address}</option>
                 ))}
               </select>
             </div>
             <div className="name-input ">
-              <p>  Date :</p>
+              <p>  Date:</p>
               <input id="fname" type="date" required value={bookingDate} min={formattedDate} onChange={(e) => setBookingDate(e.target.value)} />
             </div>
             <div className="name-input">
-              <p>Time :</p>
+              <p>Time:</p>
               <select value={bookingTime} onChange={(e) => setBookingTime(e.target.value)}>
                 <option value=""></option>
                 <option value="8-9am">8am to 9am</option>

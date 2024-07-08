@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import AddBookings from '../components/AddBooking'
 import AllBookings from '../components/AllBookings'
@@ -11,18 +10,11 @@ export default function BookingsPage() {
 
 
     const fetchAllBookings= () => {
-      fetch("http://localhost:8001/booking/all")
+      fetch(`${url}/booking/all`)
         .then((response) => response.json())
         .then((data) => setData(data));
     };
 
-
-    // const fetchProperty = () => {
-    //   fetch(`${url}/property/all`)
-    //   .then((response) => response.json())
-    //   .then((data) => setProperty(data));
-    // }
-  
       useEffect(() => {
         console.log("Loading booking page");
         fetchAllBookings();

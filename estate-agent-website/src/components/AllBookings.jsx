@@ -62,24 +62,7 @@ function AllBookings({ fetchAllBookings }) {
               <td className="td-border">{booking.property}</td>
               <td className="td-border" >{new Date(booking.date).toLocaleDateString()}</td>
 
-     
-                
-              {/* {(() => {
-                    // const dateObj = new Date(booking.date);
-                    // const day = dateObj.getDate();
-                    // const month = dateObj.getMonth() + 1; // Months are zero-indexed
-                    // const year = dateObj.getFullYear();
 
-                    // // Add leading zeros if necessary
-                    // const formattedDate = `${day < 10 ? "0" : ""}${day}/${
-                    // month < 10 ? "0" : ""
-                    // }${month}/${year}`;
-                    // alert ("display format" + formattedDate )
-
-                    // return formattedDate;
-                 })()} */}
-{/* </td> */}
-              
               
               <td className="td-border">{booking.time}</td>
               <td className="td-border">

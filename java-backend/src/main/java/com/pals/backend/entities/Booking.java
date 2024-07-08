@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Booking {
@@ -26,6 +27,18 @@ public class Booking {
 
     @ManyToOne
     private Buyer buyer;
+
+    //LGS added relationship a property can have many bookings and getters and setters for this
+    @ManyToOne
+    private Property property;
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
 
     public Buyer getBuyer() {
         return buyer;

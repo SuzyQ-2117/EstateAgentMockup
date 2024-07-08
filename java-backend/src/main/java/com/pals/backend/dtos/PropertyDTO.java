@@ -1,5 +1,6 @@
 package com.pals.backend.dtos;
 
+import com.pals.backend.entities.Booking;
 import com.pals.backend.entities.Property;
 import com.pals.backend.entities.Seller;
 import jakarta.persistence.Entity;
@@ -7,9 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PropertyDTO {
 
-    private int propertyID;
+    private Integer id;
     private String imageURL;
     private String address;
     private int price;
@@ -23,6 +27,8 @@ public class PropertyDTO {
 //     SellerID;
     private Seller seller;
 
+    //LGS adding array to hold the bookings
+    private List<BookingDto> bookings = new ArrayList<>();
     public PropertyDTO() {
 
     }
@@ -32,7 +38,7 @@ public class PropertyDTO {
 //    }
 
     public PropertyDTO(Property property) {
-        this.propertyID = property.getPropertyID();
+        this.id = property.getId();
         this.imageURL = property.getImageURL();
         this.address = property.getAddress();
         this.price = property.getPrice();
@@ -41,18 +47,53 @@ public class PropertyDTO {
         this.garden = property.isGarden();
         this.saleStatus = property.getSaleStatus();
         this.seller = property.getSeller();
+
+        //LGS adding the bookings to the array if not null
+        if (property.getBookings() != null){
+            for (Booking booking : property.getBookings()){
+                this.bookings.add(new BookingDto(booking));
+            }
+
+        }
     }
 
-    public PropertyDTO(int propertyID, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
+    public PropertyDTO(int id, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
+    }
+
+    //LGS generated new getters and setters for id and bookings array
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    public List<BookingDto> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<BookingDto> bookings) {
+        this.bookings = bookings;
     }
 
     public int getPropertyID() {
-        return propertyID;
+        return id;
     }
 
-    public void setPropertyID(int propertyID) {
-        this.propertyID = propertyID;
-    }
+
+//    public void setPropertyID(int propertyID) {
+//        this.propertyID = propertyID;
+//    }
 
     public String getImageURL() {
         return imageURL;
@@ -113,7 +154,7 @@ public class PropertyDTO {
     @Override
     public String toString() {
         return "PropertyDTO{" +
-                "propertyID=" + propertyID +
+                "propertyID=" + id +
                 ", imageURL='" + imageURL + '\'' +
                 ", address='" + address + '\'' +
                 ", price=" + price +

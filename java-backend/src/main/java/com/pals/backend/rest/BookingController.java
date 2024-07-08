@@ -31,7 +31,7 @@ public class BookingController {
         return this.service.getAll();
     }
 
-    @PostMapping("/new")
+    @PostMapping("/add")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking newBooking) {
         return this.service.createBooking(newBooking);
     }

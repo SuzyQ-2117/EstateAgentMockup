@@ -11,10 +11,7 @@ import java.time.LocalDate;
 public class BookingDto {
 
     private Integer id;
-
-
     private LocalDate bookingDate;
-
     private String bookingTime;
 
     //default constructor

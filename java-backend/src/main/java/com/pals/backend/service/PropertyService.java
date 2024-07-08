@@ -22,7 +22,7 @@ public class PropertyService {
     // convert a Property object into a PropertyDTO
     private PropertyDTO convertToDTO(Property property) {
         return new PropertyDTO(
-                property.getPropertyID(),
+                property.getId(),
                 property.getImageURL(),
                 property.getAddress(),
                 property.getPrice(),
@@ -37,7 +37,7 @@ public class PropertyService {
     // Convert a DTO into a Property object
     private Property convertToEntity(Property propertyDTO) {
         Property property = new Property();
-        property.setPropertyID(propertyDTO.getPropertyID());
+        property.setId(propertyDTO.getId());
         property.setImageURL(propertyDTO.getImageURL());
         property.setAddress(propertyDTO.getAddress());
         property.setPrice(propertyDTO.getPrice());

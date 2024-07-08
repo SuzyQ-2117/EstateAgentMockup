@@ -2,11 +2,14 @@ package com.pals.backend.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Property {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int propertyID;
+    private Integer id;
+    //LGS updated from propertyID to id due to mapping into booking table as property_propertyid when foreign key added
     private String imageURL;
     private String address;
     private int price;
@@ -20,15 +23,29 @@ public class Property {
     @ManyToOne
      private Seller seller;
 
+//LGS adding in a property can have many bookings mapping and an array to hold the bookings
+    @OneToMany(mappedBy="property")
+    private List<Booking> bookings;
+
+
     public Property() {
     }
 
-    public int getPropertyID() {
-        return propertyID;
+    //LGS generated getter and setter for id and also bookings array to hold the bookings
+    public Integer getId() {
+        return id;
     }
 
-    public void setPropertyID(int propertyID) {
-        this.propertyID = propertyID;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     public String getImageURL() {
@@ -98,7 +115,7 @@ public class Property {
     @Override
     public String toString() {
         return "Property{" +
-                "propertyID=" + propertyID +
+                "propertyID=" + id+
                 ", imageURL='" + imageURL + '\'' +
                 ", address='" + address + '\'' +
                 ", price=" + price +

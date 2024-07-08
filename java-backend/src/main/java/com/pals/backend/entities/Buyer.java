@@ -16,6 +16,8 @@ public class Buyer {
     @OneToMany(mappedBy = "buyer")
     private List<Booking> bookings;
 
+
+
     public Buyer(String firstName, String surname) {
         this.firstName = firstName;
         this.surname = surname;

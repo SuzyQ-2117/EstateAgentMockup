@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import Data from "../data/Data.json";
+import { url } from "../consts";
 
-function CancelBooking(id, { fetchData }) {
-  fetch("http://localhost:8001/booking/" + id, {
+function CancelBooking(id, { fetchBookingData }) {
+  fetch(`${url}/booking/` + id, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(),
   }).then(() => {
     alert("Viewing Cancelled");
-    fetchData();
+    fetchBookingData();
   });
 }
 
-function AllBookings({ fetchData }) {
+function AllBookings({ fetchBookingData, fetchBuyers, fetchProperty, buyerData, propertyData, apiData }) {
   let [booking, setBooking] = useState([]);
   let [property, setProperty] = useState("");
 
@@ -20,28 +21,28 @@ function AllBookings({ fetchData }) {
   const forsale = dataArray.filter((item) => item.SaleStatus === "FORSALE");
 
   useEffect(() => {
-    fetch("http://localhost:8001/booking/all")
-      .then((response) => response.json())
-      .then((data) => setBooking(data));
+    console.log("Running fetch request for all bookings")
+    fetchBookingData();
+    fetchBuyers();
+    fetchProperty();
   }, []);
-
-  console.log("Booking date", booking.date)
 
   return (
     <div>
-    <table>
-      <thead>
       <div className="property-option">
         <p>Select Property : </p>
 
                 <select name="Propertys" onChange={(e) => setProperty(e.target.value)}>
                 <option value="">All Bookings</option>
                 {forsale.map((item) => (
-                    <option value={item.Address}>{item.Address}</option>
+                    <option value={item.Address} key={item.id}>{item.Address}</option>
                 ))}
                 </select>
-    
       </div>
+      <br/>
+    <table>
+      <thead>
+      
         <tr>
           {/* <th>ID</th> */}
           <th className="th-border">Buyer</th>
@@ -84,7 +85,7 @@ function AllBookings({ fetchData }) {
               <td className="td-border">{booking.time}</td>
               <td className="td-border">
                 <button
-                  onClick={() => CancelBooking(booking.id, { fetchData })}
+                  onClick={() => CancelBooking(booking.id, { fetchBookingData })}
                 >
                   Cancel Booking
                 </button>

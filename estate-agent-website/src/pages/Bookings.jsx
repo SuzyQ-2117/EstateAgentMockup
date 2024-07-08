@@ -3,25 +3,43 @@ import { useState, useEffect } from "react";
 import AddBookings from '../components/AddBooking'
 import AllBookings from '../components/AllBookings'
 import '../CSS/BookingPage.css'
+import { url } from "../consts";
 
 export default function BookingsPage() {
 
     let [apiData, setData] = useState([]);
+    const [buyer, setBuyer] = useState();
+    const [property, setProperty] = useState();
 
-    const fetchData = () => {
-      fetch("http://localhost:8000/Bookings")
+    const fetchBookingData = () => {
+      fetch("http://localhost:8001/booking/all")
         .then((response) => response.json())
         .then((data) => setData(data));
     };
+
+    const fetchBuyers = () => {
+      fetch(`${url}/buyers/all`)
+      .then((response) => response.json())
+      .then((data) => setBuyer(data));
+    }
+
+    function fetchProperty() {
+      fetch(`${url}/property/all`)
+      .then((response) => response.json())
+      .then((data) => setProperty(data));
+    }
   
       useEffect(() => {
-      fetchData();
+        fetchBookingData();
+        fetchBuyers();
+        fetchProperty();
     }, []);
+
     return (
         <div className="booking flex space-between">
             <div className="half-white-container-left">
                 <div className="customer-grid">
-                <AllBookings fetchData={fetchData} />
+                <AllBookings fetchBookingData={fetchBookingData} />
                 </div>
             </div>
         <div>
@@ -32,7 +50,7 @@ export default function BookingsPage() {
           </div>
         </div>
             <div className="half-white-container-right">
-              <AddBookings fetchData={fetchData} />
+              <AddBookings fetchBookingData={fetchBookingData} />
               </div>
         </div>
     </div>

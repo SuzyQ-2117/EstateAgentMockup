@@ -2,7 +2,7 @@ import { useState } from "react";
 import Data from '../data/Data.json'
 import { DiDatabase } from "react-icons/di";
 
-export default function AddBooking({ fetchData }) {
+export default function AddBooking({ fetchData, buyerData, propertyData }) {
   
   //todays date
   const today = new Date();
@@ -17,8 +17,8 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
 
     // create state
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [bookingDate, setBookingDate] = useState("");
+  const [bookingTime, setBookingTime] = useState("");
   let [property, setProperty] = useState("");
   let [propertyid, setPropertyID] = useState("");
   let [buyer, setBuyer] = useState("");
@@ -31,8 +31,8 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
 
   const existingBooking = Data.Bookings.find((booking) => {
     return (
-      booking.date === date &&
-      booking.time === time &&
+      booking.bookingDate === bookingDate &&
+      booking.bookingTime === bookingTime &&
       booking.property === property
       
     );
@@ -54,10 +54,10 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
         
         alert("Please select another time slot as this is booked");
       } else {
-console.log("date in add", date)
+console.log("date in add", bookingDate)
         const task = {
-          date,
-          time,
+          bookingDate,
+          bookingTime,
           property,
           buyer,
           propertyid,
@@ -73,8 +73,8 @@ console.log("date in add", date)
           alert("New Viewing Booked");
 
           // reset text boxes
-          setDate(formattedDate);
-          setTime("");
+          setBookingDate(formattedDate);
+          setBookingTime("");
           setProperty("");
           setPropertyID("");
           setBuyer("");
@@ -94,7 +94,7 @@ console.log("date in add", date)
                                 <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyer}>
                                     <option value=""></option>
                                     {Data.Buyers.map((item) => (
-                                    <option value={item.ID}>
+                                    <option value={item.id} key={item.id}>
                                         {item.firstName} {item.surname}{" "}
                                     </option>
                                     ))}
@@ -105,17 +105,17 @@ console.log("date in add", date)
                                 <select name="Propertys" onChange={(e) => setProperty(e.target.value)} value={property}>
                                      <option value=""></option>
                                         {forsale.map((item) => (
-                                        <option value={item.Address}>{item.Address}</option>
+                                        <option value={item.Address} key={item.id}>{item.Address}</option>
                                         ))}
                                 </select>
                         </div>
                         <div className="name-input ">
                                 <p>  Date :</p>
-                                <input id="fname" type="date" required value={date} min= {formattedDate} onChange={(e) => setDate(e.target.value)}/>
+                                <input id="fname" type="date" required value={bookingDate} min= {formattedDate} onChange={(e) => setBookingDate(e.target.value)}/>
                         </div>  
                         <div className="name-input">
                             <p>Time :</p>
-                            <select value={time} onChange={(e) => setTime(e.target.value)}>
+                            <select value={bookingTime} onChange={(e) => setBookingTime(e.target.value)}>
                                 <option value=""></option>
                                 <option value="8-9am">8am to 9am</option>
                                 <option value="9-10am">9am to 10am</option>

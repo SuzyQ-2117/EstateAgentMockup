@@ -20,23 +20,23 @@ export default function AddBooking({ fetchAllBookings }) {
   // const formattedDate = yyyy + '-' + mm + '-' + dd;
   const formattedDate = yyyy + '-' + mm + '-' + dd;
 
-  const[buyerList, setBuyerList] = useState([]);
-  const[propertyList, setPropertyList] = useState([]);
+  const [buyerList, setBuyerList] = useState([]);
+  const [propertyList, setPropertyList] = useState([]);
 
   //fetch all buyer details and set to buyerList state
   const getBuyerList = () => {
     fetch(`${url}/buyer/all`)
-    .then((response) => response.json())
-    .then((data) => setBuyerList(data))
-    .then(console.log("Buyers: " + buyerList));
+      .then((response) => response.json())
+      .then((data) => setBuyerList(data))
+      .then(console.log("Buyers: " + buyerList));
   }
 
-    //fetch all property details and set to propertyList state
+  //fetch all property details and set to propertyList state
   const getPropertyList = () => {
     fetch(`${url}/property/all`)
-    .then((response) => response.json())
-    .then((data) => setPropertyList(data))
-    .then(console.log("Property list: " + propertyList))
+      .then((response) => response.json())
+      .then((data) => setPropertyList(data))
+      .then(console.log("Property list: " + propertyList))
   }
 
   //Filter the option list so only holds propertys that are forsale
@@ -58,7 +58,7 @@ export default function AddBooking({ fetchAllBookings }) {
   const handleSubmit = (e) => {
     // tells the event if the event doesnt get handled dont use the default action as I want to do something else
     e.preventDefault();
-    
+
     if (property === "" || buyer === "") {
       alert("Please select your name & a property to book a viewing for");
     } else {
@@ -69,9 +69,8 @@ export default function AddBooking({ fetchAllBookings }) {
         const newBooking = {
           bookingDate,
           bookingTime,
-          property: {address: property},
-          buyer: {id: buyer},
-          property: {id: property}
+          property: { id: property, address: property },
+          buyer: { id: buyer }
         };
 
         fetch(`${url}/booking/new`, {
@@ -84,7 +83,7 @@ export default function AddBooking({ fetchAllBookings }) {
           alert("New Viewing Booked");
 
           // reset text boxes
-          setBookingDate(formattedDate);
+          setBookingDate(""); 
           setBookingTime("");
           setProperty("");
           setPropertyID("");
@@ -109,8 +108,8 @@ export default function AddBooking({ fetchAllBookings }) {
     if (selectedProperty) {
       console.log("Selected Property: ", selectedProperty);
       setPropertyID(selectedProperty.propertyID);
-      console.log(selectedProperty.propertyID);
-    } 
+      console.log(propertyID);
+    }
   };
 
   return (
@@ -120,8 +119,8 @@ export default function AddBooking({ fetchAllBookings }) {
           <div className="flex-register details">
             <div className="name-input left">
               <p>Buyers: </p>
-              <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyer.id}>
-                <option value=""></option>
+              <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyer}>
+                <option value="">Please select</option>
                 {buyerList.map((buyer) => (
                   <option value={buyer.id} key={buyer.id}>{buyer.firstName} {buyer.surname}{" "}</option>
                 ))}
@@ -129,8 +128,8 @@ export default function AddBooking({ fetchAllBookings }) {
             </div>
             <div className="name-input right">
               <p>Properties For Sale: </p>
-              <select name="property" onChange={(e) => handlePropertyChange(e.target.value)} value={property.address}>
-                <option value=""></option>
+              <select name="property" onChange={(e) => handlePropertyChange(e.target.value)} value={property}>
+                <option value="">Please select</option>
                 {forsale.map((property) => (
                   <option value={property.id} key={property.id}>{property.address}</option>
                 ))}

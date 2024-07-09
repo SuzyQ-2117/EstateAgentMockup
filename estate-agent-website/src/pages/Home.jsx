@@ -29,6 +29,7 @@ export default function HomePage() {
   let [apiData, setData] = useState([]);
   
   const fetchData = (filter) => {
+    console.log("FETCHING")
     fetch(`${url}/property/filtersearch?` + filter)
       .then((response) => response.json())
       .then((data) => setData(data));

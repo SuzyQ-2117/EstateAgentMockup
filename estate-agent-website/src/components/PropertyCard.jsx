@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {url} from "../consts";
 
 
-export default function PropertyCard({ editID, setEditID, setEdit, id, imageURL, address, price, bedrooms, bathrooms, garden, salestatus, fetchData }) {
+export default function PropertyCard({ editID, setEditID, edit, setEdit, id, imageURL, address, price, bedrooms, bathrooms, garden, salestatus, fetchData }) {
   //state for modal visibility
   const [show, setShow] = useState(false);
   //state to contain the values of the property to be edited
@@ -20,11 +20,18 @@ export default function PropertyCard({ editID, setEditID, setEdit, id, imageURL,
   const [editSaleStatus, setEditSaleStatus] = useState("");
   
   //close the modal
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    console.log("Close edit: ", edit)
+    fetchData()
+    setShow(false)
+    setEdit("");
+  }
+    
 
   //open the modal and set the values of the listed states to match the property data that the edir button was clicked on
   const handleShow = () => {
     setShow(true)
+    console.log("Show edit: ", id)
     
     setEditAddress(address);
     setEditPrice(price);
@@ -36,11 +43,13 @@ export default function PropertyCard({ editID, setEditID, setEdit, id, imageURL,
     setEdit(id);
     //just logs the ID of the selected property. Should match the propertyID in the database
     console.log("Property id selected: " + id)
+    console.log("Second show edit: ", id)
   }
 
   //function that actually patches the update through to the database
   const sendUpdate = (e) => {
     e.preventDefault()
+    console.log(edit)
     //packs the newly input data into query parameters that are then added onto the end of the URL
     const queryParams = new URLSearchParams({ address: editAddress, price: editPrice, bedrooms: editBedrooms, bathrooms: editBathrooms, garden: editGarden, imageURL: editImageUrl, saleStatus: editSaleStatus });
     console.log(`${url}/property/update/` + id);
@@ -50,9 +59,10 @@ export default function PropertyCard({ editID, setEditID, setEdit, id, imageURL,
         headers: { 'Content-Type': 'application/json' }
     })
         //then fetches the updated data from the database
-        .then(fetchData)
+        .then(fetchData())
         //then clears the propertyID held in the edit state
         .then(setEdit(""))
+        .then(console.log("Patch request edit: ", edit))
         //then calls the function to close the modal
         .then(handleClose())
         //then give an alert to the user

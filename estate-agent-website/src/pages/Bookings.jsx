@@ -12,8 +12,17 @@ export default function BookingsPage() {
     const fetchAllBookings= () => {
       fetch(`${url}/booking/all`)
         .then((response) => response.json())
-        .then((data) => setAllBookings(data));
-        console.log("Running fetch request for all bookings")
+        .then((data) => {
+          // Sort the data array by bookingDate in ascending order
+          const sortedData = data.sort((a, b) => new Date(a.bookingDate) - new Date(b.bookingDate));
+          setAllBookings(sortedData);
+          console.log("Sorted Bookings: ", sortedData);
+        })
+        .catch((error) => {
+          console.error("Error fetching bookings: ", error);
+        });
+          // setAllBookings(data));
+        // console.log("Running fetch request for all bookings")
     };
 
       useEffect(() => {

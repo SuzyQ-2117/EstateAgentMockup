@@ -123,8 +123,8 @@ const buildFilter = () => {
     return (
       <div className="property-card-container flex wrap">
         {apiData.map((item) => (
-          <PropertyCard key={item.propertyID}
-            id={item.propertyID}
+          <PropertyCard key={item.id}
+            id={item.id}
             imageURL={item.imageURL}
             address={item.address}
             price={item.price}

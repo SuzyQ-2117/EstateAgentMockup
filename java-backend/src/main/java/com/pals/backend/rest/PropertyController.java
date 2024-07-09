@@ -37,7 +37,7 @@ public class PropertyController {
 //        return this.service.findNoProps();
 //    }
 
-    @GetMapping("/property/byPricePredicate")
+    @GetMapping("/property/filtersearch")
     public List<PropertyDTO> getAllByPredicate(@RequestParam(required = false) Integer minPrice,
                                             @RequestParam(required = false) Integer maxPrice,
                                             @RequestParam(required = false) Integer minBedrooms,

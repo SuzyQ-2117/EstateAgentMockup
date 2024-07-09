@@ -28,8 +28,8 @@ export default function HomePage() {
   // and passes the api state through to "DisplayProperty" to include apidata for all, fetch data for status change and filter results for filtering
   let [apiData, setData] = useState([]);
   
-  const fetchData = () => {
-    fetch(`${url}/property/all`)
+  const fetchData = (filter) => {
+    fetch(`${url}/property/filtersearch?` + filter)
       .then((response) => response.json())
       .then((data) => setData(data));
       }
@@ -100,7 +100,7 @@ export default function HomePage() {
           <FindProperty />
         </div>
         <div className="white-container">
-          <DisplayProperty apiData={apiData} fetchData={fetchData} filterResults="false" />
+          <DisplayProperty  apiData={apiData} fetchData={fetchData} filterResults="false" />
         </div>
         <div className=" flex space-around white-container">
           <div className="filter-container add-banner">

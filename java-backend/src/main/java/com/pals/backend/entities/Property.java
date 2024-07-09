@@ -2,11 +2,13 @@ package com.pals.backend.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Property {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int propertyID;
+    private int id;
     private String imageURL;
     private String address;
     private int price;
@@ -14,21 +16,33 @@ public class Property {
     private int bathrooms;
     private boolean garden;
     private String saleStatus;
-    // FOREIGN KEY
-    // SaleStatusID;
-    // FOREIGN KEY
+
     @ManyToOne
      private Seller seller;
+
+    //one to many for the bookings
+    @OneToMany(mappedBy = "property")
+    private List<Booking> bookings;
+
 
     public Property() {
     }
 
-    public int getPropertyID() {
-        return propertyID;
+    //getter and setter for bookings
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
-    public void setPropertyID(int propertyID) {
-        this.propertyID = propertyID;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImageURL() {
@@ -98,7 +112,7 @@ public class Property {
     @Override
     public String toString() {
         return "Property{" +
-                "propertyID=" + propertyID +
+                "id=" + id +
                 ", imageURL='" + imageURL + '\'' +
                 ", address='" + address + '\'' +
                 ", price=" + price +

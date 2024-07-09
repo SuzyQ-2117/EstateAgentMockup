@@ -1,27 +1,32 @@
-
 import { useState, useEffect } from "react";
 import AddBookings from '../components/AddBooking'
 import AllBookings from '../components/AllBookings'
 import '../CSS/BookingPage.css'
+import { url } from "../consts";
 
 export default function BookingsPage() {
 
-    let [apiData, setData] = useState([]);
+    let [allBookings, setAllBookings] = useState([]);
 
-    const fetchData = () => {
-      fetch("http://localhost:8000/Bookings")
+
+    const fetchAllBookings= () => {
+      fetch(`${url}/booking/all`)
         .then((response) => response.json())
-        .then((data) => setData(data));
+        .then((data) => setAllBookings(data));
+        console.log("Running fetch request for all bookings")
     };
-  
+
       useEffect(() => {
-      fetchData();
+        console.log("Loading booking page");
+        fetchAllBookings();
     }, []);
+
     return (
         <div className="booking flex space-between">
             <div className="half-white-container-left">
                 <div className="customer-grid">
-                <AllBookings fetchData={fetchData} />
+                <AllBookings fetchAllBookings={fetchAllBookings}
+                allBookings={allBookings} />
                 </div>
             </div>
         <div>
@@ -32,7 +37,7 @@ export default function BookingsPage() {
           </div>
         </div>
             <div className="half-white-container-right">
-              <AddBookings fetchData={fetchData} />
+              <AddBookings fetchAllBookings={fetchAllBookings} />
               </div>
         </div>
     </div>

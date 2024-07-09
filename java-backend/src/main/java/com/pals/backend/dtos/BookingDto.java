@@ -13,6 +13,9 @@ public class BookingDto {
     private Integer id;
     private LocalDate bookingDate;
     private String bookingTime;
+    private String address;
+    private String buyer;
+
 
     //default constructor
     public BookingDto() {
@@ -24,6 +27,8 @@ public class BookingDto {
         this.id = booking.getId();
         this.bookingDate = booking.getBookingDate();
         this.bookingTime = booking.getBookingTime();
+        this.address = booking.getProperty().getAddress();
+        this.buyer = booking.getBuyer().getfirstName()+" "+booking.getBuyer().getSurname();
     }
 
     //generated constructors
@@ -31,6 +36,22 @@ public class BookingDto {
         this.id = id;
         this.bookingDate = bookingDate;
         this.bookingTime= bookingTime;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(String buyer) {
+        this.buyer = buyer;
     }
 
     // generated getters and setters

@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Data from '../data/Data.json'
-import { DiDatabase } from "react-icons/di";
 import { url } from "../consts";
+import { DiDatabase } from "react-icons/di";
 
-export default function AddBooking({ fetchAllBookings }) {
-  // create state
-  const [bookingDate, setBookingDate] = useState("");
-  const [bookingTime, setBookingTime] = useState("");
-  let [property, setProperty] = useState("");
-  let [propertyID, setPropertyID] = useState("");
-  let [buyer, setBuyer] = useState("");
+export default function AddBooking({ fetchBookingData, buyerData, propertyData }) {
 
   //todays date
   const today = new Date();
@@ -20,28 +14,15 @@ export default function AddBooking({ fetchAllBookings }) {
   // const formattedDate = yyyy + '-' + mm + '-' + dd;
   const formattedDate = yyyy + '-' + mm + '-' + dd;
 
-  const[buyerList, setBuyerList] = useState([]);
-  const[propertyList, setPropertyList] = useState([]);
+  // create state
+  const [bookingDate, setBookingDate] = useState("");
+  const [bookingTime, setBookingTime] = useState("");
+  let [property, setProperty] = useState("");
+  let [propertyid, setPropertyID] = useState("");
+  let [buyer, setBuyer] = useState("");
 
-  //fetch all buyer details and set to buyerList state
-  const getBuyerList = () => {
-    fetch(`${url}/buyer/all`)
-    .then((response) => response.json())
-    .then((data) => setBuyerList(data))
-    .then(console.log("Buyers: " + buyerList));
-  }
-
-    //fetch all property details and set to propertyList state
-  const getPropertyList = () => {
-    fetch(`${url}/property/all`)
-    .then((response) => response.json())
-    .then((data) => setPropertyList(data))
-    .then(console.log("Property list: " + propertyList))
-  }
-
-  //Filter the option list so only holds propertys that are forsale
+  //Filter the option list so only holds properties that are forsale
   //can only use the filter function as an array so need to place the json data into an array
-
   const dataArray = Object.values(Data.Properties);
   const forsale = dataArray.filter((item) => item.SaleStatus === "FORSALE");
 
@@ -54,11 +35,12 @@ export default function AddBooking({ fetchAllBookings }) {
     );
   });
 
-
   const handleSubmit = (e) => {
+    
     // tells the event if the event doesnt get handled dont use the default action as I want to do something else
     e.preventDefault();
-    
+    console.log(bookingDate);
+    console.log(bookingTime);
     if (property === "" || buyer === "") {
       alert("Please select your name & a property to book a viewing for");
     } else {
@@ -66,20 +48,19 @@ export default function AddBooking({ fetchAllBookings }) {
         alert("Please select another time slot as this is booked");
       } else {
         console.log("date in add", bookingDate)
-        const newBooking = {
+        const booking = {
           bookingDate,
           bookingTime,
-          property: {address: property},
-          buyer: {id: buyer},
-          property: {id: property}
+          property: {id: property},
+          buyer: {id: buyer}
         };
 
-        fetch(`${url}/booking/new`, {
+        fetch("http://localhost:8001/booking/new", {
           method: "POST",
           // for most api json call
           headers: { "Content-Type": "application/json" },
           // changing into json data
-          body: JSON.stringify(newBooking),
+          body: JSON.stringify(booking),
         }).then(() => {
           alert("New Viewing Booked");
 
@@ -89,28 +70,10 @@ export default function AddBooking({ fetchAllBookings }) {
           setProperty("");
           setPropertyID("");
           setBuyer("");
-          fetchAllBookings();
+          fetchBookingData();
         });
       }
     }
-  };
-
-  useEffect(() => {
-    console.log("Getting all buyers")
-    getBuyerList();
-    getPropertyList();
-  }, []);
-
-  const handlePropertyChange = (propertyAddress) => {
-    setProperty(propertyAddress);
-    console.log("Address: ", propertyAddress);
-    const selectedProperty = propertyList.find(property => property.address === propertyAddress);
-
-    if (selectedProperty) {
-      console.log("Selected Property: ", selectedProperty);
-      setPropertyID(selectedProperty.propertyID);
-      console.log(selectedProperty.propertyID);
-    } 
   };
 
   return (
@@ -120,19 +83,19 @@ export default function AddBooking({ fetchAllBookings }) {
           <div className="flex-register details">
             <div className="name-input left">
               <p>Buyers: </p>
-              <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyer.id}>
+              <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyer}>
                 <option value=""></option>
-                {buyerList.map((buyer) => (
+                {buyerData.map((buyer) => (
                   <option value={buyer.id} key={buyer.id}>{buyer.firstName} {buyer.surname}{" "}</option>
                 ))}
               </select>
             </div>
             <div className="name-input right">
               <p>Properties For Sale: </p>
-              <select name="property" onChange={(e) => handlePropertyChange(e.target.value)} value={property.address}>
+              <select name="property" onChange={(e) => setProperty(e.target.value)} value={property.address}>
                 <option value=""></option>
-                {propertyList.map((property) => (
-                  <option value={property.id} key={property.id}>{property.address}</option>
+                {propertyData.map((property) => (
+                  <option value={property.address} key={property.id}>{property.address}</option>
                 ))}
               </select>
             </div>

@@ -1,49 +1,55 @@
 import { useEffect, useState } from "react";
-import Data from "../data/Data.json";
+import { url } from "../consts";
+// import Data from '../data/Data.json'
 
-function CancelBooking(id, { fetchData }) {
-  fetch("http://localhost:8001/booking/" + id, {
+function CancelBooking(id, { fetchAllBookings }) {
+  fetch(`${url}/booking/delete/` + id, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(),
   }).then(() => {
     alert("Viewing Cancelled");
-    fetchData();
+    fetchAllBookings();
   });
 }
 
-function AllBookings({ fetchData }) {
+function AllBookings({ fetchAllBookings, allBookings }) {
   let [booking, setBooking] = useState([]);
   let [property, setProperty] = useState("");
+  const[propertyList, setPropertyList] = useState([]);
 
-  const dataArray = Object.values(Data.Properties);
-  const forsale = dataArray.filter((item) => item.SaleStatus === "FORSALE");
+  // const dataArray = Object.values(Data.Properties);
+
+  const getPropertyList = () => {
+    fetch(`${url}/property/all`)
+    .then((response) => response.json())
+    .then((data) => setPropertyList(data))
+    .then(console.log("Property list: " + propertyList))
+  }
+
+  const forsale = propertyList.filter((property) => property.saleStatus === "FORSALE");
+  console.log("Properties for sale: ", forsale);
 
   useEffect(() => {
-    fetch("http://localhost:8001/booking/all")
-      .then((response) => response.json())
-      .then((data) => setBooking(data));
+    fetchAllBookings();
+    getPropertyList();
   }, []);
-
-  console.log("Booking date", booking.date)
-
+console.log(allBookings);
   return (
     <div>
-    <table>
-      <thead>
       <div className="property-option">
-        <p>Select Property : </p>
-
-                <select name="Propertys" onChange={(e) => setProperty(e.target.value)}>
+        <p>Select Property: </p>
+                <select name="property" onChange={(e) => setProperty(e.target.value)}>
                 <option value="">All Bookings</option>
-                {forsale.map((item) => (
-                    <option value={item.Address}>{item.Address}</option>
+                {forsale.map((property) => (
+                    <option value={property.id} key={property.id}>{property.address}</option>
                 ))}
                 </select>
-    
       </div>
+      <br/>
+    <table>
+      <thead>
         <tr>
-          {/* <th>ID</th> */}
           <th className="th-border">Buyer</th>
           <th>Property Address</th>
           <th>Date</th>
@@ -52,39 +58,17 @@ function AllBookings({ fetchData }) {
         </tr>
       </thead>
       <tbody>
-        {booking
+        {allBookings
           .filter((booking) => !property || booking.property === property)
           .map((booking) => (
             <tr className="hover" key={booking.id}>
-              {/* <td>{booking.id}</td> */}
-            
               <td className="td-border">{booking.buyer}</td>
-              <td className="td-border">{booking.property}</td>
-              <td className="td-border" >{new Date(booking.date).toLocaleDateString()}</td>
-
-     
-                
-              {/* {(() => {
-                    // const dateObj = new Date(booking.date);
-                    // const day = dateObj.getDate();
-                    // const month = dateObj.getMonth() + 1; // Months are zero-indexed
-                    // const year = dateObj.getFullYear();
-
-                    // // Add leading zeros if necessary
-                    // const formattedDate = `${day < 10 ? "0" : ""}${day}/${
-                    // month < 10 ? "0" : ""
-                    // }${month}/${year}`;
-                    // alert ("display format" + formattedDate )
-
-                    // return formattedDate;
-                 })()} */}
-{/* </td> */}
-              
-              
-              <td className="td-border">{booking.time}</td>
+              <td className="td-border">{booking.address}</td>
+              <td className="td-border" >{new Date(booking.bookingDate).toLocaleDateString()}</td>
+              <td className="td-border">{booking.bookingTime}</td>
               <td className="td-border">
                 <button
-                  onClick={() => CancelBooking(booking.id, { fetchData })}
+                  onClick={() => CancelBooking(booking.id, { fetchAllBookings })}
                 >
                   Cancel Booking
                 </button>

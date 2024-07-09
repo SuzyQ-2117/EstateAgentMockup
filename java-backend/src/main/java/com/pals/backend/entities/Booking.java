@@ -17,15 +17,25 @@ public class Booking {
     @Id // sets field as Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // sets to auto increment
     private Integer id;
-
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate bookingDate;
-
     private String bookingTime;
-
     @ManyToOne
     private Buyer buyer;
+
+    //many to one for the property
+    @ManyToOne
+    private Property property;
+
+    //getter and setter for the property
+    public Property getProperty() {
+        return property;
+    }
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
 
     public Buyer getBuyer() {
         return buyer;
@@ -34,7 +44,6 @@ public class Booking {
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
     }
-
 
     // REQUIRED default constructor
     public Booking() {
@@ -46,14 +55,13 @@ public class Booking {
         this.bookingTime = bookingTime;
     }
 
-    public Booking(Integer id, LocalDate bookingDate, String bookingTime, Buyer buyer) {
+    public Booking(Integer id, LocalDate bookingDate, String bookingTime, Buyer buyer, Property property) {
         this.id = id;
         this.bookingDate = bookingDate;
         this.bookingTime = bookingTime;
         this.buyer = buyer;
+        this.property = property;
     }
-
-
 
     public Integer getId() {
         return id;
@@ -84,7 +92,9 @@ public class Booking {
         return "Booking{" +
                 "id=" + id +
                 ", bookingDate=" + bookingDate +
-                ", bookingTime=" + bookingTime +
+                ", bookingTime='" + bookingTime + '\'' +
+                ", buyer=" + buyer +
+                ", property=" + property +
                 '}';
     }
 }

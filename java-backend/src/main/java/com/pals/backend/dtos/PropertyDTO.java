@@ -2,14 +2,10 @@ package com.pals.backend.dtos;
 
 import com.pals.backend.entities.Property;
 import com.pals.backend.entities.Seller;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 public class PropertyDTO {
 
-    private int propertyID;
+    private int id;
     private String imageURL;
     private String address;
     private int price;
@@ -32,7 +28,7 @@ public class PropertyDTO {
 //    }
 
     public PropertyDTO(Property property) {
-        this.propertyID = property.getPropertyID();
+        this.id = property.getId();
         this.imageURL = property.getImageURL();
         this.address = property.getAddress();
         this.price = property.getPrice();
@@ -43,15 +39,15 @@ public class PropertyDTO {
 //        this.seller = property.getSeller();
     }
 
-    public PropertyDTO(int propertyID, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
+    public PropertyDTO(int id, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
     }
 
-    public int getPropertyID() {
-        return propertyID;
+    public int getId() {
+        return id;
     }
 
-    public void setPropertyID(int propertyID) {
-        this.propertyID = propertyID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImageURL() {
@@ -113,7 +109,7 @@ public class PropertyDTO {
     @Override
     public String toString() {
         return "PropertyDTO{" +
-                "propertyID=" + propertyID +
+                "propertyID=" + id +
                 ", imageURL='" + imageURL + '\'' +
                 ", address='" + address + '\'' +
                 ", price=" + price +

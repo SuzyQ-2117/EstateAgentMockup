@@ -42,8 +42,8 @@ export default function AddBooking({ fetchAllBookings }) {
   //Filter the option list so only holds propertys that are forsale
   //can only use the filter function as an array so need to place the json data into an array
 
-  const dataArray = Object.values(Data.Properties);
-  const forsale = dataArray.filter((item) => item.SaleStatus === "FORSALE");
+  const forsale = propertyList.filter((property) => property.saleStatus === "FORSALE");
+  console.log("Properties for sale: ", forsale);
 
   const existingBooking = Data.Bookings.find((booking) => {
     return (
@@ -131,7 +131,7 @@ export default function AddBooking({ fetchAllBookings }) {
               <p>Properties For Sale: </p>
               <select name="property" onChange={(e) => handlePropertyChange(e.target.value)} value={property.address}>
                 <option value=""></option>
-                {propertyList.map((property) => (
+                {forsale.map((property) => (
                   <option value={property.id} key={property.id}>{property.address}</option>
                 ))}
               </select>

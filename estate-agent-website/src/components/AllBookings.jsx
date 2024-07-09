@@ -25,7 +25,7 @@ function AllBookings({ fetchData }) {
       .then((data) => setBooking(data));
   }, []);
 
-  console.log("Booking date", booking.date)
+  console.log("Booking date", booking)
 
   return (
     <div>
@@ -53,14 +53,14 @@ function AllBookings({ fetchData }) {
       </thead>
       <tbody>
         {booking
-          .filter((booking) => !property || booking.property === property)
+          .filter((booking) => !property || booking.propertyid === property)
           .map((booking) => (
-            <tr className="hover" key={booking.id}>
+            <tr className="hover" key={booking.bookingid}>
               {/* <td>{booking.id}</td> */}
             
-              <td className="td-border">{booking.buyer}</td>
-              <td className="td-border">{booking.property}</td>
-              <td className="td-border" >{new Date(booking.date).toLocaleDateString()}</td>
+              <td className="td-border">{booking.buyerid}</td>
+              <td className="td-border">{booking.propertyid}</td>
+              <td className="td-border" >{new Date(booking.bookingDate).toLocaleDateString()}</td>
 
      
                 
@@ -81,7 +81,7 @@ function AllBookings({ fetchData }) {
 {/* </td> */}
               
               
-              <td className="td-border">{booking.time}</td>
+              <td className="td-border">{booking.bookingTime}</td>
               <td className="td-border">
                 <button
                   onClick={() => CancelBooking(booking.id, { fetchData })}

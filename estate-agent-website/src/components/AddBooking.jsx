@@ -17,23 +17,24 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
 
     // create state
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [bookingDate, setDate] = useState("");
+  const [bookingTime, setTime] = useState("");
   let [property, setProperty] = useState("");
   let [propertyid, setPropertyID] = useState("");
-  let [buyer, setBuyer] = useState("");
+  let [buyerid, setBuyer] = useState("");
 
   //Filter the option list so only holds propertys that are forsale
   //can only use the filter function as an array so need to place the json data into an array
 
+    //LGS this will need a fetch from all properties
   const dataArray = Object.values(Data.Properties);
   const forsale = dataArray.filter((item) => item.SaleStatus === "FORSALE");
 
   const existingBooking = Data.Bookings.find((booking) => {
     return (
-      booking.date === date &&
-      booking.time === time &&
-      booking.property === property
+      booking.bookingDate === bookingDate &&
+      booking.bookingTime === bookingTime &&
+      booking.propertyid === propertyid
       
     );
   });
@@ -45,7 +46,7 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
     e.preventDefault();
 
   
-    if (property === "" || buyer === "" ) {
+    if (property === "" || buyerid === "" ) {
       alert("Please select your name & a property to book a viewing for");
 
     } else {
@@ -54,16 +55,15 @@ const formattedDate = yyyy + '-' + mm + '-' + dd;
         
         alert("Please select another time slot as this is booked");
       } else {
-console.log("date in add", date)
+console.log("date in add", bookingDate)
         const task = {
-          date,
-          time,
-          property,
-          buyer,
+          bookingDate,
+          bookingTime,
           propertyid,
+          buyerid,
         };
 
-        fetch("http://localhost:8001/booking/new", {
+        fetch("http://localhost:8001/booking/add", {
           method: "POST",
           // for most api json call
           headers: { "Content-Type": "application/json" },
@@ -91,7 +91,7 @@ console.log("date in add", date)
              <div className="flex-register details">
                         <div className="name-input left">
                             <p>Buyers: </p>
-                                <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyer}>
+                                <select name="Buyers" onChange={(e) => setBuyer(e.target.value)} value={buyerid}>
                                     <option value=""></option>
                                     {Data.Buyers.map((item) => (
                                     <option value={item.ID}>
@@ -102,7 +102,7 @@ console.log("date in add", date)
                         </div>  
                         <div className="name-input right">
                             <p>Properties For Sale: </p>
-                                <select name="Propertys" onChange={(e) => setProperty(e.target.value)} value={property}>
+                                <select name="Propertys" onChange={(e) => setProperty(e.target.value)} value={propertyid}>
                                      <option value=""></option>
                                         {forsale.map((item) => (
                                         <option value={item.Address}>{item.Address}</option>
@@ -111,11 +111,11 @@ console.log("date in add", date)
                         </div>
                         <div className="name-input ">
                                 <p>  Date :</p>
-                                <input id="fname" type="date" required value={date} min= {formattedDate} onChange={(e) => setDate(e.target.value)}/>
+                                <input id="fname" type="date" required value={bookingDate} min= {formattedDate} onChange={(e) => setDate(e.target.value)}/>
                         </div>  
                         <div className="name-input">
                             <p>Time :</p>
-                            <select value={time} onChange={(e) => setTime(e.target.value)}>
+                            <select value={bookingTime} onChange={(e) => setTime(e.target.value)}>
                                 <option value=""></option>
                                 <option value="8-9am">8am to 9am</option>
                                 <option value="9-10am">9am to 10am</option>

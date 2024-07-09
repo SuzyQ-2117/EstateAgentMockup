@@ -34,7 +34,7 @@ function AllBookings({ fetchAllBookings, allBookings }) {
     fetchAllBookings();
     getPropertyList();
   }, []);
-
+console.log(allBookings);
   return (
     <div>
       <div className="property-option">
@@ -61,9 +61,9 @@ function AllBookings({ fetchAllBookings, allBookings }) {
         {allBookings
           .filter((booking) => !property || booking.property === property)
           .map((booking) => (
-            <tr className="hover" key={allBookings.id}>
-              <td className="td-border">{allBookings.buyer}</td>
-              <td className="td-border">{allBookings.property}</td>
+            <tr className="hover" key={booking.id}>
+              <td className="td-border">{booking.buyer}</td>
+              <td className="td-border">{booking.address}</td>
               <td className="td-border" >{new Date(booking.bookingDate).toLocaleDateString()}</td>
               <td className="td-border">{booking.bookingTime}</td>
               <td className="td-border">

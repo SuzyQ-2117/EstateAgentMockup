@@ -74,7 +74,7 @@ export default function AddBooking({ fetchAllBookings }) {
           property: {id: property}
         };
 
-        fetch("http://localhost:8001/booking/new", {
+        fetch(`${url}/booking/new`, {
           method: "POST",
           // for most api json call
           headers: { "Content-Type": "application/json" },

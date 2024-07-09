@@ -14,16 +14,16 @@ export default function DisplayProperty({ id, apiData, fetchData, handleClose, h
   const { hasGarden } = useContext(PropContext)
   const { exSold } = useContext(PropContext)
 
-  const [modalState, setModalState] = useState(false)
+  // const [modalState, setModalState] = useState(false)
 
-  const [imageURL, setImageUrl] = useState("");
-  const [address, setAddress] = useState("");
-  const [price, setPrice] = useState(0);
-  const [bedrooms, setBedrooms] = useState(1);
-  const [bathrooms, setBathrooms] = useState(1);
-  const [garden, setGarden] = useState("No");
-  const [saleStatus, setSaleStatus] = useState("FORSALE");
-  const [Seller, setSeller] = useState("")
+  // const [imageURL, setImageUrl] = useState("");
+  // const [address, setAddress] = useState("");
+  // const [price, setPrice] = useState(0);
+  // const [bedrooms, setBedrooms] = useState(1);
+  // const [bathrooms, setBathrooms] = useState(1);
+  // const [garden, setGarden] = useState("No");
+  // const [saleStatus, setSaleStatus] = useState("FORSALE");
+  // const [Seller, setSeller] = useState("")
   const [edit, setEdit] = useState([])
   const [editAddress, setEditAddress] = useState("")
   const [editPrice, setEditPrice] = useState("")

@@ -3,7 +3,7 @@ import { url } from "../consts";
 // import Data from '../data/Data.json'
 
 function CancelBooking(id, { fetchAllBookings }) {
-  fetch(`${url}/booking/` + id, {
+  fetch(`${url}/booking/delete/` + id, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(),
@@ -62,8 +62,8 @@ function AllBookings({ fetchAllBookings, allBookings }) {
           .filter((booking) => !property || booking.property === property)
           .map((booking) => (
             <tr className="hover" key={allBookings.id}>
-              <td className="td-border">{booking.buyer}</td>
-              <td className="td-border">{booking.property}</td>
+              <td className="td-border">{allBookings.buyer}</td>
+              <td className="td-border">{allBookings.property}</td>
               <td className="td-border" >{new Date(booking.bookingDate).toLocaleDateString()}</td>
               <td className="td-border">{booking.bookingTime}</td>
               <td className="td-border">

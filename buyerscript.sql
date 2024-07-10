@@ -1,9 +1,5 @@
-/*
--- Query: select * from buyer
-LIMIT 0, 1000
+USE pals_eams;
 
--- Date: 2024-07-09 12:39
-*/
-INSERT INTO `` (`id`,`first_name`,`surname`) VALUES (1,'Jenny','Bloggs');
-INSERT INTO `` (`id`,`first_name`,`surname`) VALUES (2,'Jane','Bloggs');
-INSERT INTO `` (`id`,`first_name`,`surname`) VALUES (3,'Joanna','Bloggs');
+INSERT INTO `buyer` (`id`,`first_name`,`surname`) VALUES (1,'Jenny','Bloggs');
+INSERT INTO `buyer` (`id`,`first_name`,`surname`) VALUES (2,'Jane','Bloggs');
+INSERT INTO `buyer` (`id`,`first_name`,`surname`) VALUES (3,'Joanna','Bloggs');

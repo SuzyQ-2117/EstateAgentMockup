@@ -46,10 +46,10 @@ function AllBookings({ fetchAllData, allBookings, propertyList }) {
       <table>
         <thead>
           <tr>
-            <th className="th-border">Buyer</th>
-            <th>Property Address</th>
-            <th>Date</th>
-            <th>Time</th>
+            <th>Buyer</th>
+            <th className="th-border">Property Address</th>
+            <th className="th-border">Date</th>
+            <th className="th-border">Time</th>
             <th>Cancel </th>
           </tr>
         </thead>
@@ -58,16 +58,12 @@ function AllBookings({ fetchAllData, allBookings, propertyList }) {
             .filter((booking) => !property || booking.address === property)
             .map((booking) => (
               <tr className="hover" key={booking.id}>
-                <td className="td-border">{booking.buyer}</td>
+                <td>{booking.buyer}</td>
                 <td className="td-border">{booking.address}</td>
                 <td className="td-border" >{new Date(booking.bookingDate).toLocaleDateString()}</td>
                 <td className="td-border">{booking.bookingTime}</td>
                 <td className="td-border">
-                  <button
-                    onClick={() => CancelBooking(booking.id, { fetchAllData })}
-                  >
-                    Cancel Booking
-                  </button>
+                  <button onClick={() => CancelBooking(booking.id, { fetchAllData })} className="booking-btn">Cancel</button>
                 </td>
               </tr>
             ))}

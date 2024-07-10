@@ -40,10 +40,9 @@
   }
   
   .booking .property-option {
- 
     background-color: #A6808C;
     color: #F7F7F8;
-    border-bottom: #565264 10px solid;
+    padding: 20px;
   }
 
   .booking .th-border {

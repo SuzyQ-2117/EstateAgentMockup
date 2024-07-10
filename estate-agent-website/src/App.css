@@ -568,7 +568,7 @@ a:hover {
   display: none;
 }
 
-.edit-btn {
+.edit-btn, .booking-btn {
   background-color: #A6808C;
   border-radius: 5px;
   border: 1px solid #565264;
@@ -581,7 +581,12 @@ a:hover {
   font-size: 1vw;
 }
 
-.edit-btn:hover {
+.booking-btn {
+  background-color: #706677;
+  margin: 5px;
+}
+
+.edit-btn:hover, .booking-btn:hover {
   text-decoration: underline;
 }
 

@@ -118,7 +118,7 @@ export default function AddBooking({ fetchAllData, allBookings, buyerList, prope
               </select>
             </div>
           </div>
-          <button className="submit-button">Add Booking</button>
+          <button className="submit-button booking-btn">Add Booking</button>
         </div>
       </form>
     </div>

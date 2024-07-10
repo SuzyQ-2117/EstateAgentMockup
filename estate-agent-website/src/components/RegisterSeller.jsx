@@ -47,18 +47,19 @@ const RegisterSeller = (props) => {
                             }} />
                         </div>
                         <div className="name-input right">
-                            <p>surname:</p>
+                            <p>Last Name:</p>
                             <input type="text" name="surname" value={surname} onChange={(e) => {
                                 setSurname(e.target.value)
                                 document.getElementById("SellerError").innerHTML = "";
                                 document.getElementById("SellerSuccess").innerHTML = ""
                             }} />
                         </div>
+                        <br />
+                        <button className="submit-button edit-btn">Add Seller</button>
                     </div>
                     <span style={{ color: "red" }} id="SellerError"></span>
                     <span style={{ color: "blue" }} id="SellerSuccess"></span>
-                    <br />
-                    <button className="submit-button">Add Seller</button>
+                    
                 </div>
             </form>
         </div>

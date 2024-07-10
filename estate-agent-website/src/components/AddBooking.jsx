@@ -24,8 +24,10 @@ export default function AddBooking({ fetchAllData, allBookings, buyerList, prope
   const handleSubmit = (e) => {
     e.preventDefault();
     //checks if either property or buyer have been left as blank and alerts the user to select a property and buyer
-    if (property === "" || buyer === "") {
-      alert("Please select your name & a property to book a viewing for");
+    if (property === "") {
+      alert("Please select a property to book a viewing for");
+    } if(buyer === "Not listed") {
+      alert("Please register your name on the Buyers page");
     } else {
       //if property and buyer are not blank, this will compare existing bookings with the suggested new booking and will make sure that the date & time & property are not already booked and assigns it a value of either true (date & time & property all match) or false (one or more fields do not match)
       const existingBooking = allBookings.find((booking) => (
@@ -84,6 +86,7 @@ export default function AddBooking({ fetchAllData, allBookings, buyerList, prope
                 {buyerList.map((buyer) => (
                   <option value={buyer.id} key={buyer.id}>{buyer.firstName} {buyer.surname}{" "}</option>
                 ))}
+                <option value="Not listed">Not listed</option>
               </select>
             </div>
             <div className="name-input right">

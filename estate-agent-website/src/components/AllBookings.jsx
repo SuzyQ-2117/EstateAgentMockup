@@ -1,40 +1,24 @@
 import { useEffect, useState } from "react";
 import { url } from "../consts";
-// import Data from '../data/Data.json'
 
-function CancelBooking(id, { fetchAllBookings }) {
+function CancelBooking(id, { fetchAllData }) {
   fetch(`${url}/booking/delete/` + id, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(),
   }).then(() => {
     alert("Viewing Cancelled");
-    fetchAllBookings();
+    fetchAllData();
   });
 }
 
-function AllBookings({ fetchAllBookings, allBookings }) {
-  // let [booking, setBooking] = useState([]);
+function AllBookings({ fetchAllData, allBookings, propertyList }) {
   let [property, setProperty] = useState("");
-  const [propertyList, setPropertyList] = useState([]);
-
-  // const dataArray = Object.values(Data.Properties);
-
-  const getPropertyList = () => {
-    fetch(`${url}/property/all`)
-      .then((response) => response.json())
-      .then((data) => setPropertyList(data))
-    // .then(console.log("Property list: " + propertyList))
-  }
 
   const forsale = propertyList.filter((property) => property.saleStatus === "FORSALE");
-  // console.log("Properties for sale: ", forsale);
 
   useEffect(() => {
-    fetchAllBookings();
-    getPropertyList();
+    fetchAllData();
   }, []);
-  // console.log(allBookings);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -80,7 +64,7 @@ function AllBookings({ fetchAllBookings, allBookings }) {
                 <td className="td-border">{booking.bookingTime}</td>
                 <td className="td-border">
                   <button
-                    onClick={() => CancelBooking(booking.id, { fetchAllBookings })}
+                    onClick={() => CancelBooking(booking.id, { fetchAllData })}
                   >
                     Cancel Booking
                   </button>

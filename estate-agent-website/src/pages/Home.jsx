@@ -25,11 +25,18 @@ export default function HomePage() {
   // and passes the api state through to "DisplayProperty" to include apidata for all, fetch data for status change and filter results for filtering
   let [apiData, setData] = useState([]);
   
-  function fetchData(filter) {
+  const fetchData = async (filter) => {
     console.log("FETCHING")
-    fetch(`${url}/property/filtersearch?` + filter)
-      .then((response) => response.json())
-      .then((data) => setData(data));
+    const[dataResponse, sellerResponse] = await Promise.all([
+      fetch(`${url}/property/filtersearch?` + filter),
+      fetch(`${url}/seller/all`)
+    ]);
+    
+    const data = await dataResponse.json();
+    const sellersData = await sellerResponse.json();
+
+    setData(data);
+    setSellerData(sellersData);
       }
 
   useEffect(() => {
@@ -37,16 +44,8 @@ export default function HomePage() {
   }, []);
   // Load values from context
 
-  function fetchSellerData() {
-    console.log("Fetching Seller Data on page load");
-    fetch(`${url}/seller/all`)
-        .then((response) => response.json())
-        .then((data) => setSellerData(data));
-      }
-
   const handleShowAdd = () => {
     console.log("clicked add property");
-    fetchSellerData();
     setShowAdd(true);
   }
 

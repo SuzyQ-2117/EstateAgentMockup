@@ -14,13 +14,25 @@ export default function AddPropertyModal({ showAdd, setShowAdd, fetchData, selle
   const [seller, setSeller] = useState('');
 
   const handleCloseAdd = () => {
+    resetAdd();
     fetchData();
     setShowAdd(false);
   }
 
+  const resetAdd = () => {
+    console.log("Resetting states")
+    setImageURL('');
+    setAddress('');
+    setPrice(0);
+    setBedrooms(0);
+    setBathrooms(0);
+    setGarden('');
+    setSeller('');
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (seller !== '') {
+    if (seller !== "Not listed") {
       const property = {
         seller: { id: seller },
         imageURL,
@@ -38,17 +50,11 @@ export default function AddPropertyModal({ showAdd, setShowAdd, fetchData, selle
       })
         .then(() => {
           alert('New Property Added');
-          setImageURL('');
-          setAddress('');
-          setPrice(0);
-          setBedrooms(0);
-          setBathrooms(0);
-          setGarden('');
-          setSeller('');
           handleCloseAdd();
         });
     } else {
-      alert('Seller does not exist, please register on the seller page.');
+      alert("Please register your name on the Sellers page");
+      handleCloseAdd();
     }
   };
 
@@ -83,12 +89,13 @@ export default function AddPropertyModal({ showAdd, setShowAdd, fetchData, selle
             </div>
             <div className="existing-seller-input">
               <select name="Sellers" onChange={(e) => setSeller(e.target.value)} value={seller}>
-                <option value=""></option>
+                <option></option>
 
                 {sellerData.map((item) => (
                   <option value={item.id} key={item.id}>{item.firstName + " " + item.surname}</option>
                 )
                 )}
+                <option value="Not listed">Not listed</option>
               </select>
             </div>
             <div className="new-address-input">

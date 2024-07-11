@@ -24,6 +24,12 @@ public class Seller {
         this.properties = properties;
     }
 
+    public Seller(int id, String firstName, String surname) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
     public Seller(String firstName, String surname) {
         this.firstName = firstName;
         this.surname = surname;

@@ -17,6 +17,17 @@ public class Property {
     private boolean garden;
     private String saleStatus;
 
+    public Property(String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
+        this.imageURL = imageURL;
+        this.address = address;
+        this.price = price;
+        this.bedrooms = bedrooms;
+        this.bathrooms = bathrooms;
+        this.garden = garden;
+        this.saleStatus = saleStatus;
+        this.seller = seller;
+    }
+
     @ManyToOne
      private Seller seller;
 
@@ -24,6 +35,17 @@ public class Property {
     @OneToMany(mappedBy = "property")
     private List<Booking> bookings;
 
+    public Property(int id, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
+        this.id = id;
+        this.imageURL = imageURL;
+        this.address = address;
+        this.price = price;
+        this.bedrooms = bedrooms;
+        this.bathrooms = bathrooms;
+        this.garden = garden;
+        this.saleStatus = saleStatus;
+        this.seller = seller;
+    }
 
     public Property() {
     }

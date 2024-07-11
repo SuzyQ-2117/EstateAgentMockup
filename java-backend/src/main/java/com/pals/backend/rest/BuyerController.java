@@ -44,15 +44,15 @@ private BuyerService service;
     public BuyerDto buyerByFullName(@PathVariable String fName, @PathVariable String sName){
         return this.service.buyerByFullName(fName,sName);
     }
-
-    @DeleteMapping("/buyer/remove/{id}")
-    public Buyer removePerson(@PathVariable Integer id){
-//        Buyer persontoremove = this.persons.get(id);
-        return this.service.removeBuyer(id);
-    }
-
+//
+//    @DeleteMapping("/buyer/remove/{id}")
+//    public BuyerDto removePerson(@PathVariable Integer id){
+////        Buyer persontoremove = this.persons.get(id);
+//        return this.service.removeBuyer(id);
+//    }
+//
     @PatchMapping("/buyer/update/{id}")
-    public Buyer updateBuyer(@PathVariable int id,
+    public BuyerDto updateBuyer(@PathVariable int id,
                                @RequestParam(required = false) String firstName,
                                @RequestParam(required = false) String surname){
         return this.service.updateBuyer(id,firstName,surname) ;

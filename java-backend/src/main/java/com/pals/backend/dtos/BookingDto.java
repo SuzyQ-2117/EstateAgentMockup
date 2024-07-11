@@ -32,6 +32,16 @@ public class BookingDto {
     }
 
     //generated constructors
+
+
+    public BookingDto(Integer id, LocalDate bookingDate, String bookingTime, String address, String buyer) {
+        this.id = id;
+        this.bookingDate = bookingDate;
+        this.bookingTime = bookingTime;
+        this.address = address;
+        this.buyer = buyer;
+    }
+
     public BookingDto(Integer id, LocalDate bookingDate, String bookingTime) {
         this.id = id;
         this.bookingDate = bookingDate;

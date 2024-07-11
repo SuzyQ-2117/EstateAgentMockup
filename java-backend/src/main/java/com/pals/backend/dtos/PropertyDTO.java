@@ -39,8 +39,18 @@ public class PropertyDTO {
 //        this.seller = property.getSeller();
     }
 
-    public PropertyDTO(int id, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
+    public PropertyDTO(int id, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus) {
+        this.id = id;
+        this.imageURL = imageURL;
+        this.address = address;
+        this.price = price;
+        this.bedrooms = bedrooms;
+        this.bathrooms = bathrooms;
+        this.garden = garden;
+        this.saleStatus = saleStatus;
     }
+//    public PropertyDTO(int id, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus, Seller seller) {
+//    }
 
     public int getId() {
         return id;
@@ -105,6 +115,7 @@ public class PropertyDTO {
     public void setSaleStatus(String saleStatus) {
         this.saleStatus = saleStatus;
     }
+
 
     @Override
     public String toString() {

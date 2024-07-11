@@ -34,6 +34,19 @@ public class BuyerDto {
     }
 }
 
+    public BuyerDto(Integer id, String firstName, String surname, List<BookingDto> bookings) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.bookings = bookings;
+    }
+
+    public BuyerDto(Integer id, String firstName, String surname) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
     public BuyerDto(String firstName, String surname) {
         this.firstName = firstName;
         this.surname = surname;

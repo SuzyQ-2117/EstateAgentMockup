@@ -29,8 +29,8 @@ public class SellerService {
         return foundDto;
     }
 
-    public Seller sellerByFullName(String firstName, String surname){
-        return this.repo.findByfirstNameIgnoreCaseAndSurnameIgnoreCase(firstName,surname);
+    public SellerDto sellerByFullName(String firstName, String surname){
+        return new SellerDto(this.repo.findByfirstNameIgnoreCaseAndSurnameIgnoreCase(firstName,surname));
 
     }
     public Seller addSeller( Seller seller){
@@ -38,11 +38,11 @@ public class SellerService {
         return created;
     }
 
-    public Seller sellerByID(Integer id){
+    public SellerDto sellerByID(Integer id){
         if(!this.repo.existsById(id))
             return null;
         Seller found = this.repo.findById(id).get();
-        return found;
+        return new SellerDto(found);
     }
 
     public Seller removeSeller( Integer id){
@@ -51,12 +51,12 @@ public class SellerService {
         return found;
     }
 
-    public Seller updateSeller( int id,
+    public SellerDto updateSeller( int id,
                                 String firstName,
                                 String surname){
         Seller toUpdate = this.repo.findById(id).get();
         if(firstName != null) toUpdate.setfirstName(firstName);
         if(surname != null) toUpdate.setSurname(surname);
-        return this.repo.save(toUpdate);
+        return new SellerDto(this.repo.save(toUpdate));
     }
 }

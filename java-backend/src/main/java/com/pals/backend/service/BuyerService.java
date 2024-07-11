@@ -49,18 +49,18 @@ public class BuyerService {
         return new BuyerDto(found);
     }
 
-    public Buyer removeBuyer( Integer id){
+    public BuyerDto removeBuyer( Integer id){
         Buyer found = this.repo.findById(id).get();
         this.repo.deleteById(id);
-        return found;
+        return new BuyerDto(found);
     }
 
-    public Buyer updateBuyer( Integer id,
+    public BuyerDto updateBuyer( Integer id,
                                 String firstName,
                                 String surname){
         Buyer toUpdate = this.repo.findById(id).get();
         if(firstName != null) toUpdate.setfirstName(firstName);
         if(surname != null) toUpdate.setSurname(surname);
-        return this.repo.save(toUpdate);
+        return new BuyerDto(this.repo.save(toUpdate));
     }
 }

@@ -28,23 +28,23 @@ private SellerService service;
     }
 
     @GetMapping("/seller/get/{Id}")
-    public Seller getSellerById(@PathVariable Integer Id){
+    public SellerDto getSellerById(@PathVariable Integer Id){
         return this.service.sellerByID(Id);
     }
 
     @GetMapping("/seller/find/{fName}/{sName}")
-    public Seller sellerByFullName(@PathVariable String fName, @PathVariable String sName){
+    public SellerDto sellerByFullName(@PathVariable String fName, @PathVariable String sName){
         return this.service.sellerByFullName(fName,sName);
     }
 
-    @DeleteMapping("/seller/remove/{id}")
-    public Seller removePerson(@PathVariable Integer id){
-//        Seller persontoremove = this.persons.get(id);
-        return this.service.removeSeller(id);
-    }
-
+//    @DeleteMapping("/seller/remove/{id}")
+//    public Seller removePerson(@PathVariable Integer id){
+////        Seller persontoremove = this.persons.get(id);
+//        return this.service.removeSeller(id);
+//    }
+//
     @PatchMapping("/seller/update/{id}")
-    public Seller updateSeller(@PathVariable int id,
+    public SellerDto updateSeller(@PathVariable int id,
                                @RequestParam(required = false) String firstName,
                                @RequestParam(required = false) String surname){
         return this.service.updateSeller(id,firstName,surname) ;

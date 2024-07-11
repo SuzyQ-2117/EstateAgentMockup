@@ -64,4 +64,17 @@ public class Buyer {
                 ", surname='" + surname + '\'' +
                 '}';
     }
+
+    public Buyer(Integer id, String firstName, String surname, List<Booking> bookings) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.bookings = bookings;
+    }
+
+    public Buyer(Integer id, String firstName, String surname) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+    }
 }

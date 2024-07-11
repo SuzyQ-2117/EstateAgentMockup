@@ -28,8 +28,8 @@ export default function HomePage() {
   // and passes the api state through to "DisplayProperty" to include apidata for all, fetch data for status change and filter results for filtering
   let [apiData, setData] = useState([]);
   
-  const fetchData = (filter) => {
-    fetch(`${url}/property/filtersearch?` + filter)
+  const fetchData = (filterProp) => {
+    fetch(`${url}/property/filtersearch?` + filterProp)
       .then((response) => response.json())
       .then((data) => setData(data));
       }

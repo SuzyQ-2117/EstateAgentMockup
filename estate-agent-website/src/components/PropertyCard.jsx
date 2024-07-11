@@ -50,7 +50,7 @@ export default function PropertyCard({ editID, setEditID, setEdit, id, imageURL,
         headers: { 'Content-Type': 'application/json' }
     })
         //then fetches the updated data from the database
-        .then(fetchData)
+        .then(fetchData())
         //then clears the propertyID held in the edit state
         .then(setEdit(""))
         //then calls the function to close the modal

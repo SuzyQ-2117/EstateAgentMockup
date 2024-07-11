@@ -16,8 +16,8 @@ const FindProperty = () => {
 
     function AddFilter(e) {
         e.preventDefault();
-        console.log(true, priceMin, priceMax, bedRoomsMin, bedRoomsMax, bathRoomsMin, bathRoomsMax, (garden ? "Yes" : "No"))
-        populateFilters(true, parseInt(priceMin), parseInt(priceMax), parseInt(bedRoomsMin), parseInt(bedRoomsMax), parseInt(bathRoomsMin), parseInt(bathRoomsMax), (garden ? "Yes" : "No"), exSold)
+        console.log(true, priceMin, priceMax, bedRoomsMin, bedRoomsMax, bathRoomsMin, bathRoomsMax, garden)
+        populateFilters(true, parseInt(priceMin), parseInt(priceMax), parseInt(bedRoomsMin), parseInt(bedRoomsMax), parseInt(bathRoomsMin), parseInt(bathRoomsMax), garden, exSold)
     }
 
     function ResetList(ListtoReset, SourceList, MinMax) {

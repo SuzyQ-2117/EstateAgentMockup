@@ -28,6 +28,17 @@ public class Property {
     public Property() {
     }
 
+    public Property(int id, String imageURL, String address, int price, int bedrooms, int bathrooms, boolean garden, String saleStatus) {
+        this.id = id;
+        this.imageURL = imageURL;
+        this.address = address;
+        this.price = price;
+        this.bedrooms = bedrooms;
+        this.bathrooms = bathrooms;
+        this.garden = garden;
+        this.saleStatus = saleStatus;
+    }
+
     //getter and setter for bookings
     public List<Booking> getBookings() {
         return bookings;

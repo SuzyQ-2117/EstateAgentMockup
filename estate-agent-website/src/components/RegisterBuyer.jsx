@@ -47,7 +47,7 @@ const RegisterBuyer = (props) => {
                             }} />
                         </div>
                         <div className="name-input right">
-                            <p>surname:</p>
+                            <p>Surname:</p>
                             <input type="text" name="surname" value={surname} onChange={(e) => {
                                 setSurname(e.target.value)
                                 document.getElementById("BuyerError").innerHTML = "";

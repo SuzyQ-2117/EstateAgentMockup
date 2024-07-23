@@ -9,7 +9,7 @@ function AllSellers(props) {
                     <tr>
                         <th>ID</th>
                         <th className="th-border">First Name</th>
-                        <th>Last Name</th>
+                        <th>Surname</th>
                     </tr>
                 </thead>
                 <tbody>

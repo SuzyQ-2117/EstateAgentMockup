@@ -435,8 +435,27 @@ a:hover {
 
 
 /* ADD PROPERTY  */
+.add-btn {
+  background-color: #A6808C;
+  border-radius: 5px;
+  border: 1px solid #565264;
+  cursor: pointer;
+  color: #F7F7F8;
+  padding: 0.6vw 1.5vw;
+  text-decoration: none;
+  font-size: 1.2vw;
+}
+
 .add-banner {
-  width: 60rem;
+  background-color: #ccb7ae;
+  padding: 2vw;
+  margin: 0.1vw;
+}
+
+.centered-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .new-property-container {

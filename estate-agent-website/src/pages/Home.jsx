@@ -59,12 +59,16 @@ export default function HomePage() {
         <div className="white-container">
           <DisplayProperty  apiData={apiData} fetchData={fetchData} filterResults="false" />
         </div>
-        <div className=" flex space-around white-container">
-          <div className="filter-container add-banner">
-            <h2>Have a property you want to sell?</h2>
-            <h4>Click here to add your property details! </h4>
-          </div>
-          <button variant="primary" className="amend-submit-btn" onClick={handleShowAdd}>Add</button>
+        <div className="white-container">
+            <div className="add-banner flex space-around">
+              <div>
+                <h2>Have a property you want to sell?</h2>
+              <h4>Click here to add your property details! </h4>
+              </div>
+              <div className="centered-div">
+                 <button variant="primary" className="add-btn" onClick={handleShowAdd}>Add</button>
+              </div>
+            </div>
         </div>
         <AddPropertyModal showAdd={showAdd} setShowAdd={setShowAdd} sellerData={sellerData} fetchData={fetchData}/>
       </div>

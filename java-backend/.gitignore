@@ -34,7 +34,7 @@ build/
 
 #Application Properties
 */application.properties
-/target/classes/application.proprties
+java-backend/target/classes/application.properties
 
 
 

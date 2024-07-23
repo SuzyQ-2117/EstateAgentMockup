@@ -1,1 +1,1 @@
-export const url = "http://localhost:8001";
+export const url = "http://pals-back-service:8001";

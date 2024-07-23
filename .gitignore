@@ -1,1 +1,2 @@
 java-backend/target/classes/application.properties
+java-backend/src/main/resources/application.properties
